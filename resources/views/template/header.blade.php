@@ -6,7 +6,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
             @guest
             <a class="nav-link nav-item m-3" href="{{route('register')}}">Registrati</a>
             <a class="m-3" href="{{route('login')}}">Login</a>
@@ -15,10 +15,10 @@
             @auth
             <a  class="m-3" href="">Messaggi</a>
             <a class="m-3" href="">Appartamenti</a>
-            <a class="m-3 btn btn-danger"  href="{{route('logout')}}">Logout</a>
+            <a class="m-3 b3"  href="{{route('logout')}}">Logout</a>
             @endauth
         </div>
-        </div>
+    </div>
     </nav>
 </header>
 
