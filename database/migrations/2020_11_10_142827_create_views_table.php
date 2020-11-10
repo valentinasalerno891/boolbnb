@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSponsorTable extends Migration
+class CreateViewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateSponsorTable extends Migration
      */
     public function up()
     {
-        Schema::create('sponsor', function (Blueprint $table) {
+        Schema::create('views', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('price');
-            $table->integer('duration');
+            $table->timestamps();
+
+            $table->unsignedBigInteger('apartment_id');
+            $table->foreign('apartment_id')->references('id')->on('apartments');
         });
     }
 
@@ -28,6 +29,6 @@ class CreateSponsorTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sponsor');
+        Schema::dropIfExists('views');
     }
 }

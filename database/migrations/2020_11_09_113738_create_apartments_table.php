@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateApartmentTable extends Migration
+class CreateApartmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,27 +13,26 @@ class CreateApartmentTable extends Migration
      */
     public function up()
     {
-        Schema::create('apartment', function (Blueprint $table) {
+        Schema::create('apartments', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('slug')->nullable();
-            $table->integer('rooms');
-            $table->integer('beds');
-            $table->integer('bathrooms');
-            $table->integer('square-meters');
+            $table->string('title', 50);
+            $table->string('slug', 80)->nullable();
+            $table->tinyInteger('rooms');
+            $table->tinyInteger('beds');
+            $table->tinyInteger('bathrooms');
+            $table->smallInteger('square_meters');
             $table->string('image');
             $table->text('description');
             $table->boolean('available');
-            $table->decimal('latitude', 20, 10);
-            $table->decimal('longitude', 20, 10);
-            $table->integer('views');
+            $table->decimal('latitude', 8, 6);
+            $table->decimal('longitude', 9, 6);
             $table->timestamps();
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
 
             $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('category');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 
@@ -44,6 +43,6 @@ class CreateApartmentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('apartment');
+        Schema::dropIfExists('apartments');
     }
 }
