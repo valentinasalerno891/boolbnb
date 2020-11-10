@@ -19,10 +19,10 @@ class Apartment extends Model
     }
 
     public function services(){
-        return $this->belongsToMany('App\Sponsor');
+        return $this->belongsToMany('App\Service');
     }
 
     public function category(){
-        return $this->belongsTo('App\Apartment');
+        return $this->belongsTo('App\Category');
     }
 }

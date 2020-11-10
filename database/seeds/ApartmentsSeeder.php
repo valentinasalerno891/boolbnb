@@ -31,7 +31,7 @@ class ApartmentsSeeder extends Seeder
             $newApartment->longitude = $faker->longitude();
 
             $newApartment->user_id = $user->id;
-            $newApartment->category_id = 0;
+            $newApartment->category_id = $faker->numberBetween($min = 1, $max = 4);
 
             $newApartment->save();
 
