@@ -11,10 +11,10 @@
             <a class="nav-link nav-item m-3" href="{{route('register')}}">Registrati</a>
             <a class="m-3" href="{{ route('login') }}">Login</a>
             @endguest
-            <a class="m-3" href="">Inserisci un appartamento</a>
+            <a class="m-3" href="{{ route('apartments.create') }}">Inserisci un appartamento</a>
             @auth
-            <a  class="m-3" href="">Messaggi</a>
-            <a class="m-3" href="">Appartamenti</a>
+            <a  class="m-3" href="{{ route('messages.index') }}">Messaggi</a>
+            <a class="m-3" href="{{ route('apartments.index') }}">Appartamenti</a>
             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 {{ __('Logout') }}
             </a>
