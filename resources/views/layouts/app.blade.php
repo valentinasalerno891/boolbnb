@@ -10,8 +10,7 @@
 </head>
 <body>
     @include('template.header')
-    @section('content')
-    @endsection
+    @yield('content')
     @include('template.footer')
 </body>
 </html>
