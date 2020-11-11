@@ -33,10 +33,8 @@ Route::get('/', function () {
     return view('index')->name('homepage');
 });
 
+Route::get('/home', 'HomeController@index')->name('home');
+
 // Route::get('logout', 'Auth\LoginController@logout');
 
 
-
-
-
-Route::get('/home', 'HomeController@index')->name('home');
