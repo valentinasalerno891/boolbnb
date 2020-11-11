@@ -9,13 +9,18 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             @guest
             <a class="nav-link nav-item m-3" href="{{route('register')}}">Registrati</a>
-            <a class="m-3" href="{{route('login')}}">Login</a>
+            <a class="m-3" href="{{ route('login') }}">Login</a>
             @endguest
             <a class="m-3" href="">Inserisci un appartamento</a>
             @auth
             <a  class="m-3" href="">Messaggi</a>
             <a class="m-3" href="">Appartamenti</a>
-            <a class="m-3 b3"  href="{{route('logout')}}">Logout</a>
+            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
             @endauth
         </div>
     </div>

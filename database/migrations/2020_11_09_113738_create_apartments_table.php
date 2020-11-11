@@ -16,14 +16,13 @@ class CreateApartmentsTable extends Migration
         Schema::create('apartments', function (Blueprint $table) {
             $table->id();
             $table->string('title', 50);
-            $table->string('slug', 80)->nullable();
             $table->tinyInteger('rooms');
             $table->tinyInteger('beds');
             $table->tinyInteger('bathrooms');
             $table->smallInteger('square_meters');
             $table->string('image');
             $table->text('description');
-            $table->boolean('available');
+            $table->boolean('available')->default(0);
             $table->decimal('latitude', 8, 6);
             $table->decimal('longitude', 9, 6);
             $table->timestamps();
