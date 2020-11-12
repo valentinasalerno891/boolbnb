@@ -57,9 +57,6 @@
     <div class="form-group">
         <label for="category_id">Categoria</label>
         <select name="category_id" id="category_id">
-            {{-- @if ($errors->any())
-                <option value="{{old('category_id')}}">{{old('category_id')}}</option>
-            @endif --}}
 
             @foreach ($categories as $category)
                 @if ($errors->any())
@@ -79,7 +76,10 @@
     <div class="form-group">
         @foreach ($services as $service)
             <label for="{{$service->name}}">{{$service->name}}</label>
-            <input type="checkbox" name="services[]" value="{{$service->id}}" id="{{$service->id}}">
+            <input type="checkbox" name="services[{{$service->id}}]" value="{{$service->id}}" id="{{$service->name}}"
+              @if (is_array(old('services')) && in_array($service->id, array_keys(old('services'))))
+                              checked
+              @endif>
         @endforeach
     </div>
 

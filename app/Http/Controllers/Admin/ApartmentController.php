@@ -74,15 +74,15 @@ class ApartmentController extends Controller
         }
         $apartment = new Apartment();
 
-        if(array_key_exists("services",$data)){
-            $apartment->services()->attach($data['services']);
-        }
-
         $apartment->fill($data);
 
         //Salvataggio nella tabella ponte tra 'apartments' e 'services' dei servizi selezionati
         // dd($request->all());
         $apartment->save();
+
+        if(array_key_exists("services",$data)){
+            $apartment->services()->attach($data['services']);
+        }
         // Ritorno alla views degli appartamenti con relativo messaggio//
         return redirect()->route('apartments.index')->with('status', 'Appartamento "'.$apartment->title.'" aggiunto correttamente.');
     }
