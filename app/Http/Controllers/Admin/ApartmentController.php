@@ -9,6 +9,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Apartment;
+use App\Category;
+use App\Service;
+
 
 class ApartmentController extends Controller
 {
@@ -17,7 +20,7 @@ class ApartmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    //Ritorna la view con la lista degli appartamenti dello user loggato 
+    //Ritorna la view con la lista degli appartamenti dello user loggato
     public function index()
     {
         $apartments = Apartment::where('user_id', Auth::id())->get();
@@ -33,7 +36,9 @@ class ApartmentController extends Controller
     //Ritorna la view per la creazione dell'appartamento tramite form//
     public function create()
     {
-        return view('admin.create');
+        $categories = Category::all();
+        $services = Service::all();
+        return view('admin.create', compact('categories', 'services'));
     }
 
     /**
@@ -57,7 +62,6 @@ class ApartmentController extends Controller
             'image' =>  'required',
             'description' =>  'required|min:60',
         ]);
-        
         //Assegnazione user_id per appartamento creato//
         $data['user_id'] = Auth::id();
         //Salvataggio immagine relativa all'appartamento//
@@ -69,9 +73,17 @@ class ApartmentController extends Controller
             $data['available'] = 1;
         }
         $apartment = new Apartment();
+
+        if(array_key_exists("services",$data)){
+            $apartment->services()->attach($data['services']);
+        }
+
         $apartment->fill($data);
+
+        //Salvataggio nella tabella ponte tra 'apartments' e 'services' dei servizi selezionati
+        // dd($request->all());
         $apartment->save();
-        // Ritorno alla views degli appartamneti con relativo messaggio//
+        // Ritorno alla views degli appartamenti con relativo messaggio//
         return redirect()->route('apartments.index')->with('status', 'Appartamento "'.$apartment->title.'" aggiunto correttamente.');
     }
 
@@ -144,7 +156,7 @@ class ApartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    //Cancellazione di un singolo appartamento 
+    //Cancellazione di un singolo appartamento
     public function destroy(Apartment $apartment)
     {
         $apartment->delete();
