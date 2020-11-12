@@ -11,6 +11,7 @@ class CreateSponsorsTable extends Migration
      *
      * @return void
      */
+     //Creazione della tabella Sponsors//
     public function up()
     {
         Schema::create('sponsors', function (Blueprint $table) {

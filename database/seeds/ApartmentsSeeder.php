@@ -13,6 +13,8 @@ class ApartmentsSeeder extends Seeder
      *
      * @return void
      */
+
+     //Riempimento con valori faker 
     public function run(Faker $faker)
     {
         $users = User::all();
@@ -30,7 +32,10 @@ class ApartmentsSeeder extends Seeder
             $newApartment->latitude = $faker->latitude();
             $newApartment->longitude = $faker->longitude();
 
+            //user_id viene preso dalla tabella users 
             $newApartment->user_id = $user->id;
+
+            //Valore di category_id preso in maniera faker compreso da 1 a 4
             $newApartment->category_id = $faker->numberBetween($min = 1, $max = 4);
 
             $newApartment->save();

@@ -37,11 +37,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
+    
+    //Relazione uno a molti( 1 user  * appartamenti) 
     public function apartments(){
         return $this->hasMany('App\Apartment');
     }
 
+    //Relazione uno a molti( 1 user  * messaggi) 
     public function messages(){
         return $this->hasManyThrough('App\Message', 'App\Apartment');
     }

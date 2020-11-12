@@ -11,12 +11,15 @@ class CreateViewsTable extends Migration
      *
      * @return void
      */
+
+      //Creazione della tabella Views//
     public function up()
     {
         Schema::create('views', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
 
+            //Realazione tramite apartment_id con la tabella apartments//
             $table->unsignedBigInteger('apartment_id');
             $table->foreign('apartment_id')->references('id')->on('apartments');
         });

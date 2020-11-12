@@ -11,6 +11,7 @@ class CreateMessagesTable extends Migration
      *
      * @return void
      */
+     //Creazione della tabella Messages//
     public function up()
     {
         Schema::create('messages', function (Blueprint $table) {
@@ -20,7 +21,7 @@ class CreateMessagesTable extends Migration
             $table->string('title', 50);
             $table->timestamps();
 
-            
+             //Realazione tramite apartment_id con la tabella apartments//
             $table->unsignedBigInteger('apartment_id');
             $table->foreign('apartment_id')->references('id')->on('apartments')->onDelete('cascade')->onUpdate('cascade');
         });

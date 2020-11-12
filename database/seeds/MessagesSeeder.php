@@ -13,6 +13,7 @@ class MessagesSeeder extends Seeder
      *
      * @return void
      */
+    //Riempimento con valori faker 
     public function run(Faker $faker)
     {
         $apartments = Apartment::all();

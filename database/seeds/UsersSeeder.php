@@ -11,6 +11,7 @@ class UsersSeeder extends Seeder
      *
      * @return void
      */
+    //Riempimento con valori faker 
     public function run(Faker $faker)
     {
         for ($i = 0; $i<20; $i++){

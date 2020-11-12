@@ -10,6 +10,7 @@ class CategoriesSeeder extends Seeder
      *
      * @return void
      */
+    //Riempimento con valori definiti
     public function run()
     {
         $category1 = new Category();

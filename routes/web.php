@@ -19,15 +19,17 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-
+// Rotte di collegamento fra le pagine 
 Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function () {
-    Route::resource('apartments', 'ApartmentController');
+    Route::resource('apartments', 'ApartmentController',['only' => [ 'index', 'create', 'store', 'update', 'delete' ] ]);
     Route::get('stats/{id}', 'StatController@show')->name('stats.show');
     Route::get('payment/{id}', 'PaymentController@payment')->name('payment');
     Route::get('messages', 'MessageController@index')->name('messages.index');
-    Route::get('messages/{id}', 'MessageController@show')->name('message.show');
+    Route::get('messages/{id}', 'MessageController@show')->name('messages.show');
 });
 
+Route::post('messages/{apartment_id}', 'Admin\MessageController@store')->name('messages.store');
+Route::get('apartments/{id}', 'Admin\ApartmentController@show')->name('apartments.show');
 
 Route::get('/', function () {
     return view('index')->name('homepage');
