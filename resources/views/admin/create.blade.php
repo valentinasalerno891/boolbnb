@@ -78,7 +78,7 @@
             <label for="{{$service->name}}">{{$service->name}}</label>
             <input type="checkbox" name="services[{{$service->id}}]" value="{{$service->id}}" id="{{$service->name}}"
               @if (is_array(old('services')) && in_array($service->id, array_keys(old('services'))))
-                              checked
+                checked
               @endif>
         @endforeach
     </div>

@@ -30,6 +30,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function (
 
 Route::post('messages/{apartment_id}', 'Admin\MessageController@store')->name('messages.store');
 Route::get('apartments/{id}', 'Admin\ApartmentController@show')->name('apartments.show');
+Route::get('search/', 'SearchController@index')->name('search.index');
 
 Route::get('/', function () {
     return view('index')->name('homepage');
