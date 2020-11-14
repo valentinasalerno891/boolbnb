@@ -2,7 +2,8 @@
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-        <img class="navbar-brand" src="https://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c513.png" alt="logo">
+        <span class="navbar-brand">BoolBnB</span>    
+        {{-- <img class="navbar-brand" src="https://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c513.png" alt="logo"> --}}
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
