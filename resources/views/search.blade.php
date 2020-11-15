@@ -8,8 +8,10 @@
 <label for="city">città</label>
 <input id="city" type="text" placeholder="Città">
 
-<label for="rooms">numero stanze</label>
-<input id="rooms" type="number" min="0" placeholder="Stanze">
+<label for="rooms">numero minimo stanze</label>
+<input id="rooms" type="number" min="0" placeholder="Numero minimo stanze">
+<label for="beds">numero minimo posti letto</label>
+<input id="beds" type="number" min="0" placeholder="Numero minimo letti">
 </div>
 <div>
 @foreach ($services as $service)

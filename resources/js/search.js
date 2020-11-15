@@ -1,12 +1,14 @@
 // const { lowerFirst } = require("lodash");
 
+const { ajax } = require("jquery");
+
 
 $('.service').on('change', function(){
-    change();
+    changeUrlParams();
 });
 
 $('#cerca').on('click', function(){
-    change();
+    changeUrlParams();
 });
 
 // function change(){
@@ -22,11 +24,11 @@ $('#cerca').on('click', function(){
 //     })
 //     window.history.pushState("","", city+rooms+service);
 // }
-
 var url = window.location.href;
 if (url.includes('?')){
-    getApiParams();
+    // getApiParams();
     insertValues();
+    getApartments();
 }
 
 // var url_string = window.location.href; //window.location.href
@@ -34,10 +36,19 @@ if (url.includes('?')){
 // var c = url.searchParams.get("city");
 // console.log(c);
 
-function change(){
+function getServicesIds(){
+    var ids = [];
+    $('.service').each(function(){
+        ids.push($(this).attr('value'));
+    })
+    return ids;
+}
+
+function changeUrlParams(){
     var params = {}
     params['city'] = ($('#city').val() == '') ? '0' : $('#city').val();
     params['rooms'] = ($('#rooms').val() == '') ? '0' : $('#rooms').val();
+    params['beds'] = ($('#beds').val() == '') ? '0' : $('#beds').val();
     $('.service').each(function(){
         if ($(this).is(':checked')){
             params[$(this).attr('value')] = '1';
@@ -47,7 +58,7 @@ function change(){
     })
     var str = jQuery.param(params);
     window.history.pushState("","", '?' + str);
-    getApiParams()
+    getApartments();
 }
 
 function getUrlParameter(sParam) {
@@ -67,10 +78,13 @@ function getApiParams(){
     var urlParams = {};
     urlParams['city'] = getUrlParameter('city');
     urlParams['rooms'] = getUrlParameter('rooms');
-    for (var i=1; i<=$('.service').length; i++){
-        urlParams[i] = getUrlParameter(i.toString());
+    urlParams['beds'] = getUrlParameter('beds');
+    ids = getServicesIds();
+    for (var i=0; i<ids.length; i++){
+        urlParams[ids[i]] = getUrlParameter(ids[i].toString());
     }
     console.log(urlParams);
+    return urlParams;
 }
 
 function insertValues(){
@@ -78,9 +92,27 @@ function insertValues(){
         $('#city').val(getUrlParameter('city'));
     }
     $('#rooms').val(getUrlParameter('rooms'));
-    for (var x=1; x<=$('.service').length; x++){
-        if (getUrlParameter(x.toString()) == '1'){
-            $('[value='+x+']').prop('checked', true);
+    $('#beds').val(getUrlParameter('beds'));
+    ids = getServicesIds();
+    for (var x=0; x<ids.length; x++){
+        if (getUrlParameter(ids[x].toString()) == '1'){
+            $('[value='+ids[x]+']').prop('checked', true);
         }
     }
+}
+
+function getApartments(){
+    console.log('prova');
+    $.ajax({
+        url: 'http://localhost:8000/api/apartments',
+        method: 'GET',
+        data: getApiParams(),
+        success: function(data){
+            // return data;
+            console.log(data);
+        },
+        error: function(err){
+            console.log(err);
+        }
+    });
 }
