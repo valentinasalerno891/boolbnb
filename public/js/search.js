@@ -38898,6 +38898,7 @@ var _require = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.j
 
 var _require2 = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"),
     ajax = _require2.ajax; // parte la ricerca degli appartamenti se inserisco un url contenente dei parametri
+//se condivido la url della ricerca con altro utente si vedrà quello che ho cercato
 
 
 var url = window.location.href;
@@ -38915,12 +38916,12 @@ places({
   appId: 'plZMYMEKV4FH',
   apiKey: '2c7357d3befb569a19e301e5338c9687',
   container: document.querySelector('#city')
-}); // parte la ricerca quando si selezionano uno o più servizi
+}); // parte la ricerca quando si selezionano uno o più servizi e si aggiornano i risultati
 
 $('.service').on('change', function () {
   changeUrlParams();
   getLatLon(getUrlParameter('city'));
-}); // parte la ricerca al click del pulsante cerca
+}); // parte la ricerca al click del pulsante cerca e si aggiornano i risultati
 
 $('#cerca').on('click', function () {
   changeUrlParams();
@@ -38958,7 +38959,7 @@ function getServicesIds() {
     ids.push($(this).attr('value'));
   });
   return ids;
-} // inserisco nell'URL i valori di latitudine e longitudine 
+} // inserisco nell'URL i valori di latitudine e longitudine
 
 
 function changeUrlLatLon(params, latLon) {
@@ -39003,7 +39004,7 @@ function getUrlParameter(sParam) {
   }
 }
 
-; // ottengo l'oggeto da passare all'API con i dati per la ricerca
+; // ottengo l'oggetto da passare all'API con i dati per la ricerca
 
 function getApiParams() {
   var urlParams = {};
@@ -39081,7 +39082,7 @@ function getApartments() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/davidefrancavilla/Desktop/Classe#16/boolbnb/resources/js/search.js */"./resources/js/search.js");
+module.exports = __webpack_require__(/*! C:\MAMP\mamp_public\progetto\boolbnb\resources\js\search.js */"./resources/js/search.js");
 
 
 /***/ }),

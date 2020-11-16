@@ -2,6 +2,7 @@ const { lowerFirst } = require("lodash");
 const { ajax } = require("jquery");
 
 // parte la ricerca degli appartamenti se inserisco un url contenente dei parametri
+//se condivido la url della ricerca con altro utente si vedrà quello che ho cercato
 var url = window.location.href;
 if (url.includes('?')){
     getApiParams();
@@ -18,13 +19,13 @@ places({
 });
 
 
-// parte la ricerca quando si selezionano uno o più servizi
+// parte la ricerca quando si selezionano uno o più servizi e si aggiornano i risultati
 $('.service').on('change', function(){
     changeUrlParams();
     getLatLon(getUrlParameter('city'));
 });
 
-// parte la ricerca al click del pulsante cerca
+// parte la ricerca al click del pulsante cerca e si aggiornano i risultati
 $('#cerca').on('click', function(){
     changeUrlParams();
     getLatLon(getUrlParameter('city'));
@@ -65,7 +66,7 @@ function getServicesIds(){
     return ids;
 }
 
-// inserisco nell'URL i valori di latitudine e longitudine 
+// inserisco nell'URL i valori di latitudine e longitudine
 function changeUrlLatLon(params, latLon){
     params['latitude'] = latLon.lat;
     params['longitude'] = latLon.lon;
@@ -106,7 +107,7 @@ function getUrlParameter(sParam) {
     }
 };
 
-// ottengo l'oggeto da passare all'API con i dati per la ricerca
+// ottengo l'oggetto da passare all'API con i dati per la ricerca
 function getApiParams(){
     var urlParams = {};
     urlParams['rooms'] = getUrlParameter('rooms') ? getUrlParameter('rooms') : '0';
