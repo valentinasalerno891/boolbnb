@@ -10,6 +10,26 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+input[type=range] {
+  -webkit-appearance: none;
+  border-radius: 10px;
+  background-color: pink;
+  width: 200px;
+  height: 10px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color: #ff9eae;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
 /*!
  * Bootstrap v4.5.3 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors

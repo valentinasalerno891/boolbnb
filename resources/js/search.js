@@ -1,40 +1,54 @@
-// const { lowerFirst } = require("lodash");
-
+const { lowerFirst } = require("lodash");
 const { ajax } = require("jquery");
 
 
-$('.service').on('change', function(){
-    changeUrlParams();
-});
-
-$('#cerca').on('click', function(){
-    changeUrlParams();
-});
-
-// function change(){
-//     var service = '';
-//     var city = ($('#city').val() == '') ? '?city=0' : '?city='+$('#city').val();
-//     var rooms = ($('#rooms').val() == '') ? '&room=0' : '&room='+$('#rooms').val();
-//     $('.service').each(function(){
-//         if ($(this).is(':checked')){
-//             service = service + '&' + $(this).attr('value') + '=' + '1';
-//         } else {
-//             service = service + '&' + $(this).attr('value') + '=' + '0';
-//         }
-//     })
-//     window.history.pushState("","", city+rooms+service);
-// }
 var url = window.location.href;
 if (url.includes('?')){
-    // getApiParams();
+    getApiParams();
     insertValues();
     getApartments();
 }
 
-// var url_string = window.location.href; //window.location.href
-// var url = new URL(url_string);
-// var c = url.searchParams.get("city");
-// console.log(c);
+var places = require('places.js');
+places({
+  appId: 'plZMYMEKV4FH',
+  apiKey: '2c7357d3befb569a19e301e5338c9687',
+  container: document.querySelector('#city')
+});
+
+$('.service').on('change', function(){
+    changeUrlParams();
+    getLatLon(getUrlParameter('city'));
+});
+
+$('#cerca').on('click', function(){
+    changeUrlParams();
+    getLatLon(getUrlParameter('city'));
+});
+
+function getLatLon(city){
+    $.ajax({
+        url: 'https://api.tomtom.com/search/2/geocode/'+ city +'.json?key=wBFrGupwgm95n0TA2HmZJULQ5GktiGhQ',
+        method: 'GET',
+        success: function(data){
+            if (data){
+                var firstParams = changeUrlParams();
+                changeUrlLatLon(firstParams ,data.results[0].position);
+                getApartments();
+            }
+        },
+        error: function(err){
+            console.log(err);
+        }
+    });
+}
+
+$('#distance').on('mousemove', function(){
+    $('#eccolo').text($('#distance').val()+'km');
+})
+$('#distance').on('change',function(){
+    $('#eccolo').text($('#distance').val()+'km');
+})
 
 function getServicesIds(){
     var ids = [];
@@ -44,11 +58,19 @@ function getServicesIds(){
     return ids;
 }
 
+function changeUrlLatLon(params, latLon){
+    params['latitude'] = latLon.lat;
+    params['longitude'] = latLon.lon;
+    var str = jQuery.param(params);
+    window.history.pushState("","", '?' + str);
+}
+
 function changeUrlParams(){
     var params = {}
     params['city'] = ($('#city').val() == '') ? '0' : $('#city').val();
     params['rooms'] = ($('#rooms').val() == '') ? '0' : $('#rooms').val();
     params['beds'] = ($('#beds').val() == '') ? '0' : $('#beds').val();
+    params['distance'] = $('#distance').val();
     $('.service').each(function(){
         if ($(this).is(':checked')){
             params[$(this).attr('value')] = '1';
@@ -58,7 +80,7 @@ function changeUrlParams(){
     })
     var str = jQuery.param(params);
     window.history.pushState("","", '?' + str);
-    getApartments();
+    return params;
 }
 
 function getUrlParameter(sParam) {
@@ -76,12 +98,15 @@ function getUrlParameter(sParam) {
 
 function getApiParams(){
     var urlParams = {};
-    urlParams['city'] = getUrlParameter('city');
-    urlParams['rooms'] = getUrlParameter('rooms');
-    urlParams['beds'] = getUrlParameter('beds');
+    // urlParams['city'] = getUrlParameter('city');
+    urlParams['rooms'] = getUrlParameter('rooms') ? getUrlParameter('rooms') : '0';
+    urlParams['beds'] = getUrlParameter('beds') ? getUrlParameter('beds') : '0';
+    urlParams['distance'] = getUrlParameter('distance') ? getUrlParameter('distance') : '20';
+    urlParams['latitude'] = getUrlParameter('latitude');
+    urlParams['longitude'] = getUrlParameter('longitude');
     ids = getServicesIds();
     for (var i=0; i<ids.length; i++){
-        urlParams[ids[i]] = getUrlParameter(ids[i].toString());
+        urlParams[ids[i]] = getUrlParameter(ids[i].toString()) ? getUrlParameter(ids[i].toString()) : '0';
     }
     console.log(urlParams);
     return urlParams;
@@ -93,6 +118,8 @@ function insertValues(){
     }
     $('#rooms').val(getUrlParameter('rooms'));
     $('#beds').val(getUrlParameter('beds'));
+    $('#distance').val(getUrlParameter('distance') ?  getUrlParameter('distance') : '20');
+    $('#eccolo').text(getUrlParameter('distance') ? getUrlParameter('distance')+'km' : '20'+'km');
     ids = getServicesIds();
     for (var x=0; x<ids.length; x++){
         if (getUrlParameter(ids[x].toString()) == '1'){
@@ -102,13 +129,11 @@ function insertValues(){
 }
 
 function getApartments(){
-    console.log('prova');
     $.ajax({
         url: 'http://localhost:8000/api/apartments',
         method: 'GET',
         data: getApiParams(),
         success: function(data){
-            // return data;
             console.log(data);
         },
         error: function(err){
@@ -116,3 +141,24 @@ function getApartments(){
         }
     });
 }
+
+
+
+// var url_string = window.location.href; //window.location.href
+// var url = new URL(url_string);
+// var c = url.searchParams.get("city");
+// console.log(c);
+
+// function change(){
+//     var service = '';
+//     var city = ($('#city').val() == '') ? '?city=0' : '?city='+$('#city').val();
+//     var rooms = ($('#rooms').val() == '') ? '&room=0' : '&room='+$('#rooms').val();
+//     $('.service').each(function(){
+//         if ($(this).is(':checked')){
+//             service = service + '&' + $(this).attr('value') + '=' + '1';
+//         } else {
+//             service = service + '&' + $(this).attr('value') + '=' + '0';
+//         }
+//     })
+//     window.history.pushState("","", city+rooms+service);
+// }

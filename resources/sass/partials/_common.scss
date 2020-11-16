@@ -7,3 +7,23 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+input[type=range] {
+    -webkit-appearance: none;
+    border-radius: 10px;
+    background-color: pink;
+    width: 200px;
+    height:10px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+     -webkit-appearance: none;
+    background-color: rgb(255, 158, 174);
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
