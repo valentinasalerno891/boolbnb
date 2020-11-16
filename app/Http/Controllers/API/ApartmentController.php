@@ -51,7 +51,6 @@ class ApartmentController extends Controller
                 if ($km_distance<=$request->distance){
                     array_push($result, $apartments[$x]); // pusho l'appartamento nell'array result
                 }
-                
             }
         }
         return response()->json($result, 200);
