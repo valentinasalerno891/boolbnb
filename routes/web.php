@@ -22,7 +22,7 @@ Auth::routes();
 // Rotte di collegamento fra le pagine
 Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function () {
     Route::resource('apartments', 'ApartmentController',['only' => [ 'index', 'create', 'store', 'update', 'destroy', 'edit' ] ]);
-    Route::get('stats/{id}', 'StatController@show')->name('stats.show');
+    Route::get('apartments/{id}/stats', 'StatController@show')->name('stats.show');
     Route::get('payment/{id}', 'PaymentController@payment')->name('payment');
     Route::get('messages', 'MessageController@index')->name('messages.index');
     Route::get('messages/{id}', 'MessageController@show')->name('messages.show');

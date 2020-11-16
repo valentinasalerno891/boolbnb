@@ -38897,7 +38897,8 @@ var _require = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.j
     lowerFirst = _require.lowerFirst;
 
 var _require2 = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"),
-    ajax = _require2.ajax;
+    ajax = _require2.ajax; // parte la ricerca degli appartamenti se inserisco un url contenente dei parametri
+
 
 var url = window.location.href;
 
@@ -38905,7 +38906,8 @@ if (url.includes('?')) {
   getApiParams();
   insertValues();
   getApartments();
-}
+} // funzione algolia per l'autocompletamento sulla ricerca
+
 
 var places = __webpack_require__(/*! places.js */ "./node_modules/places.js/index.js");
 
@@ -38913,15 +38915,24 @@ places({
   appId: 'plZMYMEKV4FH',
   apiKey: '2c7357d3befb569a19e301e5338c9687',
   container: document.querySelector('#city')
-});
+}); // parte la ricerca quando si selezionano uno o più servizi
+
 $('.service').on('change', function () {
   changeUrlParams();
   getLatLon(getUrlParameter('city'));
-});
+}); // parte la ricerca al click del pulsante cerca
+
 $('#cerca').on('click', function () {
   changeUrlParams();
   getLatLon(getUrlParameter('city'));
+}); // funzioni per la modifica del valore dello slider in diretta
+
+$('#distance').on('mousemove', function () {
+  $('#eccolo').text($('#distance').val() + 'km');
 });
+$('#distance').on('change', function () {
+  $('#eccolo').text($('#distance').val() + 'km');
+}); // ottengo latitudine e longitudine della città cercata
 
 function getLatLon(city) {
   $.ajax({
@@ -38938,14 +38949,8 @@ function getLatLon(city) {
       console.log(err);
     }
   });
-}
+} // ottendo tutti gli ID dei servizi presenti sul DB
 
-$('#distance').on('mousemove', function () {
-  $('#eccolo').text($('#distance').val() + 'km');
-});
-$('#distance').on('change', function () {
-  $('#eccolo').text($('#distance').val() + 'km');
-});
 
 function getServicesIds() {
   var ids = [];
@@ -38953,14 +38958,16 @@ function getServicesIds() {
     ids.push($(this).attr('value'));
   });
   return ids;
-}
+} // inserisco nell'URL i valori di latitudine e longitudine 
+
 
 function changeUrlLatLon(params, latLon) {
   params['latitude'] = latLon.lat;
   params['longitude'] = latLon.lon;
   var str = jQuery.param(params);
   window.history.pushState("", "", '?' + str);
-}
+} // inserisco nell'URL i valori di camere, letti, distanza dal centro, città e servizi
+
 
 function changeUrlParams() {
   var params = {};
@@ -38978,7 +38985,8 @@ function changeUrlParams() {
   var str = jQuery.param(params);
   window.history.pushState("", "", '?' + str);
   return params;
-}
+} // ottengo il valori del parametro dell'URL passato alla funzione
+
 
 function getUrlParameter(sParam) {
   var sPageURL = window.location.search.substring(1),
@@ -38995,11 +39003,10 @@ function getUrlParameter(sParam) {
   }
 }
 
-;
+; // ottengo l'oggeto da passare all'API con i dati per la ricerca
 
 function getApiParams() {
-  var urlParams = {}; // urlParams['city'] = getUrlParameter('city');
-
+  var urlParams = {};
   urlParams['rooms'] = getUrlParameter('rooms') ? getUrlParameter('rooms') : '0';
   urlParams['beds'] = getUrlParameter('beds') ? getUrlParameter('beds') : '0';
   urlParams['distance'] = getUrlParameter('distance') ? getUrlParameter('distance') : '20';
@@ -39013,7 +39020,8 @@ function getApiParams() {
 
   console.log(urlParams);
   return urlParams;
-}
+} // se ci sono parametri presenti nell'URL popolo i relativi input con essi
+
 
 function insertValues() {
   if (getUrlParameter('city') != 0) {
@@ -39031,7 +39039,8 @@ function insertValues() {
       $('[value=' + ids[x] + ']').prop('checked', true);
     }
   }
-}
+} // chiamo l'API creata su laravel e ottengo la lista degli appartamenti che soddisfano la ricerca
+
 
 function getApartments() {
   $.ajax({

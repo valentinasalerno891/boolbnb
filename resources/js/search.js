@@ -1,7 +1,7 @@
 const { lowerFirst } = require("lodash");
 const { ajax } = require("jquery");
 
-
+// parte la ricerca degli appartamenti se inserisco un url contenente dei parametri
 var url = window.location.href;
 if (url.includes('?')){
     getApiParams();
@@ -9,6 +9,7 @@ if (url.includes('?')){
     getApartments();
 }
 
+// funzione algolia per l'autocompletamento sulla ricerca
 var places = require('places.js');
 places({
   appId: 'plZMYMEKV4FH',
@@ -16,16 +17,28 @@ places({
   container: document.querySelector('#city')
 });
 
+
+// parte la ricerca quando si selezionano uno o più servizi
 $('.service').on('change', function(){
     changeUrlParams();
     getLatLon(getUrlParameter('city'));
 });
 
+// parte la ricerca al click del pulsante cerca
 $('#cerca').on('click', function(){
     changeUrlParams();
     getLatLon(getUrlParameter('city'));
 });
 
+// funzioni per la modifica del valore dello slider in diretta
+$('#distance').on('mousemove', function(){
+    $('#eccolo').text($('#distance').val()+'km');
+})
+$('#distance').on('change',function(){
+    $('#eccolo').text($('#distance').val()+'km');
+})
+
+// ottengo latitudine e longitudine della città cercata
 function getLatLon(city){
     $.ajax({
         url: 'https://api.tomtom.com/search/2/geocode/'+ city +'.json?key=wBFrGupwgm95n0TA2HmZJULQ5GktiGhQ',
@@ -33,7 +46,7 @@ function getLatLon(city){
         success: function(data){
             if (data){
                 var firstParams = changeUrlParams();
-                changeUrlLatLon(firstParams ,data.results[0].position);
+                changeUrlLatLon(firstParams, data.results[0].position);
                 getApartments();
             }
         },
@@ -43,13 +56,7 @@ function getLatLon(city){
     });
 }
 
-$('#distance').on('mousemove', function(){
-    $('#eccolo').text($('#distance').val()+'km');
-})
-$('#distance').on('change',function(){
-    $('#eccolo').text($('#distance').val()+'km');
-})
-
+// ottendo tutti gli ID dei servizi presenti sul DB
 function getServicesIds(){
     var ids = [];
     $('.service').each(function(){
@@ -58,6 +65,7 @@ function getServicesIds(){
     return ids;
 }
 
+// inserisco nell'URL i valori di latitudine e longitudine 
 function changeUrlLatLon(params, latLon){
     params['latitude'] = latLon.lat;
     params['longitude'] = latLon.lon;
@@ -65,6 +73,7 @@ function changeUrlLatLon(params, latLon){
     window.history.pushState("","", '?' + str);
 }
 
+// inserisco nell'URL i valori di camere, letti, distanza dal centro, città e servizi
 function changeUrlParams(){
     var params = {}
     params['city'] = ($('#city').val() == '') ? '0' : $('#city').val();
@@ -83,6 +92,7 @@ function changeUrlParams(){
     return params;
 }
 
+// ottengo il valori del parametro dell'URL passato alla funzione
 function getUrlParameter(sParam) {
     var sPageURL = window.location.search.substring(1),
         sURLVariables = sPageURL.split('&'),
@@ -96,9 +106,9 @@ function getUrlParameter(sParam) {
     }
 };
 
+// ottengo l'oggeto da passare all'API con i dati per la ricerca
 function getApiParams(){
     var urlParams = {};
-    // urlParams['city'] = getUrlParameter('city');
     urlParams['rooms'] = getUrlParameter('rooms') ? getUrlParameter('rooms') : '0';
     urlParams['beds'] = getUrlParameter('beds') ? getUrlParameter('beds') : '0';
     urlParams['distance'] = getUrlParameter('distance') ? getUrlParameter('distance') : '20';
@@ -112,6 +122,7 @@ function getApiParams(){
     return urlParams;
 }
 
+// se ci sono parametri presenti nell'URL popolo i relativi input con essi
 function insertValues(){
     if (getUrlParameter('city') != 0){
         $('#city').val(getUrlParameter('city'));
@@ -128,6 +139,7 @@ function insertValues(){
     }
 }
 
+// chiamo l'API creata su laravel e ottengo la lista degli appartamenti che soddisfano la ricerca
 function getApartments(){
     $.ajax({
         url: 'http://localhost:8000/api/apartments',
