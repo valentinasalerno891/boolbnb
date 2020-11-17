@@ -1,0 +1,124 @@
+.apartment_show{
+    .container{
+        .header_apartment{
+            width: 100%;
+            height:80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .title{
+                font-size: 38px;
+                text-transform: capitalize;
+            }
+            .apartment_form{
+                display: flex;
+                span{
+                    font-size: 17px;
+                    padding-right: 15px;
+                    a{
+                        color: #ff385c;
+                    }
+                    a:hover{
+                        color: #960441;
+                        i{
+                            color: #960441; 
+                        }
+                    }
+                    i{
+                        padding-right: 6px;
+                        color: #ff385c;
+                    }
+                }
+                button{
+                    font-size: 12px;
+                    border-radius: 10%;
+                    background-color: #ff385c;
+                    box-shadow: 0 1px #999;
+                    color: white;
+                    span{
+                        padding: 8px;
+                        i{
+                            color: white;
+                        }
+                    }
+                }
+                button:hover {
+                    background-color: #960441
+                }
+                button:active {
+                    background-color: #3e8e41;
+                    box-shadow: 0 5px #666;
+                    transform: translateY(4px);
+                }
+            }
+        }
+        .image_apartment{
+            width: 100%;
+            height: 75vh;
+            img{
+                width: 100%;
+                height: 100%;
+                border-radius: 8%;
+            }
+        }
+        hr{
+            border: 0.5px solid #ff385c;
+            background-color: #ff385c;
+        }
+        .description_information{
+            width: 100%;
+            display: flex;
+            .apartment_description{
+                width: 50%;
+                text-align: center;
+                padding: 12px 0px;
+                h3{
+                    font-size: 30px;
+                }
+                span{
+                    font-size: 18px;
+                    color: #717171;
+                }
+            }
+            .apartment_information{
+                width: 50%;
+                padding: 12px 0px;
+                text-align: center;
+                h3{
+                    font-size: 30px;
+                }
+                p{
+                    font-size: 22px;
+                    color: #717171;
+                }
+            }    
+        }
+        .service_maps{
+            width: 100%;
+            display: flex;
+            .apartment_service{
+                width: 50%;
+                padding: 12px 0px;
+                text-align: center;
+                h3{
+                    font-size: 30px;
+                }
+                li{
+                    list-style: none;
+                    font-size: 22px;
+                    color: #717171;
+                    margin-bottom: 15px;
+                    i{
+                        margin-right: 5px;
+                    }
+                }
+            }
+            .apartment_maps{
+                width: 50%;
+                padding: 12px 0px;
+                text-align: center;
+            }
+        }
+        
+    }
+}
