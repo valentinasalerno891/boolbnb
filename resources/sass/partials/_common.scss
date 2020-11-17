@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    border-radius: 10px;
+    background-color: #fe91a5;
+    width: 200px;
+    height:10px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+     -webkit-appearance: none;
+    background-color: #ff385c;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+input:focus {
+  outline: none;
+}

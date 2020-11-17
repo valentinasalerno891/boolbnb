@@ -1,5 +1,41 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  border-radius: 10px;
+  background-color: #fe91a5;
+  width: 200px;
+  height: 10px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color: #ff385c;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+
+input:focus {
+  outline: none;
+}
+
 /*!
  * Bootstrap v4.5.3 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
@@ -10901,5 +10937,48 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+}
+
+header nav {
+  height: 70px;
+  background-color: lightblue;
+}
+
+header nav img {
+  height: 50px;
+}
+
+.container.search .input-text {
+  border-radius: 5px;
+  border: 1px solid gray;
+  padding: 0 15px;
+  height: 30px;
+  line-height: 30px;
+}
+
+.container.search #rooms {
+  margin-right: 15px;
+}
+
+.container.search .btn {
+  background-color: #ff385c;
+  color: white;
+}
+
+.container.search .service {
+  margin-right: 20px;
+}
+
+.container.search #results {
+  margin-top: 20px;
+}
+
+.container.search .apartment {
+  padding: 30px 0;
+  border-bottom: 1px solid gray;
+}
+
+.container.search .apartment:first-of-type {
+  border-top: 1px solid gray;
 }
 
