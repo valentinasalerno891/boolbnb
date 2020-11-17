@@ -1,6 +1,13 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
+//Fontawesome
+// Font Awesome
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+
 // Common
 @import 'partials/common';
 
@@ -12,6 +19,9 @@
 
 
 
+
+
 @import 'partials/sponsor';
 @import 'partials/header';
 @import 'partials/footer';
+@import 'partials/apartment_show';

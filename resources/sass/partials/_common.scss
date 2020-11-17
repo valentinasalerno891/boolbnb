@@ -27,3 +27,9 @@ input[type="range"]::-webkit-slider-thumb {
 input[type=range]:focus {
   outline: none;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
