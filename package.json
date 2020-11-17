@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "bulma": "^0.9.1",
+        "handlebars": "^4.7.6",
         "places.js": "^1.19.0"
     }
 }

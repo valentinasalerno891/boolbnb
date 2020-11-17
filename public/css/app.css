@@ -1,5 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -13,20 +19,20 @@ input[type=number] {
 input[type=range] {
   -webkit-appearance: none;
   border-radius: 10px;
-  background-color: pink;
+  background-color: #fe91a5;
   width: 200px;
   height: 10px;
 }
 
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  background-color: #ff9eae;
+  background-color: #ff385c;
   width: 15px;
   height: 15px;
   border-radius: 50%;
 }
 
-input[type=range]:focus {
+input:focus {
   outline: none;
 }
 
@@ -10940,5 +10946,39 @@ header nav {
 
 header nav img {
   height: 50px;
+}
+
+.container.search .input-text {
+  border-radius: 5px;
+  border: 1px solid gray;
+  padding: 0 15px;
+  height: 30px;
+  line-height: 30px;
+}
+
+.container.search #rooms {
+  margin-right: 15px;
+}
+
+.container.search .btn {
+  background-color: #ff385c;
+  color: white;
+}
+
+.container.search .service {
+  margin-right: 20px;
+}
+
+.container.search #results {
+  margin-top: 20px;
+}
+
+.container.search .apartment {
+  padding: 30px 0;
+  border-bottom: 1px solid gray;
+}
+
+.container.search .apartment:first-of-type {
+  border-top: 1px solid gray;
 }
 

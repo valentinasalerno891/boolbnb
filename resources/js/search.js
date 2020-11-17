@@ -1,10 +1,11 @@
 const { lowerFirst } = require("lodash");
 const { ajax } = require("jquery");
+const Handlebars = require("handlebars");
 
 // parte la ricerca degli appartamenti se inserisco un url contenente dei parametri
 //se condivido la url della ricerca con altro utente si vedrà quello che ho cercato
 var url = window.location.href;
-if (url.includes('?')){
+if (url.includes('?') && (typeof getUrlParameter('latitude') != 'undefined') && (typeof getUrlParameter('longitude') != 'undefined')){
     getApiParams();
     insertValues();
     getApartments();
@@ -142,12 +143,20 @@ function insertValues(){
 
 // chiamo l'API creata su laravel e ottengo la lista degli appartamenti che soddisfano la ricerca
 function getApartments(){
+    var source = $("#entry-template").html();
+    var template = Handlebars.compile(source);
     $.ajax({
         url: 'http://localhost:8000/api/apartments',
         method: 'GET',
         data: getApiParams(),
         success: function(data){
+            $('#results').empty();
             console.log(data);
+            for (var i = 0; i<data.length; i++){
+                var context = data[i];
+                var html = template(context);
+                $('#results').append(html);
+            }
         },
         error: function(err){
             console.log(err);

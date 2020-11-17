@@ -49,6 +49,7 @@ class ApartmentController extends Controller
                 $km_distance = ($data->routes[0]->legs[0]->summary->lengthInMeters)/1000;
                 // controllo che la distanza sia minore o uguale a quella impostata dall'utente
                 if ($km_distance<=$request->distance){
+                    $apartments[$x]['route'] = route('apartments.show', $apartments[$x]->id);
                     array_push($result, $apartments[$x]); // pusho l'appartamento nell'array result
                 }
             }

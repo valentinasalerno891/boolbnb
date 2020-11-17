@@ -1,0 +1,30 @@
+.container.search {
+    .input-text {
+        border-radius: 5px;
+        border: 1px solid gray;
+        padding: 0 15px;
+        height: 30px;
+        line-height: 30px;
+        
+    }
+    #rooms {
+            margin-right: 15px;
+    }
+    .btn {
+        background-color: #ff385c;
+        color: white;
+    }
+    .service {
+        margin-right: 20px;
+    }
+    #results {
+        margin-top: 20px;
+    }
+    .apartment {
+        padding: 30px 0;
+        border-bottom: 1px solid gray;
+    }
+    .apartment:first-of-type {
+        border-top: 1px solid gray;
+    }
+}
