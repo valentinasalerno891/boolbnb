@@ -1,3 +1,8 @@
+@extends('layouts.app')
+
+@section('title', 'Login')
+@section('content')
+
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -10,6 +15,9 @@
 <form action="{{route('apartments.store')}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('POST')
+    <div class="container">
+
+
   <div class="form-group">
     <label for="title">Titolo</label>
     <input name="title" type="text" class="form-control" id="title" aria-describedby="emailHelp" placeholder="Inserisci titolo appartamento" value="{{old('title')}}">
@@ -83,5 +91,7 @@
         @endforeach
     </div>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary">Invia</button>
 </form>
+</div>
+@endsection

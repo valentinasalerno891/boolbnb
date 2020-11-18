@@ -17280,3 +17280,33 @@ header nav img {
   border-top: 1px solid gray;
 }
 
+.card {
+  color: red;
+}
+
+.container {
+  color: red;
+}
+
+input.form-control {
+  width: 250px;
+}
+
+#available {
+  width: 15px;
+  height: 15px;
+}
+
+.apartments-index table {
+  margin-top: 30px;
+}
+
+.apartments-index a.edit {
+  color: #ff385c;
+}
+
+.apartments-index button.delete {
+  background-color: #ff385c;
+  color: white;
+}
+
