@@ -17274,6 +17274,23 @@ header nav img {
 .container.search .apartment {
   padding: 30px 0;
   border-bottom: 1px solid gray;
+  display: flex;
+}
+
+.container.search .apartment .left {
+  width: 80%;
+}
+
+.container.search .apartment .right {
+  width: 20%;
+}
+
+.container.search .apartment .right img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 3px;
 }
 
 .container.search .apartment:first-of-type {
