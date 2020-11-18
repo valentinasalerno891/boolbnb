@@ -17,10 +17,7 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-
-
-
-
+// Partials
 @import 'partials/sponsor';
 @import 'partials/header';
 @import 'partials/footer';
@@ -29,3 +26,4 @@
 @import 'partials/login';
 @import 'partials/create';
 @import 'partials/index';
+@import 'partials/messages';
