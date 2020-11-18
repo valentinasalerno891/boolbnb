@@ -67,5 +67,53 @@
             </div>
         </div>
     </div>
+    <div class="card-container">
+        <h2>Appartamenti in evidenza</h2>
+        <div class="card-group">
+            {{-- @foreach ($iterable as $key => $value) --}}
+                <div class="card">
+                    <img class="card-img-top" src="..." alt="img">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Last updated 3 mins ago</small>
+                    </div>
+                </div>
+            {{-- @endforeach --}}
+
+            {{-- @foreach ($iterable as $key => $value) --}}
+                <div class="card">
+                    <img class="card-img-top" src="..." alt="img">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Last updated 3 mins ago</small>
+                    </div>
+                </div>
+            {{-- @endforeach --}}
+
+            {{-- @foreach ($iterable as $key => $value) --}}
+                <div class="card">
+                    <img class="card-img-top" src="..." alt="img
+                    ">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Last updated 3 mins ago</small>
+                    </div>
+                </div>
+            {{-- @endforeach --}}
+
+        </div>
+    </div>
+
+    @include('template.footer')
+
 </body>
 </html>
