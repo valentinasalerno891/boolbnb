@@ -33,9 +33,9 @@ Route::get('apartments/{id}', 'Admin\ApartmentController@show')->name('apartment
 Route::get('search/', 'SearchController@index')->name('search.index');
 
 Route::get('/', function () {
-    return view('index')->name('homepage');
+    return view('index');
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 // Route::get('logout', 'Auth\LoginController@logout');

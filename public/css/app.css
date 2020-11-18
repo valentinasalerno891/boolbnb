@@ -6180,12 +6180,6 @@ input:focus {
   outline: none;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 /*!
  * Bootstrap v4.5.3 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
@@ -17089,13 +17083,101 @@ a.text-dark:focus {
   }
 }
 
+.home-container {
+  height: 100vh;
+  background-image: url("https://cdn.pixabay.com/photo/2016/08/11/23/48/italy-1587287_960_720.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(110%);
+}
+
+.home-container nav {
+  background: transparent;
+}
+
+.home-container nav img {
+  height: 60px;
+}
+
+.home-container nav .home-menu {
+  justify-content: flex-end;
+}
+
+.home-container nav .home-menu .home-menu-a {
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+  color: white;
+}
+
+.home-container .search-nav {
+  width: 65%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #dddddd;
+  border-radius: 32px;
+  color: #222222;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 16px 32px, rgba(0, 0, 0, 0.1) 0px 3px 8px !important;
+  --big-search-form-background: #F7F7F7;
+  background-color: #f7f7f7;
+  position: relative;
+  margin-top: 100px;
+}
+
+.home-container .search-nav .ricerca {
+  width: 25%;
+  padding: 10px;
+}
+
+.home-container .search-nav .button-cerca {
+  padding: 10px;
+}
+
+.home-container .search-nav .button-cerca button {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border-color: transparent;
+  color: white;
+  background-color: #ff385c;
+}
+
+.home-container .search-nav .button-cerca button i {
+  font-size: 18px;
+}
+
+.home-container input {
+  background: rgba(0, 0, 0, 0) none repeat scroll 0% 0% !important;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
+  color: #222222;
+  text-overflow: ellipsis;
+  width: 100%;
+  display: block;
+  border: 0px none;
+  margin: 0px;
+  padding: 0px;
+}
+
 header nav {
   height: 70px;
   background-color: lightblue;
 }
 
 header nav img {
-  height: 50px;
+  height: 60px;
+}
+
+header nav .home-menu-a {
+  font-weight: 400;
+  justify-content: flex-end;
+}
+
+header nav .home-menu-a a {
+  text-decoration: none;
 }
 
 .apartment_show .container .header_apartment {
