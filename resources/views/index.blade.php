@@ -47,24 +47,28 @@
                     <span><strong>Dove</strong></span>
                     <input type="text" name="" value="" placeholder="Dove vuoi andare?">
                 </div>
-                <div class="ricerca check-in">
+                {{-- <div class="ricerca check-in">
                     <span><strong>Check-in</strong></span>
                     <input type="text" name="" value="" placeholder="Aggiungi date">
                 </div>
                 <div class="ricerca check-out">
                     <span><strong>Check-out</strong></span>
                     <input type="text" name="" value="" placeholder="Aggiungi date">
-                </div>
-                <div class="ricerca numero-ospiti">
+                </div> --}}
+                {{-- <div class="ricerca numero-ospiti">
                     <span><strong>Ospiti</strong></span>
                     <input type="text" name="" value="" placeholder="Aggiungi ospiti">
-                </div>
+                </div> --}}
                 <div class="button-cerca">
                     <button type="button" name="cerca">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
             </div>
+        </div>
+        <div class="title">
+            <h1><strong>Riscopri la bellezza dell'Italia</strong></h1>
+            <p>Scopri alloggi nelle vicinanze tutti da vivere, per lavoro o svago.</p>
         </div>
     </div>
     <div class="card-container">
