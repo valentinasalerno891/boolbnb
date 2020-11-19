@@ -3,7 +3,14 @@ header {
         height: 70px;
         background-color: lightblue;
         img {
-            height: 50px;
+            height: 60px;
+        }
+        .home-menu-a {
+            font-weight: 400;
+            justify-content: flex-end;
+            a {
+                text-decoration: none;
+            }
         }
     }
 }

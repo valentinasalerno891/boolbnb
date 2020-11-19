@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 //Fontawesome
-// Font Awesome
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/solid';
@@ -17,13 +16,14 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-
-
-
-
+//Partials
+@import 'partials/index';
 @import 'partials/sponsor';
 @import 'partials/header';
 @import 'partials/footer';
 @import 'partials/apartment_show';
 @import 'partials/search';
-
+@import 'partials/login';
+@import 'partials/create';
+@import 'partials/index';
+@import 'partials/messages';
