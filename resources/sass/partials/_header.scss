@@ -5,6 +5,10 @@ header {
         img {
             height: 60px;
         }
+        .home-menu {
+            display: flex;
+            justify-content: flex-end;
+        }
         .home-menu-a {
             font-weight: 400;
             justify-content: flex-end;

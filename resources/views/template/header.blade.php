@@ -17,7 +17,7 @@
                     @auth
                         <a  class="home-menu-a m-3" href="{{ route('messages.index') }}">Messaggi</a>
                         <a class="home-menu-a m-3" href="{{ route('apartments.index') }}">Appartamenti</a>
-                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <a class="home-menu-a" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

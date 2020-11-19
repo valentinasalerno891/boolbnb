@@ -7,13 +7,24 @@
         <span class="title">{{$apartment->title}}</span>
         <div class="apartment_form">    
           @if ($apartment->user_id == Auth::id())
-            <span><a href="{{route('apartments.edit',$apartment->id)}}"><i class="far fa-edit"></i>Modifica</a></span>
-            <span><a href="{{route('stats.show',$apartment->id)}}"><i class="far fa-chart-bar"></i>Statistiche</a></span>
+          <div class="big-display">
+            <span class="mr-3"><a href="{{route('apartments.edit',$apartment->id)}}"><i class="far fa-edit"></i> Modifica</a></span>
+            <span class="mr-3"><a href="{{route('stats.show',$apartment->id)}}"><i class="far fa-chart-bar"></i> Statistiche</a></span>
             <form action="{{route('apartments.destroy',$apartment->id)}}" method="post">
                 @csrf
                 @method('DELETE')
-                <button type="submit"><span>Delete <i class="far fa-trash-alt"></i></span></button>
+                <button class="btn bool-btn-pink" type="submit"><span>Delete <i class="far fa-trash-alt"></i></span></button>
             </form>
+          </div>
+          <div class="small-display">
+            <span><a href="{{route('apartments.edit',$apartment->id)}}"><i class="far fa-edit"></i></a></span>
+            <span><a href="{{route('stats.show',$apartment->id)}}"><i class="far fa-chart-bar"></i></a></span>
+            <form action="{{route('apartments.destroy',$apartment->id)}}" method="post">
+                @csrf
+                @method('DELETE')
+                <button class="btn bool-btn-pink" type="submit"><span><i class="far fa-trash-alt"></i></span></button>
+            </form>
+          </div>
           @endif
         </div>  
       </div> 
@@ -97,7 +108,7 @@
         <label for="body">Messaggio</label>
         <input name="body" type="text" class="form-control" id="body" placeholder="Inserisci il messaggio">
       </div>
-      <button type="submit" class="btn">Submit <i class="far fa-paper-plane"></i></button>
+      <button type="submit" class="btn bool-btn-pink">Submit <i class="far fa-paper-plane"></i></button>
       </form>
       <hr>
       @endif
