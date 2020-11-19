@@ -33,3 +33,27 @@ input[type="range"]::-webkit-slider-thumb {
 input:focus {
   outline: none;
 }
+
+
+button.bool-btn-pink {
+  font-size: 18px;
+  text-align: center;
+  background-color: #ff385c;
+  border-radius: 3px;
+  color: white;
+  span{
+      padding: 8px;
+      i{
+          color: white;
+      }
+  }
+  &:hover {
+    color: white;
+    background-color: #960441;
+  }
+  &:active {
+    color: white;
+    background-color: #960441;
+    transform: translateY(4px);
+  }
+}

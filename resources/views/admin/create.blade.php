@@ -92,7 +92,7 @@
         @endforeach
     </div>
 
-  <button type="submit" class="btn btn-primary">Invia</button>
+  <button type="submit" class="btn bool-btn-pink">Invia</button>
 </form>
 </div>
 @endsection

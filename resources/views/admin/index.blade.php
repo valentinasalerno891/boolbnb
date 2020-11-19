@@ -24,7 +24,7 @@
       <td><form action="{{route('apartments.destroy',$apartment->id)}}" method="post">
           @csrf
           @method('DELETE')
-          <button class="delete"type="submit">Elimina</button>
+          <button class="btn bool-btn-pink" type="submit">Elimina</button>
       </form></td>
     </tr>
 

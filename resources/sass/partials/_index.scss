@@ -1,6 +1,6 @@
 .home-container {
     height: 100vh;
-    background-image: url('https://cdn.pixabay.com/photo/2017/11/28/17/41/nature-2984221_960_720.jpg');
+    background-image: url('https://images.unsplash.com/photo-1588426651288-7e828a77f413?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -21,7 +21,7 @@
         }
     }
     .search-nav {
-        width: 65%;
+        width: 400px;
         height: 70px;
         display: flex;
         align-items: center;
@@ -32,8 +32,9 @@
         box-shadow: rgba(0, 0, 0, 0.15) 0px 16px 32px, rgba(0, 0, 0, 0.1) 0px 3px 8px;
         margin-top: 100px;
         padding-right: 0;
+        justify-content: space-between;
         .ricerca {
-            width: 25%;
+            width: 100%;
             padding: 10px;
         }
         .button-cerca {
@@ -45,11 +46,15 @@
                 border-color: transparent;
                 color: white;
                 background-color: #ff385c;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
                 i {
                     font-size: 18px;
                 }
             }
-        }
+        
     }
     input {
         background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;
@@ -64,10 +69,10 @@
         margin: 0px;
         padding: 0px;
     }
-}
-
-.title{
-  color:white;
+    .title{
+        color:white;
+        padding-top: 150px;
+    }
 }
 
 .card-container {
@@ -76,7 +81,7 @@
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
-    margin: 0 200px;
+    // margin: 0 200px;
     h2 {
         display: flex;
         justify-content: flex-start;
@@ -88,7 +93,6 @@
     .card-group {
         padding: 50px 0;
         .card {
-            height: 300px;
             border-radius: 10px;
             margin-right: 20px;
         }
