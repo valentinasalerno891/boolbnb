@@ -17576,17 +17576,22 @@ header nav .home-menu-a a {
   color: red;
 }
 
-.apartment-create {
-  color: red;
-}
-
-input.form-control {
-  width: 250px;
-}
-
-#available {
+.apartment-create #available {
   width: 15px;
   height: 15px;
+}
+
+.home-container {
+  height: 100vh;
+  background-image: url("https://cdn.pixabay.com/photo/2016/08/11/23/48/italy-1587287_960_720.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(110%);
+}
+
+.home-container nav {
+  background: transparent;
 }
 
 .home-container {
