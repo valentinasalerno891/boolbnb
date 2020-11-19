@@ -2,7 +2,7 @@
 
 @section('title', 'Login')
 @section('content')
-
+<div class="container apartment-create">
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -12,10 +12,11 @@
         </ul>
     </div>
 @endif
+<h2>Informazioni appartamento</h2>
 <form action="{{route('apartments.store')}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('POST')
-    <div class="container apartment-create">
+    
 
 
   <div class="form-group">
@@ -40,7 +41,7 @@
   </div>
   <div class="form-group">
     <label for="description">Descrizione</label>
-    <textarea name="description" class="form-control" id="description" rows="3">{{old('description')}}</textarea>
+    <textarea name="description" class="form-control" id="description" placeholder="Descrizione" rows="3">{{old('description')}}</textarea>
   </div>
   <div class="form-group">
     <label for="latitude">Latitudine</label>
@@ -52,12 +53,12 @@
   </div>
   <div class="form-group">
     <label for="image">Foto</label>
-    <input name="image" type="file" class="form-control" id="image" name="img" accept="image/*">
+    <input type="file" class="form-control-file" id="image" name="image" accept="image/*">
   </div>
-  <div class="form-group form-check">
+  <div class="form-group">
       {{-- MODIFICA "disponibile?" --}}
     <label for="available">Disponibile?</label>
-    <input name="available" type="checkbox" class="form-control" id="available" name="available"
+    <input name="available" type="checkbox" id="available" name="available"
         {{old('available') ? 'checked' : ''}}>
   </div>
 
@@ -84,14 +85,14 @@
     <div class="form-group">
         @foreach ($services as $service)
             <label for="{{$service->name}}">{{$service->name}}</label>
-            <input type="checkbox" name="services[{{$service->id}}]" value="{{$service->id}}" id="{{$service->name}}"
+            <input class="category" type="checkbox" name="services[{{$service->id}}]" value="{{$service->id}}" id="{{$service->name}}"
               @if (is_array(old('services')) && in_array($service->id, array_keys(old('services'))))
                 checked
               @endif>
         @endforeach
     </div>
 
-  <button type="submit" class="btn btn-primary">Invia</button>
+  <button type="submit" class="btn bool-btn-pink">Invia</button>
 </form>
 </div>
 @endsection

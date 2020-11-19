@@ -2,19 +2,19 @@
     .container{
         .header_apartment{
             width: 100%;
-            height:80px;
+            padding: 20px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
             .title{
                 font-size: 38px;
                 text-transform: capitalize;
+                word-break: break-all;
             }
             .apartment_form{
-                display: flex;
                 span{
                     font-size: 17px;
-                    padding-right: 15px;
+                    // padding-right: 15px;
                     a{
                         color: #ff385c;
                     }
@@ -24,31 +24,13 @@
                             color: #960441; 
                         }
                     }
-                    i{
-                        padding-right: 6px;
-                        color: #ff385c;
-                    }
                 }
-                button{
-                    font-size: 12px;
-                    border-radius: 10%;
-                    background-color: #ff385c;
-                    box-shadow: 0 1px #999;
-                    color: white;
-                    span{
-                        padding: 8px;
-                        i{
-                            color: white;
-                        }
-                    }
+                .small-display, .big-display {
+                    display: flex;
+                    align-items: center;
                 }
-                button:hover {
-                    background-color: #960441;
-                }
-                button:active {
-                    background-color: #960441;
-                    box-shadow: 0 5px #666;
-                    transform: translateY(4px);
+                .small-display {
+                    display: none;
                 }
             }
         }
@@ -75,6 +57,7 @@
                 width: 50%;
                 text-align: center;
                 padding: 12px 0px;
+                word-break: break-all;
                 h3{
                     font-size: 30px;
                 }
@@ -132,22 +115,6 @@
         .message{
             width: 100%;
             margin-bottom: 20px;
-            button{
-                font-size: 18px;
-                border-radius: 3px;
-                background-color: #ff385c;
-                color: white;
-                i{
-                    padding-left:7px;
-                }
-            }
-            button:hover {
-                background-color: #960441;
-            }
-            button:active {
-                background-color: #960441;
-                transform: translateY(4px);
-            }
         }
     }
 }
@@ -183,4 +150,33 @@
         }
     }
    
+}
+
+@media screen and (max-width: 1200px){
+    .apartment_show {
+        .container {
+            .header_apartment {
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            }
+        }   
+    }
+}
+
+@media screen and (max-width: 576px){
+    .apartment_show .container .header_apartment .apartment_form .big-display {
+        display: none;
+    }
+    .apartment_show .container .header_apartment .apartment_form .small-display {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+    }
+    .apartment_show .container .header_apartment .apartment_form {
+        width: 100%;
+        display: flex;
+    }
+
 }

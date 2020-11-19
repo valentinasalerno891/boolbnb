@@ -13,6 +13,7 @@ class ApartmentController extends Controller
     public function index(Request $request){
         // appartamenti filtrati per stanze, letti e disponibilità
         $apartments = Apartment::where([['rooms','>=', $request->rooms], ['beds','>=' , $request->beds], ['available', 1]])->get();
+        $request->distance = ($request->distance > 200) ? 200 : $request->distance;
         $result = [];
         $requested_services = [];
         // creo un array contente tutti gli ID dei servizi presenti sul DB

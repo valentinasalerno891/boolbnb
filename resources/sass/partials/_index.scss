@@ -21,10 +21,9 @@
         }
     }
     .search-nav {
-        width: 45%;
+        width: 400px;
         height: 70px;
         display: flex;
-        justify-content: space-between;
         align-items: center;
         color: rgb(34, 34, 34);
         background-color: rgb(247, 247, 247);
@@ -33,8 +32,9 @@
         box-shadow: rgba(0, 0, 0, 0.15) 0px 16px 32px, rgba(0, 0, 0, 0.1) 0px 3px 8px;
         margin-top: 100px;
         padding-right: 0;
+        justify-content: space-between;
         .ricerca {
-            width: 45%;
+            width: 100%;
             padding: 10px;
         }
         .button-cerca {
@@ -46,27 +46,15 @@
                 border-color: transparent;
                 color: white;
                 background-color: #ff385c;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
                 i {
                     font-size: 18px;
                 }
             }
-        }
-    }
-    .title {
-        width: 660px;
-        height: 250px;
-        display: flex;
-        flex-direction: column;
-        padding-top: 150px;
-        padding-left: 200px;
-        h1 {
-            font-size: 30px;
-            font-weight: 900;
-        }
-        p {
-            font-size: 20px;
-        }
-        color: white;
+        
     }
     input {
         background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;
@@ -81,23 +69,30 @@
         margin: 0px;
         padding: 0px;
     }
+    .title{
+        color:white;
+        padding-top: 150px;
+    }
 }
+
 .card-container {
     display: flex;
     align-items: center;
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
-    margin: 0 200px;
+    // margin: 0 200px;
     h2 {
         display: flex;
         justify-content: flex-start;
         padding-top: 70px;
     }
+
+
+
     .card-group {
         padding: 50px 0;
         .card {
-            height: 300px;
             border-radius: 10px;
             margin-right: 20px;
         }

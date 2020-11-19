@@ -44112,8 +44112,9 @@ function insertValues() {
 
   $('#rooms').val(getUrlParameter('rooms'));
   $('#beds').val(getUrlParameter('beds'));
-  $('#distance').val(getUrlParameter('distance') ? getUrlParameter('distance') : '20');
-  $('#eccolo').text(getUrlParameter('distance') ? getUrlParameter('distance') + 'km' : '20' + 'km');
+  var distance = getUrlParameter('distance') ? getUrlParameter('distance') : '20';
+  $('#distance').val(parseInt(distance) > 200 ? '200' : distance);
+  $('#eccolo').text(parseInt(distance) > 200 ? '200km' : distance + 'km');
   ids = getServicesIds();
 
   for (var x = 0; x < ids.length; x++) {
@@ -44177,7 +44178,7 @@ function getApartments() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\MAMP\mamp_public\progetto\boolbnb\resources\js\search.js */"./resources/js/search.js");
+module.exports = __webpack_require__(/*! C:\mamp_public\boolbnb\resources\js\search.js */"./resources/js/search.js");
 
 
 /***/ }),

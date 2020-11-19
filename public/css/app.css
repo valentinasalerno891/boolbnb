@@ -6180,6 +6180,33 @@ input:focus {
   outline: none;
 }
 
+button.bool-btn-pink {
+  font-size: 18px;
+  text-align: center;
+  background-color: #ff385c;
+  border-radius: 3px;
+  color: white;
+}
+
+button.bool-btn-pink span {
+  padding: 8px;
+}
+
+button.bool-btn-pink span i {
+  color: white;
+}
+
+button.bool-btn-pink:hover {
+  color: white;
+  background-color: #960441;
+}
+
+button.bool-btn-pink:active {
+  color: white;
+  background-color: #960441;
+  transform: translateY(4px);
+}
+
 /*!
  * Bootstrap v4.5.3 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
@@ -17112,10 +17139,9 @@ a.text-dark:focus {
 }
 
 .home-container .search-nav {
-  width: 45%;
+  width: 400px;
   height: 70px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   color: #222222;
   background-color: #f7f7f7;
@@ -17124,10 +17150,11 @@ a.text-dark:focus {
   box-shadow: rgba(0, 0, 0, 0.15) 0px 16px 32px, rgba(0, 0, 0, 0.1) 0px 3px 8px;
   margin-top: 100px;
   padding-right: 0;
+  justify-content: space-between;
 }
 
 .home-container .search-nav .ricerca {
-  width: 45%;
+  width: 100%;
   padding: 10px;
 }
 
@@ -17142,29 +17169,13 @@ a.text-dark:focus {
   border-color: transparent;
   color: white;
   background-color: #ff385c;
-}
-
-.home-container .search-nav .button-cerca button i {
-  font-size: 18px;
-}
-
-.home-container .title {
-  width: 660px;
-  height: 250px;
   display: flex;
-  flex-direction: column;
-  padding-top: 150px;
-  padding-left: 200px;
-  color: white;
+  justify-content: center;
+  align-items: center;
 }
 
-.home-container .title h1 {
-  font-size: 30px;
-  font-weight: 900;
-}
-
-.home-container .title p {
-  font-size: 20px;
+.home-container .search-nav .button-cerca i {
+  font-size: 18px;
 }
 
 .home-container input {
@@ -17181,13 +17192,17 @@ a.text-dark:focus {
   padding: 0px;
 }
 
+.home-container .title {
+  color: white;
+  padding-top: 150px;
+}
+
 .card-container {
   display: flex;
   align-items: center;
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  margin: 0 200px;
 }
 
 .card-container h2 {
@@ -17201,7 +17216,6 @@ a.text-dark:focus {
 }
 
 .card-container .card-group .card {
-  height: 300px;
   border-radius: 10px;
   margin-right: 20px;
 }
@@ -17213,6 +17227,11 @@ header nav {
 
 header nav img {
   height: 60px;
+}
+
+header nav .home-menu {
+  display: flex;
+  justify-content: flex-end;
 }
 
 header nav .home-menu-a {
@@ -17300,7 +17319,7 @@ header nav .home-menu-a a {
 
 .apartment_show .container .header_apartment {
   width: 100%;
-  height: 80px;
+  padding: 20px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17309,15 +17328,11 @@ header nav .home-menu-a a {
 .apartment_show .container .header_apartment .title {
   font-size: 38px;
   text-transform: capitalize;
-}
-
-.apartment_show .container .header_apartment .apartment_form {
-  display: flex;
+  word-break: break-all;
 }
 
 .apartment_show .container .header_apartment .apartment_form span {
   font-size: 17px;
-  padding-right: 15px;
 }
 
 .apartment_show .container .header_apartment .apartment_form span a {
@@ -17332,35 +17347,14 @@ header nav .home-menu-a a {
   color: #960441;
 }
 
-.apartment_show .container .header_apartment .apartment_form span i {
-  padding-right: 6px;
-  color: #ff385c;
+.apartment_show .container .header_apartment .apartment_form .small-display,
+.apartment_show .container .header_apartment .apartment_form .big-display {
+  display: flex;
+  align-items: center;
 }
 
-.apartment_show .container .header_apartment .apartment_form button {
-  font-size: 12px;
-  border-radius: 10%;
-  background-color: #ff385c;
-  box-shadow: 0 1px #999;
-  color: white;
-}
-
-.apartment_show .container .header_apartment .apartment_form button span {
-  padding: 8px;
-}
-
-.apartment_show .container .header_apartment .apartment_form button span i {
-  color: white;
-}
-
-.apartment_show .container .header_apartment .apartment_form button:hover {
-  background-color: #960441;
-}
-
-.apartment_show .container .header_apartment .apartment_form button:active {
-  background-color: #960441;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
+.apartment_show .container .header_apartment .apartment_form .small-display {
+  display: none;
 }
 
 .apartment_show .container .image_apartment {
@@ -17392,6 +17386,7 @@ header nav .home-menu-a a {
   width: 50%;
   text-align: center;
   padding: 12px 0px;
+  word-break: break-all;
 }
 
 .apartment_show .container .description_information .apartment_description h3 {
@@ -17464,26 +17459,6 @@ header nav .home-menu-a a {
   margin-bottom: 20px;
 }
 
-.apartment_show .container .message button {
-  font-size: 18px;
-  border-radius: 3px;
-  background-color: #ff385c;
-  color: white;
-}
-
-.apartment_show .container .message button i {
-  padding-left: 7px;
-}
-
-.apartment_show .container .message button:hover {
-  background-color: #960441;
-}
-
-.apartment_show .container .message button:active {
-  background-color: #960441;
-  transform: translateY(4px);
-}
-
 @media screen and (max-width: 720px) {
   .apartment_show .container .description_information {
     width: 100%;
@@ -17518,6 +17493,32 @@ header nav .home-menu-a a {
 
   .apartment_show .container .service_maps hr {
     visibility: visible;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .apartment_show .container .header_apartment {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .apartment_show .container .header_apartment .apartment_form .big-display {
+    display: none;
+  }
+
+  .apartment_show .container .header_apartment .apartment_form .small-display {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .apartment_show .container .header_apartment .apartment_form {
+    width: 100%;
+    display: flex;
   }
 }
 
@@ -17576,9 +17577,14 @@ header nav .home-menu-a a {
   color: red;
 }
 
-.apartment-create #available {
-  width: 15px;
-  height: 15px;
+
+.apartment-create {
+  padding-top: 50px;
+}
+
+.apartment-create .category {
+  margin-right: 20px;
+
 }
 
 .home-container {
@@ -17610,10 +17616,9 @@ header nav .home-menu-a a {
 }
 
 .home-container .search-nav {
-  width: 45%;
+  width: 400px;
   height: 70px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   color: #222222;
   background-color: #f7f7f7;
@@ -17622,10 +17627,11 @@ header nav .home-menu-a a {
   box-shadow: rgba(0, 0, 0, 0.15) 0px 16px 32px, rgba(0, 0, 0, 0.1) 0px 3px 8px;
   margin-top: 100px;
   padding-right: 0;
+  justify-content: space-between;
 }
 
 .home-container .search-nav .ricerca {
-  width: 45%;
+  width: 100%;
   padding: 10px;
 }
 
@@ -17640,29 +17646,13 @@ header nav .home-menu-a a {
   border-color: transparent;
   color: white;
   background-color: #ff385c;
-}
-
-.home-container .search-nav .button-cerca button i {
-  font-size: 18px;
-}
-
-.home-container .title {
-  width: 660px;
-  height: 250px;
   display: flex;
-  flex-direction: column;
-  padding-top: 150px;
-  padding-left: 200px;
-  color: white;
+  justify-content: center;
+  align-items: center;
 }
 
-.home-container .title h1 {
-  font-size: 30px;
-  font-weight: 900;
-}
-
-.home-container .title p {
-  font-size: 20px;
+.home-container .search-nav .button-cerca i {
+  font-size: 18px;
 }
 
 .home-container input {
@@ -17679,13 +17669,17 @@ header nav .home-menu-a a {
   padding: 0px;
 }
 
+.home-container .title {
+  color: white;
+  padding-top: 150px;
+}
+
 .card-container {
   display: flex;
   align-items: center;
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  margin: 0 200px;
 }
 
 .card-container h2 {
@@ -17699,12 +17693,11 @@ header nav .home-menu-a a {
 }
 
 .card-container .card-group .card {
-  height: 300px;
   border-radius: 10px;
   margin-right: 20px;
 }
 
-.messages-index h3 {
-  color: black;
+.apartments-index a.edit {
+  color: #ff385c;
 }
 
