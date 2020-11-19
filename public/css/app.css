@@ -17567,7 +17567,11 @@ header nav .home-menu-a a {
 
 .home-container {
   height: 100vh;
+<<<<<<< HEAD
   background-image: url("https://cdn.pixabay.com/photo/2017/11/28/17/41/nature-2984221_960_720.jpg");
+=======
+  background-image: url("https://siviaggia.it/wp-content/uploads/sites/2/2020/07/lago-braies-accesso-estate-2020.jpg");
+>>>>>>> mattia
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
