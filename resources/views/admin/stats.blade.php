@@ -1,17 +1,21 @@
 @extends('layouts.app')
-
+    <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.64.0/maps/maps.css'>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.64.0/maps/maps-web.min.js"></script>
 
 @section('content')
     <div class="container">
         <canvas id="myChart" class="chart"></canvas> 
     </div>
     {{-- @dd($messages) --}}
-
+{{-- <body style="width: 100%; height: 100%; margin: 0; padding: 0;"> --}}
+    
 @endsection
 
 
 
 @section('script')
+
+    
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
     <script>
     var messages = {!! $messages !!};
