@@ -17085,7 +17085,7 @@ a.text-dark:focus {
 
 .home-container {
   height: 100vh;
-  background-image: url("https://siviaggia.it/wp-content/uploads/sites/2/2020/07/lago-braies-accesso-estate-2020.jpg");
+  background-image: url("https://cdn.pixabay.com/photo/2017/11/28/17/41/nature-2984221_960_720.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -17112,10 +17112,9 @@ a.text-dark:focus {
 }
 
 .home-container .search-nav {
-  width: 45%;
+  width: 65%;
   height: 70px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   color: #222222;
   background-color: #f7f7f7;
@@ -17127,7 +17126,7 @@ a.text-dark:focus {
 }
 
 .home-container .search-nav .ricerca {
-  width: 45%;
+  width: 25%;
   padding: 10px;
 }
 
@@ -17148,25 +17147,6 @@ a.text-dark:focus {
   font-size: 18px;
 }
 
-.home-container .title {
-  width: 660px;
-  height: 250px;
-  display: flex;
-  flex-direction: column;
-  padding-top: 150px;
-  padding-left: 200px;
-  color: white;
-}
-
-.home-container .title h1 {
-  font-size: 30px;
-  font-weight: 900;
-}
-
-.home-container .title p {
-  font-size: 20px;
-}
-
 .home-container input {
   background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;
   font-size: 16px;
@@ -17179,6 +17159,10 @@ a.text-dark:focus {
   border: 0px none;
   margin: 0px;
   padding: 0px;
+}
+
+.title {
+  color: white;
 }
 
 .card-container {
@@ -17583,7 +17567,7 @@ header nav .home-menu-a a {
 
 .home-container {
   height: 100vh;
-  background-image: url("https://siviaggia.it/wp-content/uploads/sites/2/2020/07/lago-braies-accesso-estate-2020.jpg");
+  background-image: url("https://cdn.pixabay.com/photo/2017/11/28/17/41/nature-2984221_960_720.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -17610,10 +17594,9 @@ header nav .home-menu-a a {
 }
 
 .home-container .search-nav {
-  width: 45%;
+  width: 65%;
   height: 70px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   color: #222222;
   background-color: #f7f7f7;
@@ -17625,7 +17608,7 @@ header nav .home-menu-a a {
 }
 
 .home-container .search-nav .ricerca {
-  width: 45%;
+  width: 25%;
   padding: 10px;
 }
 
@@ -17646,25 +17629,6 @@ header nav .home-menu-a a {
   font-size: 18px;
 }
 
-.home-container .title {
-  width: 660px;
-  height: 250px;
-  display: flex;
-  flex-direction: column;
-  padding-top: 150px;
-  padding-left: 200px;
-  color: white;
-}
-
-.home-container .title h1 {
-  font-size: 30px;
-  font-weight: 900;
-}
-
-.home-container .title p {
-  font-size: 20px;
-}
-
 .home-container input {
   background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;
   font-size: 16px;
@@ -17677,6 +17641,10 @@ header nav .home-menu-a a {
   border: 0px none;
   margin: 0px;
   padding: 0px;
+}
+
+.title {
+  color: white;
 }
 
 .card-container {
@@ -17706,5 +17674,14 @@ header nav .home-menu-a a {
 
 .messages-index h3 {
   color: black;
+}
+
+.apartments-index button {
+  background-color: #ff385c;
+  color: white;
+}
+
+.apartments-index a.edit {
+  color: #ff385c;
 }
 
