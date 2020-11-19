@@ -17254,6 +17254,10 @@ header nav img {
   text-align: center;
 }
 
+.apartment_show .container .service_maps .apartment_maps iframe {
+  width: 100%;
+}
+
 .apartment_show .container .message {
   width: 100%;
   margin-bottom: 20px;
