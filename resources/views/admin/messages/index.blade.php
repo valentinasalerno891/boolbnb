@@ -16,10 +16,7 @@
       <td>{{$message->email}}</td>
       <td>{{$message->body}}</td>
      </tr>
-        {{-- <ul>
-            <li><a href="{{ route('message.show',$message->id) }}">{{$message->title}}</a></li>
-            <li>{{$message->email}}</li>
-        </ul> --}}
+        
 
       </div>
     @endforeach
