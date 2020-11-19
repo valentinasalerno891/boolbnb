@@ -15,7 +15,7 @@
 <form action="{{route('apartments.store')}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('POST')
-    <div class="container">
+    <div class="container apartment-create">
 
 
   <div class="form-group">

@@ -1,6 +1,6 @@
 .home-container {
     height: 100vh;
-    background-image: url('https://cdn.pixabay.com/photo/2016/08/11/23/48/italy-1587287_960_720.jpg');
+    background-image: url('https://siviaggia.it/wp-content/uploads/sites/2/2020/07/lago-braies-accesso-estate-2020.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -21,9 +21,10 @@
         }
     }
     .search-nav {
-        width: 65%;
+        width: 45%;
         height: 70px;
         display: flex;
+        justify-content: space-between;
         align-items: center;
         color: rgb(34, 34, 34);
         background-color: rgb(247, 247, 247);
@@ -33,7 +34,7 @@
         margin-top: 100px;
         padding-right: 0;
         .ricerca {
-            width: 25%;
+            width: 45%;
             padding: 10px;
         }
         .button-cerca {
@@ -50,6 +51,22 @@
                 }
             }
         }
+    }
+    .title {
+        width: 660px;
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+        padding-top: 150px;
+        padding-left: 200px;
+        h1 {
+            font-size: 30px;
+            font-weight: 900;
+        }
+        p {
+            font-size: 20px;
+        }
+        color: white;
     }
     input {
         background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;
