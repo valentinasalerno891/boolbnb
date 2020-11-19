@@ -17450,6 +17450,7 @@ header nav .home-menu-a a {
 
 .apartment_show .container .service_maps .apartment_maps {
   width: 50%;
+  min-height: 400px;
   padding: 12px 0px;
   text-align: center;
 }
@@ -17465,9 +17466,8 @@ header nav .home-menu-a a {
 
 .apartment_show .container .message button {
   font-size: 18px;
-  border-radius: 10%;
+  border-radius: 3px;
   background-color: #ff385c;
-  box-shadow: 0 1px #999;
   color: white;
 }
 
@@ -17481,7 +17481,6 @@ header nav .home-menu-a a {
 
 .apartment_show .container .message button:active {
   background-color: #960441;
-  box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
 

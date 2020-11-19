@@ -1,4 +1,5 @@
 @extends('layouts.app')
+<link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.64.0/maps/maps.css'>
 @section('content')
   <div class="apartment_show">
     <div class="container">
@@ -67,9 +68,7 @@
           </ul>
         </div>
         <hr>
-        <div class="apartment_maps">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d89547.26437699102!2d9.10769243625494!3d45.46271244817566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c1493f1275e7%3A0x3cffcd13c6740e8d!2sMilano%20MI!5e0!3m2!1sit!2sit!4v1605740179564!5m2!1sit!2sit" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-        </div>
+        <div id="map" class="map apartment_maps"></div>
       </div>
       <hr>         
       @if ($apartment->user_id != Auth::id()) 
@@ -98,10 +97,32 @@
         <label for="body">Messaggio</label>
         <input name="body" type="text" class="form-control" id="body" placeholder="Inserisci il messaggio">
       </div>
-      <button type="submit" class="btn btn-primary">Submit <i class="far fa-paper-plane"></i></button>
+      <button type="submit" class="btn">Submit <i class="far fa-paper-plane"></i></button>
       </form>
       <hr>
       @endif
     </div>
   </div>  
+@endsection
+
+
+@section('script')
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.64.0/maps/maps-web.min.js"></script>
+    <script>
+        var longitude = {!! $apartment->longitude !!};
+        var latitude = {!! $apartment->latitude !!};
+        var map = tt.map({
+            key: "wBFrGupwgm95n0TA2HmZJULQ5GktiGhQ",
+            center: [longitude,latitude],
+            zoom: 11,
+            container: "map",
+            style: "tomtom://vector/1/basic-main",
+            theme: {
+                style: 'main',
+                layer: 'basic',
+                source: 'vector',
+            }
+        });
+        map.addControl(new tt.NavigationControl());
+   </script>
 @endsection
