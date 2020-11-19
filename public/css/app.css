@@ -17583,19 +17583,6 @@ header nav .home-menu-a a {
 
 .home-container {
   height: 100vh;
-  background-image: url("https://cdn.pixabay.com/photo/2016/08/11/23/48/italy-1587287_960_720.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  filter: brightness(110%);
-}
-
-.home-container nav {
-  background: transparent;
-}
-
-.home-container {
-  height: 100vh;
   background-image: url("https://siviaggia.it/wp-content/uploads/sites/2/2020/07/lago-braies-accesso-estate-2020.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -17719,5 +17706,14 @@ header nav .home-menu-a a {
 
 .messages-index h3 {
   color: black;
+}
+
+.apartments-index button {
+  background-color: #ff385c;
+  color: white;
+}
+
+.apartments-index a.edit {
+  color: #ff385c;
 }
 
