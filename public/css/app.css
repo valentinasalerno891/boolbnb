@@ -17570,20 +17570,110 @@ input.form-control {
   height: 15px;
 }
 
-.apartments-index table {
-  margin-top: 30px;
+.home-container {
+  height: 100vh;
+  background-image: url("https://cdn.pixabay.com/photo/2016/08/11/23/48/italy-1587287_960_720.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(110%);
 }
 
-.apartments-index a.edit {
-  color: #ff385c;
+.home-container nav {
+  background: transparent;
 }
 
-.apartments-index button.delete {
-  background-color: #ff385c;
+.home-container nav img {
+  height: 60px;
+}
+
+.home-container nav .home-menu {
+  justify-content: flex-end;
+}
+
+.home-container nav .home-menu .home-menu-a {
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
   color: white;
 }
 
-h3 {
+.home-container .search-nav {
+  width: 65%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  color: #222222;
+  background-color: #f7f7f7;
+  border: 1px solid #dddddd;
+  border-radius: 32px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 16px 32px, rgba(0, 0, 0, 0.1) 0px 3px 8px;
+  margin-top: 100px;
+  padding-right: 0;
+}
+
+.home-container .search-nav .ricerca {
+  width: 25%;
+  padding: 10px;
+}
+
+.home-container .search-nav .button-cerca {
+  padding: 10px;
+}
+
+.home-container .search-nav .button-cerca button {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border-color: transparent;
+  color: white;
+  background-color: #ff385c;
+}
+
+.home-container .search-nav .button-cerca button i {
+  font-size: 18px;
+}
+
+.home-container input {
+  background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;
+  font-size: 16px;
+  line-height: 18px;
+  font-weight: 600;
+  color: #222222;
+  text-overflow: ellipsis;
+  width: 100%;
+  display: block;
+  border: 0px none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.card-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  margin: 0 200px;
+}
+
+.card-container h2 {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: 70px;
+}
+
+.card-container .card-group {
+  padding: 50px 0;
+}
+
+.card-container .card-group .card {
+  height: 300px;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.messages-index h3 {
   color: black;
 }
 
