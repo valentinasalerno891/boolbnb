@@ -17577,14 +17577,20 @@ header nav .home-menu-a a {
   color: red;
 }
 
-
 .apartment-create {
   padding-top: 50px;
 }
 
 .apartment-create .category {
   margin-right: 20px;
+}
 
+.apartment-create h2 {
+  margin-top: 20px;
+}
+
+.apartment-create .form-group {
+  margin-top: 30px;
 }
 
 .home-container {
@@ -17697,7 +17703,54 @@ header nav .home-menu-a a {
   margin-right: 20px;
 }
 
+.messages-index h2 {
+  margin-top: 100px;
+}
+
+.messages-index h3 {
+  margin-top: 30px;
+}
+
+.messages-index table {
+  margin-top: 40px;
+  margin-bottom: 150px;
+}
+
 .apartments-index a.edit {
   color: #ff385c;
+}
+
+.apartments-index h2 {
+  margin-top: 100px;
+}
+
+.apartments-index table {
+  margin-top: 40px;
+  margin-bottom: 150px;
+}
+
+.apartments-index td {
+  padding-top: 20px;
+  vertical-align: middle;
+}
+
+.apartment-edit {
+  padding-top: 50px;
+}
+
+.apartment-edit button.bool-btn-pink {
+  font-size: 18px;
+  text-align: center;
+  background-color: #ff385c;
+  border-radius: 3px;
+  color: white;
+}
+
+.apartment-edit h2 {
+  margin-top: 20px;
+}
+
+.apartment-edit .form-group {
+  margin-top: 30px;
 }
 
