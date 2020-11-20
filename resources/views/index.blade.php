@@ -18,8 +18,8 @@
                         <img class="navbar-brand" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/1024px-Airbnb_Logo_B%C3%A9lo.svg.png" alt="logo">
                     </div>
                     {{-- <span class="navbar-brand">BoolBnB</span> --}}
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                    <button class="hamburger navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span id="hamburger" class="navbar-toggler-icon"></span>
                     </button>
                     <div class="home-menu collapse navbar-collapse" id="navbarSupportedContent">
                         @guest
@@ -30,7 +30,7 @@
                         @auth
                             <a  class="home-menu-a m-3" href="{{ route('messages.index') }}">Messaggi</a>
                             <a class="home-menu-a m-3" href="{{ route('apartments.index') }}">Appartamenti</a>
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <a class="home-menu-a m-3" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -43,28 +43,28 @@
         </header>
         <div class="container">
             <div class="search-container">
-            <div class="container search-nav">
-                <div class="ricerca città">
-                    <span><strong>Dove</strong></span>
-                    <input type="text" name="" value="" placeholder="Dove vuoi andare?">
-                </div>
-                <div class="button-cerca">
-                    <button type="button" name="cerca">
-                        <i class="fas fa-search"></i>
-                    </button>
+                <div class="container search-nav">
+                    <div class="ricerca città">
+                        {{-- <span><strong>Dove</strong></span> --}}
+                        <input type="text" name="" value="" placeholder="Dove vuoi andare?">
+                    </div>
+                    <div class="button-cerca">
+                        <button type="button" name="cerca">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="title">
-            <h1><strong>Riscopri la bellezza dell'Italia</strong></h1>
-            <p>Scopri alloggi nelle vicinanze tutti da vivere, per lavoro o svago.</p>
-        </div>
+            <div class="title">
+                <h1><strong>Riscopri la bellezza dell'Italia</strong></h1>
+                <p>Scopri alloggi nelle vicinanze tutti da vivere, per lavoro o svago.</p>
+            </div>
         </div>
     </div>
     <div class="card-container">
         <div class="container">
             <h2>Appartamenti in evidenza</h2>
-        <div class="card-group">
+            <div class="card-group">
             {{-- @foreach ($iterable as $key => $value) --}}
                 <div class="card">
                     <img class="card-img-top" src="..." alt="img">
@@ -105,9 +105,8 @@
                 </div>
             {{-- @endforeach --}}
 
+            </div>
         </div>
-        </div>
-        
     </div>
 
     @include('template.footer')

@@ -10,6 +10,13 @@
         img {
             height: 60px;
         }
+        button.hamburger {
+            border-color: white;
+            background-color: #fff9;
+            span#hamburger {
+                color: black;
+            }
+        }
         .home-menu {
             justify-content: flex-end;
             .home-menu-a {
@@ -30,7 +37,8 @@
         border: 1px solid rgb(221, 221, 221);
         border-radius: 32px;
         box-shadow: rgba(0, 0, 0, 0.15) 0px 16px 32px, rgba(0, 0, 0, 0.1) 0px 3px 8px;
-        margin-top: 100px;
+        margin-top: 80px;
+        padding-left: 0;
         padding-right: 0;
         justify-content: space-between;
         .ricerca {
@@ -38,7 +46,7 @@
             padding: 10px;
         }
         .button-cerca {
-            padding: 10px;
+            padding: 7px;
             button {
                 width: 55px;
                 height: 55px;
@@ -49,32 +57,37 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-            }
                 i {
                     font-size: 18px;
                 }
             }
-        
+        }
+        input {
+            background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;
+            font-size: 16px;
+            line-height: 18px;
+            font-weight: 600;
+            color: rgb(34, 34, 34);
+            text-overflow: ellipsis;
+            width: 100%;
+            display: block;
+            border: 0px none;
+            margin: 0px;
+            padding-left: 15px;
+        }
     }
-    input {
-        background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;
-        font-size: 16px;
-        line-height: 18px;
-        font-weight: 600;
-        color: rgb(34, 34, 34);
-        text-overflow: ellipsis;
-        width: 100%;
-        display: block;
-        border: 0px none;
-        margin: 0px;
-        padding: 0px;
-    }
-    .title{
-        color:white;
-        padding-top: 150px;
+    .title {
+        width: 33%;
+        color: white;
+        padding-top: 100px;
+        h1 {
+            font-size: 40px;
+        }
+        p {
+            font-size: 18px;
+        }
     }
 }
-
 .card-container {
     display: flex;
     align-items: center;
@@ -87,14 +100,97 @@
         justify-content: flex-start;
         padding-top: 70px;
     }
-
-
-
     .card-group {
         padding: 50px 0;
         .card {
             border-radius: 10px;
             margin-right: 20px;
+
         }
     }
+}
+
+@media screen and (max-width: 576px) {
+    .home-container .search-nav {
+        width: 290px;
+        padding-left: 0;
+        input {
+            padding-left: 10px;
+        }
+    }
+    .home-container .container .title {
+        width: 100%;
+        padding-top: 70px;
+        h1  {
+            font-size: 22px;
+        }
+        p  {
+            font-size: 15px;
+        }
+    }
+    .card-container .container .card-group {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        padding: 25px 0;
+        .card {
+            margin-right: 0;
+            margin-bottom: 50px;
+        }
+    }
+
+}
+
+@media screen and (max-width: 720px) {
+    .home-container .search-nav {
+        height: 50px;
+        margin-top: 45px;
+        padding-left: 0px;
+        input {
+            padding-left: 10px;
+        }
+        .button-cerca {
+            button  {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    }
+    .home-container .container .title {
+        width: 50%;
+        margin-top: 80px;
+        padding-top: 20px;
+        h1  {
+            font-size: 20px;
+        }
+        p  {
+            font-size: 12.5px;
+        }
+    }
+
+    .card-container .container {
+        h2 {
+            justify-content: center;
+        }
+        .card-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            // justify-content: center;
+            padding: 25px 0;
+            .card {
+                width: 70%;
+                margin-right: 0;
+                margin-bottom: 50px;
+            }
+        }
+
+    }
+
+
+}
+
+
+@media screen and (max-width: 1200px) {
 }
