@@ -1,3 +1,10 @@
+@extends('layouts.app')
+
+@section('title', 'Login')
+@section('content')
+<div class="container apartment-edit">
+
+
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -7,6 +14,7 @@
         </ul>
     </div>
 @endif
+<h2>Modifica i tuoi appartamenti</h2>
 <form action="{{route('apartments.update', $apartment->id)}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('PATCH')
@@ -44,11 +52,15 @@
   </div>
   <div class="form-group">
     <label for="image">Foto</label>
-    <input name="image" type="file" class="form-control" id="image" name="img" accept="image/*">
+    <input type="file" class="form-control-file" id="image" name="image" accept="image/*">
   </div>
-  <div class="form-group form-check">
+  <div class="form-group">
+      {{-- MODIFICA "disponibile?" --}}
     <label for="available">Disponibile?</label>
-    <input name="available" type="checkbox" class="form-control" id="available" name="available">
+    <input name="available" type="checkbox" id="available" name="available"
+        {{old('available') ? 'checked' : ''}}>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn bool-btn-pink">Submit</button>
 </form>
+</div>
+@endsection

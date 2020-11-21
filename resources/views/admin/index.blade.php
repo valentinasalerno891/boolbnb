@@ -11,7 +11,10 @@
 <div class="container apartments-index">
   <h2>Benvenuto,ecco la lista dei tuoi appartamenti</h2>
   <table class="table table-bordered">
-  <tbody>
+
+      <tbody>
+
+
 
 @foreach ($apartments as $apartment)
 
@@ -29,6 +32,7 @@
     </tr>
 
 @endforeach
+  
   </tbody>
   </table>
 </div>
