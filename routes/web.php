@@ -86,7 +86,7 @@ Route::post('/checkout', function (Request $request) {
             // $apartment = $apartment[0]->load(['sponsors' => function ($q) { 
             //     $q->orderBy('apartment_sponsor.id','desc');
             // }]);
-            $apartment = $apartment[0]->sponsors()->orderBy('pivot_end-date', 'desc')->get();
+            $apartment = $apartment[0]->sponsors()->orderBy('pivot_end-date', 'desc')->first();
             dd($apartment);
         } else {
             $apartment[0]->sponsors()->attach($request->amount, ['start-date' => Carbon::now(), 'end-date' => Carbon::now()->addHours($hours)]);
