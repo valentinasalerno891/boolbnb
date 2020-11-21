@@ -8,12 +8,15 @@ header {
         .home-menu {
             display: flex;
             justify-content: flex-end;
-        }
-        .home-menu-a {
-            font-weight: 400;
-            justify-content: flex-end;
-            a {
+            .home-menu-a {
+                font-size: 18px;
+                font-weight: 500;
                 text-decoration: none;
+                color: black;
+                padding: 5px;
+            }
+            i.user-icon {
+                color: white;
             }
         }
     }

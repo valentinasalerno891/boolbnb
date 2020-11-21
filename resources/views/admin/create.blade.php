@@ -2,7 +2,7 @@
 
 @section('title', 'Login')
 @section('content')
-<div class="container apartment-create">
+<div class="container apartment-create col-md-6">
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -12,11 +12,11 @@
         </ul>
     </div>
 @endif
-<h2>Informazioni appartamento</h2>
-<form action="{{route('apartments.store')}}" method="post" enctype="multipart/form-data">
+<h2>Diventa un Host</h2>
+<form class="create-page-form" action="{{route('apartments.store')}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('POST')
-    
+
 
 
   <div class="form-group">
