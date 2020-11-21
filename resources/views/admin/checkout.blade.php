@@ -24,14 +24,19 @@
         <form method="post" id="payment-form" action="{{ url('admin/checkout') }}">
             @csrf
             <section>
-                <label for="apartment">
-                    Appartamento
-                    <select name="apartment" id="apartment">
-                        @foreach ($apartments as $apartment)
-                            <option value="{{$apartment->id}}">{{$apartment->title}}</option>
-                        @endforeach
-                    </select>   
-                </label>
+                @isset ($apartment)
+                    <h1>Metti l'appartamento {{$apartment->title}} in evidenza</h1>
+                    <input hidden type="text" name="apartment" value="{{$apartment->id}}">
+                @else
+                    <label for="apartment">
+                        Appartamento
+                        <select name="apartment" id="apartment">
+                            @foreach ($apartments as $apartment)
+                                <option value="{{$apartment->id}}">{{$apartment->title}}</option>
+                            @endforeach
+                        </select>   
+                     </label>
+                @endisset
                 <label for="amount">
                     Durata sponsorizzazione
                     <select name="amount" id="amount">

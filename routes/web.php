@@ -33,6 +33,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function (
     Route::get('messages', 'MessageController@index')->name('messages.index');
     Route::get('messages/{id}', 'MessageController@show')->name('messages.show');
 
+    //elenco appartamenti
     Route::get('/payments', function () {
     $gateway = new Braintree\Gateway([
         'environment' => config('services.braintree.environment'),
@@ -47,11 +48,34 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function (
     return view('admin.checkout', [
         'token' => $token
     ], compact('sponsors', 'apartments'));
-});
+    });
+    // appartamento specifico
+    Route::get('/payments/{id}', function ($id) {
+    if (Apartment::where('id', $id)->exists()){
+        if (Apartment::where('id', $id)->first()->user_id != Auth::id()){
+        abort(404);
+        }
+    } else {
+        abort(404);
+    }
+    $gateway = new Braintree\Gateway([
+        'environment' => config('services.braintree.environment'),
+        'merchantId' => config('services.braintree.merchantId'),
+        'publicKey' => config('services.braintree.publicKey'),
+        'privateKey' => config('services.braintree.privateKey')
+    ]);
+
+    $token = $gateway->ClientToken()->generate();
+    $sponsors = Sponsor::all();
+    $apartment = Apartment::where('id',$id)->first();
+    return view('admin.checkout', [
+        'token' => $token
+    ], compact('sponsors', 'apartment'));
+    });
 
 Route::post('/checkout', function (Request $request) {
     if ((!Sponsor::where('id', $request->amount)->exists()) || (!Apartment::where([['id',$request->apartment],['user_id',Auth::id()], ['available', 1]])->exists())) {
-        abort(404);
+        return back()->withErrors('Errore nel pagamento');
     }
     $gateway = new Braintree\Gateway([
         'environment' => config('services.braintree.environment'),
@@ -66,11 +90,11 @@ Route::post('/checkout', function (Request $request) {
     $result = $gateway->transaction()->sale([
         'amount' => $amount[0]->price,
         'paymentMethodNonce' => $nonce,
-        // 'customer' => [
-        //     'firstName' => 'Tony',
-        //     'lastName' => 'Stark',
-        //     'email' => 'tony@avengers.com',
-        // ],
+        'customer' => [
+            'firstName' => Auth::user()->name ? Auth::user()->name : '',
+            'lastName' => Auth::user()->lastname ? Auth::user()->lastname : '',
+            'email' => Auth::user()->email,
+        ],
         'options' => [
             'submitForSettlement' => true
         ]
@@ -86,10 +110,14 @@ Route::post('/checkout', function (Request $request) {
             // $apartment = $apartment[0]->load(['sponsors' => function ($q) { 
             //     $q->orderBy('apartment_sponsor.id','desc');
             // }]);
-            $apartment = $apartment[0]->sponsors()->orderBy('pivot_end-date', 'desc')->get();
-            dd($apartment);
+            $last_sponsor = Carbon::parse($apartment[0]->sponsors()->orderBy('pivot_end_date', 'desc')->first()->pivot->end_date);
+            if($last_sponsor->gt(Carbon::now())){
+                $apartment[0]->sponsors()->attach($request->amount, ['start_date' => $last_sponsor, 'end_date' => Carbon::parse($last_sponsor)->addHours($hours)]);
+            } else {
+                $apartment[0]->sponsors()->attach($request->amount, ['start_date' => Carbon::now(), 'end_date' => Carbon::now()->addHours($hours)]);
+            }
         } else {
-            $apartment[0]->sponsors()->attach($request->amount, ['start-date' => Carbon::now(), 'end-date' => Carbon::now()->addHours($hours)]);
+            $apartment[0]->sponsors()->attach($request->amount, ['start_date' => Carbon::now(), 'end_date' => Carbon::now()->addHours($hours)]);
         }
         // header("Location: transaction.php?id=" . $transaction->id);
 
