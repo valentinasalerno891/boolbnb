@@ -2,7 +2,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
                 <div class="logo">
-                    <img class="navbar-brand" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/1024px-Airbnb_Logo_B%C3%A9lo.svg.png" alt="logo">
+                    <img class="navbar-brand" src="https://cdn.freelogovectors.net/wp-content/uploads/2016/12/airbnb_logo.png" onclick="window.location='/home'"}}" alt="logo">
                 </div>
                 {{-- <span class="navbar-brand">BoolBnB</span> --}}
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,6 +17,7 @@
                     @auth
                         <a  class="home-menu-a m-3" href="{{ route('messages.index') }}">Messaggi</a>
                         <a class="home-menu-a m-3" href="{{ route('apartments.index') }}">Appartamenti</a>
+                        <i class="fas fa-user-circle"></i>
                         <a class="home-menu-a" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
