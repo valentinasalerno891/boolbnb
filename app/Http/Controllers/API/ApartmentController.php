@@ -16,11 +16,12 @@ class ApartmentController extends Controller
         $request->distance = ($request->distance > 200) ? 200 : $request->distance;
         $result = [];
         $requested_services = [];
+        $earthRadius = 6371;
+        // convert from degrees to radians
+        $latFrom = deg2rad($request->latitude);
+        $lonFrom = deg2rad($request->longitude);
         // creo un array contente tutti gli ID dei servizi presenti sul DB
         $services_ids = Service::all()->pluck('id');
-        // salvo latitudine e longitudine della città cercata
-        $lat_search = $request->latitude;
-        $lon_search = $request->longitude;
         // popolo l'array con gli ID dei servizi richiesti nella ricerca
         for ($i = 0; $i<count($services_ids); $i++){
             if ($request[$services_ids[$i]] == '1'){
@@ -40,17 +41,37 @@ class ApartmentController extends Controller
                 // salvo latitudine e longitudine dell'appartamento in questione
                 $lat_app = $apartments[$x]->latitude;
                 $lon_app = $apartments[$x]->longitude;
-                // chiamata API per calcolare la distanza tra l'appartamento e la città cercata
-                $client = new Client([
-                    'base_uri' => 'https://api.tomtom.com/routing/1/calculateRoute/'.$lat_search.','.$lon_search.':'.$lat_app.','.$lon_app.'/json?key=wBFrGupwgm95n0TA2HmZJULQ5GktiGhQ',
-                ]);
-                $response = $client->get('https://api.tomtom.com/routing/1/calculateRoute/'.$lat_search.','.$lon_search.':'.$lat_app.','.$lon_app.'/json?key=wBFrGupwgm95n0TA2HmZJULQ5GktiGhQ');
-                $data = json_decode($response->getBody());
-                // converto la distanza (restuita in metri) in km
-                $km_distance = ($data->routes[0]->legs[0]->summary->lengthInMeters)/1000;
+                // // chiamata API per calcolare la distanza tra l'appartamento e la città cercata
+                // $client = new Client([
+                //     'base_uri' => 'https://api.tomtom.com/routing/1/calculateRoute/'.$lat_search.','.$lon_search.':'.$lat_app.','.$lon_app.'/json?key=wBFrGupwgm95n0TA2HmZJULQ5GktiGhQ',
+                // ]);
+                // $response = $client->get('https://api.tomtom.com/routing/1/calculateRoute/'.$lat_search.','.$lon_search.':'.$lat_app.','.$lon_app.'/json?key=wBFrGupwgm95n0TA2HmZJULQ5GktiGhQ');
+                // $data = json_decode($response->getBody());
+                // // converto la distanza (restuita in metri) in km
+                // $km_distance = ($data->routes[0]->legs[0]->summary->lengthInMeters)/1000;
                 // controllo che la distanza sia minore o uguale a quella impostata dall'utente
-                if ($km_distance<=$request->distance){
-                    $apartments[$x]['distance'] = round($km_distance,2);
+
+
+                
+                // convert from degrees to radians
+                $latTo = deg2rad($lat_app);
+                $lonTo = deg2rad($lon_app);
+
+                $lonDelta = $lonTo - $lonFrom;
+                $a = pow(cos($latTo) * sin($lonDelta), 2) +
+                    pow(cos($latFrom) * sin($latTo) - sin($latFrom) * cos($latTo) * cos($lonDelta), 2);
+                $b = sin($latFrom) * sin($latTo) + cos($latFrom) * cos($latTo) * cos($lonDelta);
+
+                $angle = atan2(sqrt($a), $b);
+                $distance = $angle * $earthRadius;
+
+                // if ($km_distance<=$request->distance){
+                //     $apartments[$x]['distance'] = round($km_distance,2);
+                //     $apartments[$x]['route'] = route('apartments.show', $apartments[$x]->id);
+                //     array_push($result, $apartments[$x]); // pusho l'appartamento nell'array result
+                // }
+                if ($distance<=$request->distance){
+                    $apartments[$x]['distance'] = round($distance,2);
                     $apartments[$x]['route'] = route('apartments.show', $apartments[$x]->id);
                     array_push($result, $apartments[$x]); // pusho l'appartamento nell'array result
                 }
