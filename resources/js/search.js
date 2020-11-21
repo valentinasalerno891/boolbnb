@@ -23,14 +23,18 @@ places({
 
 // parte la ricerca quando si selezionano uno o più servizi e si aggiornano i risultati
 $('.service').on('change', function(){
-    changeUrlParams();
-    getLatLon(getUrlParameter('city'));
+    if ($('#city').val() != ''){
+        changeUrlParams();
+        getLatLon(getUrlParameter('city'));
+    }
 });
 
 // parte la ricerca al click del pulsante cerca e si aggiornano i risultati
 $('#cerca').on('click', function(){
-    changeUrlParams();
-    getLatLon(getUrlParameter('city'));
+    if ($('#city').val() != ''){
+        changeUrlParams();
+        getLatLon(getUrlParameter('city'));
+    }
 });
 
 // funzioni per la modifica del valore dello slider in diretta

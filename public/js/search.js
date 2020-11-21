@@ -44000,13 +44000,17 @@ places({
 }); // parte la ricerca quando si selezionano uno o più servizi e si aggiornano i risultati
 
 $('.service').on('change', function () {
-  changeUrlParams();
-  getLatLon(getUrlParameter('city'));
+  if ($('#city').val() != '') {
+    changeUrlParams();
+    getLatLon(getUrlParameter('city'));
+  }
 }); // parte la ricerca al click del pulsante cerca e si aggiornano i risultati
 
 $('#cerca').on('click', function () {
-  changeUrlParams();
-  getLatLon(getUrlParameter('city'));
+  if ($('#city').val() != '') {
+    changeUrlParams();
+    getLatLon(getUrlParameter('city'));
+  }
 }); // funzioni per la modifica del valore dello slider in diretta
 
 $('#distance').on('mousemove', function () {
@@ -44178,7 +44182,7 @@ function getApartments() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\mamp_public\boolbnb\resources\js\search.js */"./resources/js/search.js");
+module.exports = __webpack_require__(/*! /Users/davidefrancavilla/Desktop/Classe#16/boolbnb/resources/js/search.js */"./resources/js/search.js");
 
 
 /***/ }),
