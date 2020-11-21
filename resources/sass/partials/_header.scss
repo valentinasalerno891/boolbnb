@@ -4,6 +4,9 @@ header {
         background-color: lightblue;
         img {
             height: 60px;
+            &:hover {
+                cursor: pointer;
+            }
         }
         .home-menu {
             display: flex;
