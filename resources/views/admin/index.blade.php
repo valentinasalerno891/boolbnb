@@ -8,8 +8,8 @@
         {{ session('status') }}
     </div>
 @endif
-<div class="container apartments-index">
-  <h2>Benvenuto,ecco la lista dei tuoi appartamenti</h2>
+<div class="container apartments-index col-md-8">
+  <h2>Benvenuto, ecco la lista dei tuoi appartamenti</h2>
   <table class="table table-bordered">
 
       <tbody>
@@ -21,10 +21,10 @@
 
     <tr>
 
-      <td><a href="{{route('apartments.show',$apartment->id)}}">{{$apartment->title}}</a></td>
+      <td><a class="apartment-title" href="{{route('apartments.show',$apartment->id)}}">{{$apartment->title}}</a></td>
       <td>{{$apartment->rooms}} stanze in questo appartamento</td>
-      <td ><a class="edit" href="{{route('apartments.edit',$apartment->id)}}">Modifica</a></td>
-      <td><form action="{{route('apartments.destroy',$apartment->id)}}" method="post">
+      <td class="edit-delete-action"><a class="edit" href="{{route('apartments.edit',$apartment->id)}}">Modifica</a></td>
+      <td class="edit-delete-action"><form action="{{route('apartments.destroy',$apartment->id)}}" method="post">
           @csrf
           @method('DELETE')
           <button class="btn bool-btn-pink" type="submit">Elimina</button>
@@ -32,7 +32,7 @@
     </tr>
 
 @endforeach
-  
+
   </tbody>
   </table>
 </div>

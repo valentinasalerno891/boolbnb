@@ -5,7 +5,7 @@
     <div class="container">
       <div class="header_apartment">
         <span class="title">{{$apartment->title}}</span>
-        <div class="apartment_form">    
+        <div class="apartment_form">
           @if ($apartment->user_id == Auth::id())
           <div class="big-display">
             <span class="mr-3"><a href="{{route('apartments.edit',$apartment->id)}}"><i class="far fa-edit"></i> Modifica</a></span>
@@ -26,20 +26,20 @@
             </form>
           </div>
           @endif
-        </div>  
-      </div> 
+        </div>
+      </div>
       <div class="image_apartment">
-        <img src="https://media.istockphoto.com/photos/evening-view-of-a-modern-house-with-swimming-pool-picture-id1151833014" alt="apartment">  
-      </div> 
+        <img src="{{Storage::url($apartment->image)}}" alt="apartment">
+      </div>
       <hr>
       <div class="description_information">
         <div class="apartment_description">
           <h3>DESCRIZIONE APPARTAMENTO</h3>
           <span>{{$apartment->description}}</span>
         </div>
-        <hr>
+        {{-- <hr> --}}
         <div class="apartment_information">
-          <h3>INFORMAZIONI APPARTAMENTO</h3>
+          <h3>DETTAGLI APPARTAMENTO</h3>
           <p class="">Metri quadri appartamento : {{$apartment->square_meters}}</p>
           <p class="">Camere : {{$apartment->rooms}} <i class="fas fa-door-open"></i></p>
           <p class="">Letti : {{$apartment->beds}} <i class="fas fa-bed"></i></p>
@@ -48,7 +48,7 @@
         </div>
       </div>
       <hr>
-      <div class="service_maps"> 
+      <div class="service_maps">
         <div class="apartment_service">
           <h3>SERVIZI APPARTAMENTO</h3>
           <ul>
@@ -78,11 +78,11 @@
             @endforeach
           </ul>
         </div>
-        <hr>
+        {{-- <hr> --}}
         <div id="map" class="map apartment_maps"></div>
       </div>
-      <hr>         
-      @if ($apartment->user_id != Auth::id()) 
+      <hr>
+      @if ($apartment->user_id != Auth::id())
       @if (session('status'))
       <div class="alert alert-success">
           {{ session('status') }}
@@ -113,7 +113,7 @@
       <hr>
       @endif
     </div>
-  </div>  
+  </div>
 @endsection
 
 

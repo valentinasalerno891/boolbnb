@@ -2,7 +2,7 @@
 
 @section('title', 'Login')
 @section('content')
-<div class="container apartment-edit">
+<div class="container apartment-edit col-md-6">
 
 
 @if ($errors->any())
@@ -52,7 +52,7 @@
   </div>
   <div class="form-group">
     <label for="image">Foto</label>
-    <input type="file" class="form-control-file" id="image" name="image" accept="image/*">
+    <input src="{{ asset('storage/'. $apartment->image) }}" type="file" class="form-control-file" id="image" name="image" accept="image/*">
   </div>
   <div class="form-group">
       {{-- MODIFICA "disponibile?" --}}
@@ -60,7 +60,7 @@
     <input name="available" type="checkbox" id="available" name="available"
         {{old('available') ? 'checked' : ''}}>
   </div>
-  <button type="submit" class="btn bool-btn-pink">Submit</button>
+  <button type="submit" class="btn bool-btn-pink">Salva</button>
 </form>
 </div>
 @endsection

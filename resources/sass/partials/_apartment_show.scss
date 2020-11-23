@@ -1,14 +1,15 @@
 .apartment_show{
     .container{
+        margin-bottom: 150px;
         .header_apartment{
             width: 100%;
-            padding: 20px 0;
+            padding-top: 50px;
+            padding-bottom: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             .title{
-                font-size: 38px;
-                text-transform: capitalize;
+                font-size: 36px;
                 word-break: break-all;
             }
             .apartment_form{
@@ -53,28 +54,23 @@
         .description_information{
             width: 100%;
             display: flex;
+            flex-direction: column;
             .apartment_description{
-                width: 50%;
-                text-align: center;
-                padding: 12px 0px;
+                width: 100%;
+                // text-align: center;
+                padding: 20px 0px;
                 word-break: break-all;
-                h3{
-                    font-size: 30px;
-                }
                 span{
                     font-size: 18px;
                     color: #717171;
                 }
             }
             .apartment_information{
-                width: 50%;
-                padding: 12px 0px;
-                text-align: center;
-                h3{
-                    font-size: 30px;
-                }
+                width: 100%;
+                padding: 20px 0px;
+                // text-align: center;
                 p{
-                    font-size: 22px;
+                    font-size: 18px;
                     color: #717171;
                 }
             }
@@ -84,17 +80,14 @@
             display: flex;
             .apartment_service{
                 width: 50%;
-                padding: 12px 0px;
-                text-align: center;
+                padding: 20px 0px;
+                // text-align: center;
                 hr{
                     visibility: hidden;
                 }
-                h3{
-                    font-size: 30px;
-                }
                 li{
                     list-style: none;
-                    font-size: 22px;
+                    font-size: 18px;
                     color: #717171;
                     margin-bottom: 15px;
                     i{
@@ -105,8 +98,8 @@
             .apartment_maps{
                 width: 50%;
                 min-height: 400px;
-                padding: 12px 0px;
-                text-align: center;
+                padding: 20px 0px;
+                // text-align: center;
                 iframe{
                     width: 100%;
                 }
@@ -114,6 +107,10 @@
         }
         .message{
             width: 100%;
+            margin-bottom: 20px;
+        }
+        h3{
+            font-size: 25px;
             margin-bottom: 20px;
         }
     }

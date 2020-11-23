@@ -24,7 +24,7 @@
                     <div class="home-menu collapse navbar-collapse" id="navbarSupportedContent">
                         @guest
                             <a class="home-menu-a nav-link nav-item m-3" href="{{ route('register') }}">Registrati</a>
-                            <a class="home-menu-a m-3" href="{{ route('login') }}">Login</a>
+                            <a class="home-menu-a m-3" href="{{ route('login') }}">Accedi</a>
                         @endguest
                             <a class="home-menu-a m-3" href="{{ route('apartments.create') }}">Inserisci un Appartamento</a>
                         @auth
