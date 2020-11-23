@@ -41,6 +41,8 @@ class ApartmentController extends Controller
                 // salvo latitudine e longitudine dell'appartamento in questione
                 $lat_app = $apartments[$x]->latitude;
                 $lon_app = $apartments[$x]->longitude;
+
+                // ============ METODO CON TOM TOM
                 // // chiamata API per calcolare la distanza tra l'appartamento e la città cercata
                 // $client = new Client([
                 //     'base_uri' => 'https://api.tomtom.com/routing/1/calculateRoute/'.$lat_search.','.$lon_search.':'.$lat_app.','.$lon_app.'/json?key=wBFrGupwgm95n0TA2HmZJULQ5GktiGhQ',
@@ -52,8 +54,8 @@ class ApartmentController extends Controller
                 // controllo che la distanza sia minore o uguale a quella impostata dall'utente
 
 
-                
-                // convert from degrees to radians
+                // ======== METODO CALCOLANDO LA DISTANZA
+                //convert from degrees to radians
                 $latTo = deg2rad($lat_app);
                 $lonTo = deg2rad($lon_app);
 
@@ -65,11 +67,17 @@ class ApartmentController extends Controller
                 $angle = atan2(sqrt($a), $b);
                 $distance = $angle * $earthRadius;
 
+
+
+                 
+                // ============ METODO CON TOM TOM
                 // if ($km_distance<=$request->distance){
                 //     $apartments[$x]['distance'] = round($km_distance,2);
                 //     $apartments[$x]['route'] = route('apartments.show', $apartments[$x]->id);
                 //     array_push($result, $apartments[$x]); // pusho l'appartamento nell'array result
                 // }
+
+                // ======== METODO CALCOLANDO LA DISTANZA
                 if ($distance<=$request->distance){
                     $apartments[$x]['distance'] = round($distance,2);
                     $apartments[$x]['route'] = route('apartments.show', $apartments[$x]->id);

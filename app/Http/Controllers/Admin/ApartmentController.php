@@ -8,9 +8,12 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Session;
 use App\Apartment;
 use App\Category;
 use App\Service;
+use App\View;
+use Carbon\Carbon;
 
 
 class ApartmentController extends Controller
@@ -97,6 +100,15 @@ class ApartmentController extends Controller
     public function show($id)
     {
         $apartment = Apartment::where('id',$id)->first();
+        if (!View::where([['apartment_id', $id], ['session_id', Session::getId()]])->exists()){
+            $view = new View;
+            $view->created_at = Carbon::now()->format('M-d-Y H:00:00');        
+            $view->apartment_id = $id;        
+            $view->session_id = Session::getId();        
+
+            $view->save();
+        }
+
         return view('admin.show',compact('apartment'));
     }
 
