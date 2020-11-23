@@ -43,7 +43,7 @@
 
         var ctx = $('#myChart-messages')[0].getContext('2d');
         var myChart = new Chart(ctx, {
-            type: 'line',
+            type: 'bar',
             data: {
                 labels: labels.reverse(),
                 datasets: [{
@@ -81,7 +81,7 @@
 
         var ctx = $('#myChart-views')[0].getContext('2d');
         var myChart = new Chart(ctx, {
-            type: 'line',
+            type: 'bar',
             data: {
                 labels: labels.reverse(),
                 datasets: [{

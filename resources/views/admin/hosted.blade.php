@@ -62,9 +62,9 @@
                             @endforeach
                         </select> 
                     </div>
-                    <div class="bt-drop-in-wrapper">
+                    {{-- <div class="bt-drop-in-wrapper">
                         <div id="bt-dropin"></div>
-                    </div>
+                    </div> --}}
                     <div class="row">
                         <div class="col-md-6">
                             <label for="card_number">Numero carta</label>

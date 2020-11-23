@@ -17,7 +17,7 @@ class PaymentController extends Controller
             'merchantId' => config('services.braintree.merchantId'),
             'publicKey' => config('services.braintree.publicKey'),
             'privateKey' => config('services.braintree.privateKey')
-        ]);
+          ]);
 
         $token = $gateway->ClientToken()->generate();
         $sponsors = Sponsor::all();
@@ -33,7 +33,7 @@ class PaymentController extends Controller
      public function paymentWithId($id){
           if (Apartment::where('id', $id)->exists()){
             if (Apartment::where('id', $id)->first()->user_id != Auth::id()){
-            abort(404);
+               abort(404);
             }
           } else {
                abort(404);
