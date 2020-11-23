@@ -40,8 +40,8 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function (
 
     Route::post('/checkout', 'PaymentController@checkout')->name('checkout');
 
-    Route::get('/hosted', 'PaymentController@paymentNoId');
-    Route::get('/hosted/{id}', 'PaymentController@paymentWithId');
+    // Route::get('/hosted', 'PaymentController@paymentNoId');
+    // Route::get('/hosted/{id}', 'PaymentController@paymentWithId');
 });
 
 Route::post('messages/{apartment_id}', 'Admin\MessageController@store')->name('messages.store');
