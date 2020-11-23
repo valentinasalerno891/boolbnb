@@ -17750,17 +17750,25 @@ footer .copyright a {
   padding: 150px 0;
 }
 
+<<<<<<< HEAD
 .register-row {
   padding-top: 100px;
   padding-bottom: 150px;
 }
 
+=======
+>>>>>>> mattia
 .apartment-create {
   padding-top: 50px;
 }
 
+<<<<<<< HEAD
 .apartment-create h2 {
   margin-bottom: 30px;
+=======
+.apartment-create .category {
+  margin-right: 20px;
+>>>>>>> mattia
 }
 
 .apartment-create .create-page-form {
