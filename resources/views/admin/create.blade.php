@@ -45,11 +45,11 @@
   </div>
   <div class="form-group">
     <label for="latitude">Latitudine</label>
-    <input name="latitude" type="number" class="form-control" id="latitude" placeholder="Latitudine" value="{{old('latitude')}}">
+    <input name="latitude" class="form-control" id="latitude" placeholder="Latitudine" value="{{old('latitude')}}">
   </div>
   <div class="form-group">
     <label for="longitude">Longitudine</label>
-    <input name="longitude" type="number" class="form-control" id="longitude" placeholder="Longitudine" value="{{old('longitude')}}">
+    <input name="longitude" class="form-control" id="longitude" placeholder="Longitudine" value="{{old('longitude')}}">
   </div>
   <div class="form-group">
     <label for="image">Foto</label>
