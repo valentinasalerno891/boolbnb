@@ -24,7 +24,7 @@ class Apartment extends Model
 
      //Relazione molti a molti (* appartamento * sponsor)
     public function sponsors(){
-        return $this->belongsToMany('App\Sponsor')->withPivot('start-date', 'end-date');
+        return $this->belongsToMany('App\Sponsor')->withPivot('start_date', 'end_date');
     }
 
     //Relazione molti a molti (* appartamento * servizi)

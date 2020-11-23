@@ -17334,6 +17334,10 @@ header nav img {
   height: 60px;
 }
 
+header nav img:hover {
+  cursor: pointer;
+}
+
 header nav .home-menu {
   display: flex;
   justify-content: flex-end;
@@ -17492,17 +17496,21 @@ footer .copyright a {
   }
 }
 
+.apartment_show .container {
+  margin-bottom: 150px;
+}
+
 .apartment_show .container .header_apartment {
   width: 100%;
-  padding: 20px 0;
+  padding-top: 50px;
+  padding-bottom: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .apartment_show .container .header_apartment .title {
-  font-size: 38px;
-  text-transform: capitalize;
+  font-size: 36px;
   word-break: break-all;
 }
 
@@ -17555,17 +17563,13 @@ footer .copyright a {
 .apartment_show .container .description_information {
   width: 100%;
   display: flex;
+  flex-direction: column;
 }
 
 .apartment_show .container .description_information .apartment_description {
-  width: 50%;
-  text-align: center;
-  padding: 12px 0px;
+  width: 100%;
+  padding: 20px 0px;
   word-break: break-all;
-}
-
-.apartment_show .container .description_information .apartment_description h3 {
-  font-size: 30px;
 }
 
 .apartment_show .container .description_information .apartment_description span {
@@ -17574,17 +17578,12 @@ footer .copyright a {
 }
 
 .apartment_show .container .description_information .apartment_information {
-  width: 50%;
-  padding: 12px 0px;
-  text-align: center;
-}
-
-.apartment_show .container .description_information .apartment_information h3 {
-  font-size: 30px;
+  width: 100%;
+  padding: 20px 0px;
 }
 
 .apartment_show .container .description_information .apartment_information p {
-  font-size: 22px;
+  font-size: 18px;
   color: #717171;
 }
 
@@ -17595,21 +17594,16 @@ footer .copyright a {
 
 .apartment_show .container .service_maps .apartment_service {
   width: 50%;
-  padding: 12px 0px;
-  text-align: center;
+  padding: 20px 0px;
 }
 
 .apartment_show .container .service_maps .apartment_service hr {
   visibility: hidden;
 }
 
-.apartment_show .container .service_maps .apartment_service h3 {
-  font-size: 30px;
-}
-
 .apartment_show .container .service_maps .apartment_service li {
   list-style: none;
-  font-size: 22px;
+  font-size: 18px;
   color: #717171;
   margin-bottom: 15px;
 }
@@ -17621,8 +17615,7 @@ footer .copyright a {
 .apartment_show .container .service_maps .apartment_maps {
   width: 50%;
   min-height: 400px;
-  padding: 12px 0px;
-  text-align: center;
+  padding: 20px 0px;
 }
 
 .apartment_show .container .service_maps .apartment_maps iframe {
@@ -17631,6 +17624,11 @@ footer .copyright a {
 
 .apartment_show .container .message {
   width: 100%;
+  margin-bottom: 20px;
+}
+
+.apartment_show .container h3 {
+  font-size: 25px;
   margin-bottom: 20px;
 }
 
@@ -17753,7 +17751,8 @@ footer .copyright a {
 }
 
 .register-row {
-  padding: 150px 0;
+  padding-top: 100px;
+  padding-bottom: 150px;
 }
 
 .apartment-create {
@@ -17773,16 +17772,25 @@ footer .copyright a {
 }
 
 .messages-index h2 {
-  margin-top: 100px;
+  padding-top: 50px;
 }
 
 .messages-index h3 {
-  margin-top: 30px;
+  font-size: 20px;
+  margin-top: 25px;
 }
 
 .messages-index table {
-  margin-top: 40px;
+  margin-top: 10px;
   margin-bottom: 150px;
+}
+
+.apartments-index {
+  font-size: 16px;
+}
+
+.apartments-index a.apartment-title {
+  color: black;
 }
 
 .apartments-index a.edit {
@@ -17790,7 +17798,7 @@ footer .copyright a {
 }
 
 .apartments-index h2 {
-  margin-top: 100px;
+  padding-top: 50px;
 }
 
 .apartments-index table {
@@ -17799,12 +17807,16 @@ footer .copyright a {
 }
 
 .apartments-index td {
-  padding-top: 20px;
   vertical-align: middle;
+}
+
+.apartments-index td.edit-delete-action {
+  text-align: center;
 }
 
 .apartment-edit {
   padding-top: 50px;
+  padding-bottom: 150px;
 }
 
 .apartment-edit button.bool-btn-pink {
@@ -17821,5 +17833,10 @@ footer .copyright a {
 
 .apartment-edit .form-group {
   margin-top: 30px;
+}
+
+.alert {
+  display: flex;
+  justify-content: center;
 }
 

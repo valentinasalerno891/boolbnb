@@ -2,7 +2,7 @@
 
 @section('title', 'Login')
 @section('content')
-<div class="container apartment-create col-md-6">
+<div class="container apartment-create col-md-8">
 @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -12,7 +12,7 @@
         </ul>
     </div>
 @endif
-<h2>Diventa un Host</h2>
+<h2>Diventa un Host - Aggiungi un nuovo appartamento</h2>
 <form class="create-page-form" action="{{route('apartments.store')}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('POST')
@@ -92,7 +92,7 @@
         @endforeach
     </div>
 
-  <button type="submit" class="btn bool-btn-pink">Invia</button>
+  <button type="submit" class="btn bool-btn-pink">Salva</button>
 </form>
 </div>
 @endsection

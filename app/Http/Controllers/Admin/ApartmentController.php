@@ -8,9 +8,12 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Session;
 use App\Apartment;
 use App\Category;
 use App\Service;
+use App\View;
+use Carbon\Carbon;
 
 
 class ApartmentController extends Controller
@@ -64,6 +67,9 @@ class ApartmentController extends Controller
         ]);
         //Assegnazione user_id per appartamento creato//
         $data['user_id'] = Auth::id();
+
+        $apartment = new Apartment();
+
         //Salvataggio immagine relativa all'appartamento//
         if(!empty($data['img'])){
             $data['img'] = Storage::disk('public')->put('images', $data['img']);
@@ -72,7 +78,6 @@ class ApartmentController extends Controller
         if(array_key_exists('available', $data)){
             $data['available'] = 1;
         }
-        $apartment = new Apartment();
 
         $apartment->fill($data);
 
@@ -97,6 +102,15 @@ class ApartmentController extends Controller
     public function show($id)
     {
         $apartment = Apartment::where('id',$id)->first();
+        if (!View::where([['apartment_id', $id], ['session_id', Session::getId()]])->exists()){
+            $view = new View;
+            $view->created_at = Carbon::now()->format('M-d-Y H:00:00');        
+            $view->apartment_id = $id;        
+            $view->session_id = Session::getId();        
+
+            $view->save();
+        }
+
         return view('admin.show',compact('apartment'));
     }
 
@@ -131,12 +145,18 @@ class ApartmentController extends Controller
             'beds' =>  'required|numeric|min:1|gt:0',
             'bathrooms' =>  'required|numeric|min:1|gt:0',
             'square_meters' =>  'required|numeric|gt:0',
-            'image' =>  'required',
+            'image' =>  'image',
             'description' =>  'required|min:60',
         ]);
-        if(!empty($data['img'])){
-            $data['img'] = Storage::disk('public')->put('images', $data['img']);
+
+        //Caricamento/modifica immagine:
+        if (!empty($data['image'])) {
+        //per eliminare l'img non più in uso:
+        if (!empty($apartment->image)) {
+            Storage::disk('public')->delete($apartment->image);
         }
+        $data['image'] = Storage::disk('public')->put('images', $data['image']);
+}
 
         //Modifica del campo available //
         if(array_key_exists('available', $data)){
