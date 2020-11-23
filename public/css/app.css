@@ -17451,10 +17451,6 @@ footer .copyright a {
     padding-bottom: 50px;
   }
 
-  ul {
-    display: none;
-  }
-
   .copyright a,
   .copyright span,
   .copyright .language,
@@ -17480,7 +17476,7 @@ footer .copyright a {
   }
 
   .footer .container section {
-    width: 50%;
+    width: 100%;
     padding: 0 15px;
   }
 

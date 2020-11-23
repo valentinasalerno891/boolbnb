@@ -22,7 +22,7 @@ class CreateViewsTable extends Migration
 
             //Realazione tramite apartment_id con la tabella apartments//
             $table->unsignedBigInteger('apartment_id');
-            $table->foreign('apartment_id')->references('id')->on('apartments');
+            $table->foreign('apartment_id')->references('id')->on('apartments')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

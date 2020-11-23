@@ -35,7 +35,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function (
 
     //elenco appartamenti
     Route::get('/payments', 'PaymentController@paymentNoId')->name('paymentNoId');
-    // appartamento specifico
+    //appartamento specifico
     Route::get('/payments/{id}', 'PaymentController@paymentWithId')->name('paymentWithId');
 
     Route::post('/checkout', 'PaymentController@checkout')->name('checkout');

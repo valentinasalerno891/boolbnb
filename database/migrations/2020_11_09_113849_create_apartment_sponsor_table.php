@@ -21,11 +21,11 @@ class CreateApartmentSponsorTable extends Migration
 
             //Realazione tramite apartment_id con la tabella apartments//
             $table->unsignedBigInteger('apartment_id');
-            $table->foreign('apartment_id')->references('id')->on('apartments');
-            
+            $table->foreign('apartment_id')->references('id')->on('apartments')->onDelete('cascade')->onUpdate('cascade');
+
             //Realazione tramite sponsor_id con la tabella sponsors//
             $table->unsignedBigInteger('sponsor_id');
-            $table->foreign('sponsor_id')->references('id')->on('sponsors');
+            $table->foreign('sponsor_id')->references('id')->on('sponsors')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
