@@ -17563,11 +17563,11 @@ footer .copyright a {
 .apartment_show .container .description_information {
   width: 100%;
   display: flex;
-  flex-direction: column;
 }
 
 .apartment_show .container .description_information .apartment_description {
-  width: 100%;
+  width: 90%;
+  margin-right: 50px;
   padding: 20px 0px;
   word-break: break-all;
 }

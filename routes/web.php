@@ -78,12 +78,12 @@ Route::post('/checkout', function (Request $request) {
 
     if ($result->success) {
         $transaction = $result->transaction;
-        // $user->parks()->attach($park->id, ['weather' => $weather->id]); 
+        // $user->parks()->attach($park->id, ['weather' => $weather->id]);
         $temp_hours = Sponsor::where('id', $request->amount)->get('duration');
         $hours = $temp_hours[0]->duration;
         $apartment = Apartment::where('id', $request->apartment)->get();
         if ($apartment[0]->sponsors()->exists()){
-            // $apartment = $apartment[0]->load(['sponsors' => function ($q) { 
+            // $apartment = $apartment[0]->load(['sponsors' => function ($q) {
             //     $q->orderBy('apartment_sponsor.id','desc');
             // }]);
             $apartment = $apartment[0]->sponsors()->orderBy('pivot_end-date', 'desc')->get();
@@ -127,13 +127,10 @@ Route::post('messages/{apartment_id}', 'Admin\MessageController@store')->name('m
 Route::get('apartments/{id}', 'Admin\ApartmentController@show')->name('apartments.show');
 Route::get('search/', 'SearchController@index')->name('search.index');
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', function () {
     return view('home');
 });
 
 
 // Route::get('logout', 'Auth\LoginController@logout');
-
-
-

@@ -2,7 +2,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
                 <div class="logo">
-                    <img class="navbar-brand pointer" src="https://cdn.freelogovectors.net/wp-content/uploads/2016/12/airbnb_logo.png" onclick="window.location='/home'"}} alt="logo">
+                    <img class="navbar-brand pointer" src="https://cdn.freelogovectors.net/wp-content/uploads/2016/12/airbnb_logo.png" onclick="window.location='/'"}} alt="logo">
                 </div>
                 {{-- <span class="navbar-brand">BoolBnB</span> --}}
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
