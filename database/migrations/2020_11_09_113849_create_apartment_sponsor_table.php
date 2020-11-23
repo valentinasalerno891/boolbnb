@@ -19,6 +19,7 @@ class CreateApartmentSponsorTable extends Migration
             $table->timestamp('start_date')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('end_date')->default(DB::raw('CURRENT_TIMESTAMP'));
 
+
             //Realazione tramite apartment_id con la tabella apartments//
             $table->unsignedBigInteger('apartment_id');
             $table->foreign('apartment_id')->references('id')->on('apartments')->onDelete('cascade')->onUpdate('cascade');
