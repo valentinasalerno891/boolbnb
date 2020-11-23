@@ -102,16 +102,32 @@ class ApartmentController extends Controller
     public function show($id)
     {
         $apartment = Apartment::where('id',$id)->first();
-        if (!View::where([['apartment_id', $id], ['session_id', Session::getId()]])->exists()){
-            $view = new View;
-            $view->created_at = Carbon::now()->format('M-d-Y H:00:00');
-            $view->apartment_id = $id;
-            $view->session_id = Session::getId();
 
-            $view->save();
+        if ($apartment->available){
+            if ($apartment->user_id != Auth::id()){
+                if (!View::where([['apartment_id', $id], ['session_id', Session::getId()]])->exists()){
+                $view = new View;
+                $view->created_at = Carbon::now()->format('M-d-Y H:00:00');
+                $view->apartment_id = $id;
+                $view->session_id = Session::getId();
+
+                $view->save();
+                }
+            }
+            
+            return view('admin.show',compact('apartment'));
+
+        } else {
+            if ($apartment->user_id == Auth::id()){
+                return view('admin.show',compact('apartment'));
+            } else {
+                abort(404);
+            }
+
         }
+        
 
-        return view('admin.show',compact('apartment'));
+        
     }
 
     /**

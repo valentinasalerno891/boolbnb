@@ -12,8 +12,13 @@
         </ul>
     </div>
 @endif
+<div id="error" style="display: none" class="alert alert-danger">
+        <ul>
+          <li>Inserire una città valida</li>
+        </ul>
+</div>
 <h2>Diventa un Host - Aggiungi un nuovo appartamento</h2>
-<form class="create-page-form" action="{{route('apartments.store')}}" method="post" enctype="multipart/form-data">
+<form id="myForm" class="create-page-form" action="{{route('apartments.store')}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('POST')
 
@@ -21,39 +26,41 @@
 
   <div class="form-group">
     <label for="title">Titolo</label>
-    <input name="title" type="text" class="form-control" id="title" aria-describedby="emailHelp" placeholder="Inserisci titolo appartamento" value="{{old('title')}}">
+    <input required name="title" type="text" class="form-control" id="title" aria-describedby="emailHelp" placeholder="Inserisci titolo appartamento" value="{{old('title')}}">
   </div>
   <div class="form-group">
     <label for="rooms">Camere</label>
-    <input name="rooms" type="number" class="form-control" id="rooms" placeholder="Numero camere" value="{{old('rooms')}}">
+    <input required name="rooms" type="number" class="form-control" id="rooms" placeholder="Numero camere" value="{{old('rooms')}}">
   </div>
   <div class="form-group">
     <label for="beds">Letti</label>
-    <input name="beds" type="number" class="form-control" id="beds" placeholder="Numero letti" value="{{old('beds')}}">
+    <input required name="beds" type="number" class="form-control" id="beds" placeholder="Numero letti" value="{{old('beds')}}">
   </div>
   <div class="form-group">
     <label for="bathrooms">Bagni</label>
-    <input name="bathrooms" type="number" class="form-control" id="bathrooms" placeholder="Numero bagni" value="{{old('bathrooms')}}">
+    <input required name="bathrooms" type="number" class="form-control" id="bathrooms" placeholder="Numero bagni" value="{{old('bathrooms')}}">
   </div>
   <div class="form-group">
     <label for="square_meters">Dimensione</label>
-    <input name="square_meters" type="number" class="form-control" id="square_meters" placeholder="Metri quadrati" value="{{old('square_meters')}}">
+    <input required name="square_meters" type="number" class="form-control" id="square_meters" placeholder="Metri quadrati" value="{{old('square_meters')}}">
   </div>
   <div class="form-group">
     <label for="description">Descrizione</label>
-    <textarea name="description" class="form-control" id="description" placeholder="Descrizione" rows="3">{{old('description')}}</textarea>
+    <textarea required name="description" class="form-control" id="description" placeholder="Descrizione" rows="3">{{old('description')}}</textarea>
   </div>
   <div class="form-group">
-    <label for="latitude">Latitudine</label>
-    <input name="latitude" class="form-control" id="latitude" placeholder="Latitudine" value="{{old('latitude')}}">
+    <label for="city">Città</label>
+    <input required name="city" class="form-control" id="city" placeholder="Città" value="{{old('city')}}">
   </div>
   <div class="form-group">
-    <label for="longitude">Longitudine</label>
-    <input name="longitude" class="form-control" id="longitude" placeholder="Longitudine" value="{{old('longitude')}}">
+    <input name="latitude" hidden class="form-control" id="latitude" placeholder="Latitudine" value="{{old('latitude')}}">
+  </div>
+  <div class="form-group">
+    <input name="longitude" hidden class="form-control" id="longitude" placeholder="Longitudine" value="{{old('longitude')}}">
   </div>
   <div class="form-group">
     <label for="image">Foto</label>
-    <input type="file" class="form-control-file" id="image" name="image" accept="image/*">
+    <input required type="file" class="form-control-file" id="image" name="image" accept="image/*">
   </div>
   <div class="form-group">
       {{-- MODIFICA "disponibile?" --}}
@@ -92,7 +99,14 @@
         @endforeach
     </div>
 
-  <button type="submit" class="btn bool-btn-pink">Salva</button>
+  <button id="myButton" type="button" class="btn bool-btn-pink">Salva</button>
+  {{-- <button type="submit" class="btn bool-btn-pink">Salva</button> --}}
 </form>
 </div>
+@endsection
+
+
+@section('script')
+    
+    <script src="{{asset('js/getCoordinates.js')}}"></script>   
 @endsection
