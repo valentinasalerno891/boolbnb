@@ -83,9 +83,6 @@ footer {
         padding-top: 20px;
         padding-bottom: 50px;
     }
-    ul {
-        display: none;
-    }
     .copyright {
         a, span, .language, .valuta {
             display: none;
@@ -106,7 +103,7 @@ footer {
             flex-wrap: wrap;
             justify-content: space-between;
             section {
-                width: 50%;
+                width: 100%;
                 padding: 0 15px;
             }
         }

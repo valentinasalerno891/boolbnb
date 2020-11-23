@@ -17,6 +17,7 @@
                     @auth
                         <a  class="home-menu-a m-3" href="{{ route('messages.index') }}">Messaggi</a>
                         <a class="home-menu-a m-3" href="{{ route('apartments.index') }}">Appartamenti</a>
+                        <a  class="home-menu-a m-3" href="{{ route('paymentNoId') }}">Sponsorizzazioni</a>
                         <i class="fas fa-user-circle"></i>
                         <a class="home-menu-a" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}

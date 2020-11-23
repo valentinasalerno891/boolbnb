@@ -3,13 +3,13 @@
 @section('title', 'Login')
 @section('content')
 
-@if (session('status'))
-    <div class="alert alert-success">
-        {{ session('status') }}
-    </div>
-@endif
 <div class="container apartments-index col-md-8">
-  <h2>Benvenuto, ecco la lista dei tuoi appartamenti</h2>
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
+  <h2>Benvenuto, ecco i tuoi appartamenti</h2>
   <table class="table table-bordered">
 
       <tbody>

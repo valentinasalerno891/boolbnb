@@ -6,10 +6,10 @@
                 <ul>
                     <li><a href="#">Come funziona Boolbnb</a><li>
                     <li><a href="#">Newsroom</a><li>
-                    <li><a href="#">Boolbnb Plus</a><li>
+                    {{-- <li><a href="#">Boolbnb Plus</a><li>
                     <li><a href="#">Boolbnb Luxe</a><li>
                     <li><a href="#">Boolbnb for Work</a><li>
-                    <li><a href="#">Opportunità di Lavoro</a><li>
+                    <li><a href="#">Opportunità di Lavoro</a><li> --}}
                 </ul>
             </section>
             <section>
@@ -24,8 +24,8 @@
                 <ul>
                     <li><a href="#">Diventa un Host</a><li>
                     <li><a href="#">Ospitare responsabilmente</a><li>
-                    <li><a href="#">Open Homes</a><li>
-                    <li><a href="#">Centro Risorse</a><li>
+                    {{-- <li><a href="#">Open Homes</a><li>
+                    <li><a href="#">Centro Risorse</a><li> --}}
                 </ul>
             </section>
             <section>
@@ -33,8 +33,8 @@
                 <ul>
                     <li><a href="#">Centro Assistenza</a><li>
                     <li><a href="#">Opzioni di cancellazione</a><li>
-                    <li><a href="#">Servizio di supporto al vicinato</a><li>
-                    <li><a href="#">Affidabilità e Sicurezza</a><li>
+                    {{-- <li><a href="#">Servizio di supporto al vicinato</a><li>
+                    <li><a href="#">Affidabilità e Sicurezza</a><li> --}}
                 </ul>
             </section>
         </div>

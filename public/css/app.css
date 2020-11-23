@@ -17451,10 +17451,6 @@ footer .copyright a {
     padding-bottom: 50px;
   }
 
-  ul {
-    display: none;
-  }
-
   .copyright a,
   .copyright span,
   .copyright .language,
@@ -17480,7 +17476,7 @@ footer .copyright a {
   }
 
   .footer .container section {
-    width: 50%;
+    width: 100%;
     padding: 0 15px;
   }
 
@@ -17750,25 +17746,17 @@ footer .copyright a {
   padding: 150px 0;
 }
 
-<<<<<<< HEAD
 .register-row {
   padding-top: 100px;
   padding-bottom: 150px;
 }
 
-=======
->>>>>>> mattia
 .apartment-create {
   padding-top: 50px;
 }
 
-<<<<<<< HEAD
 .apartment-create h2 {
   margin-bottom: 30px;
-=======
-.apartment-create .category {
-  margin-right: 20px;
->>>>>>> mattia
 }
 
 .apartment-create .create-page-form {

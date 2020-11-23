@@ -62,7 +62,7 @@ class ApartmentController extends Controller
             'beds' =>  'required|numeric|min:1|gt:0',
             'bathrooms' =>  'required|numeric|min:1|gt:0',
             'square_meters' =>  'required|numeric|gt:0',
-            'image' =>  'required',
+            'image' =>  'image',
             'description' =>  'required|min:60',
         ]);
         //Assegnazione user_id per appartamento creato//
@@ -71,8 +71,8 @@ class ApartmentController extends Controller
         $apartment = new Apartment();
 
         //Salvataggio immagine relativa all'appartamento//
-        if(!empty($data['img'])){
-            $data['img'] = Storage::disk('public')->put('images', $data['img']);
+        if(!empty($data['image'])){
+            $data['image'] = Storage::disk('public')->put('images', $data['image']);
         }
         //Disponibilità appartamento //
         if(array_key_exists('available', $data)){
@@ -104,9 +104,9 @@ class ApartmentController extends Controller
         $apartment = Apartment::where('id',$id)->first();
         if (!View::where([['apartment_id', $id], ['session_id', Session::getId()]])->exists()){
             $view = new View;
-            $view->created_at = Carbon::now()->format('M-d-Y H:00:00');        
-            $view->apartment_id = $id;        
-            $view->session_id = Session::getId();        
+            $view->created_at = Carbon::now()->format('M-d-Y H:00:00');
+            $view->apartment_id = $id;
+            $view->session_id = Session::getId();
 
             $view->save();
         }
