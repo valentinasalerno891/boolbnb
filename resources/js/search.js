@@ -161,12 +161,14 @@ function getApartments(){
             if (data.length == 0){
                 $('#results').append('Nessun appartamento trovato');
             } else {
+                // let arr = Object.entries(data).sort((a, b) => a.distance + b.distance);
+                // console.log(arr)
                 for (var i = 0; i<data.length; i++){
                 var context = data[i];
                 context['description'] = context['description'].substring(0,30)+'...';
                 var html = template(context);
                 $('#results').append(html);
-            }
+                }
             }
         },
         error: function(err){

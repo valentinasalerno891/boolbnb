@@ -1,5 +1,3 @@
-
-
 var places = require('places.js');
 places({
   appId: 'plZMYMEKV4FH',
@@ -20,10 +18,12 @@ function getLatLon(city){
             if (data.results.length != 0){
                 $('#latitude').val(data.results[0].position.lat);
                 $('#longitude').val(data.results[0].position.lon);
-                $('#myForm').submit();
-            } else {
-                $('#error').show();
-            }
+                // window.open('search?latitude='+data.results[0].position.lat+'&'+'longitude='+data.results[0].position.lon+'&'+'city='+$('#city').val());
+                window.location.href = ('search?latitude='+data.results[0].position.lat+'&'+'longitude='+data.results[0].position.lon+'&'+'city='+$('#city').val());
+            } 
+            // else {
+            //     $('#error').show();
+            // }
         },
         error: function(err){
             console.log(err);

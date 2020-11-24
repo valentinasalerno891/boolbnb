@@ -88,6 +88,7 @@ class ApartmentController extends Controller
                 }
             }
         }
+        dd($result);
         return response()->json($result, 200);
     }
 }

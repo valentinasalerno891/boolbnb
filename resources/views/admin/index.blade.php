@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Login')
+@section('title', 'Lista appartamenti')
 @section('content')
 
 <div class="container apartments-index col-md-8">

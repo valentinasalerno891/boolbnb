@@ -1,4 +1,5 @@
  @extends('layouts.app')
+ @section('title', 'Sponsorizza un appartamento')
  
  <style>
     body {

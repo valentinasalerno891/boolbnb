@@ -48,10 +48,10 @@
                 <div class="container search-nav">
                     <div class="ricerca città">
                         {{-- <span><strong>Dove</strong></span> --}}
-                        <input type="text" name="" value="" placeholder="Dove vuoi andare?">
+                        <input id="city" name="city" placeholder="Dove vuoi andare?">
                     </div>
                     <div class="button-cerca">
-                        <button type="button" name="cerca">
+                        <button id="myButton" type="button" name="cerca">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
@@ -85,6 +85,6 @@
     </div>
 
     @include('template.footer')
-
+    <script src="{{asset('js/homeSearch.js')}}"></script>   
 </body>
 </html>

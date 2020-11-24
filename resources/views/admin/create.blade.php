@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Login')
+@section('title', 'Crea un nuovo appartamento')
 @section('content')
 <div class="container apartment-create col-md-8">
 @if ($errors->any())

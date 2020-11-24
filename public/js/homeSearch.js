@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -10804,10 +10804,10 @@ module.exports = g;
 
 /***/ }),
 
-/***/ "./resources/js/getCoordinates.js":
-/*!****************************************!*\
-  !*** ./resources/js/getCoordinates.js ***!
-  \****************************************/
+/***/ "./resources/js/homeSearch.js":
+/*!************************************!*\
+  !*** ./resources/js/homeSearch.js ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10831,11 +10831,13 @@ function getLatLon(city) {
 
       if (data.results.length != 0) {
         $('#latitude').val(data.results[0].position.lat);
-        $('#longitude').val(data.results[0].position.lon);
-        $('#myForm').submit();
-      } else {
-        $('#error').show();
-      }
+        $('#longitude').val(data.results[0].position.lon); // window.open('search?latitude='+data.results[0].position.lat+'&'+'longitude='+data.results[0].position.lon+'&'+'city='+$('#city').val());
+
+        window.location.href = 'search?latitude=' + data.results[0].position.lat + '&' + 'longitude=' + data.results[0].position.lon + '&' + 'city=' + $('#city').val();
+      } // else {
+      //     $('#error').show();
+      // }
+
     },
     error: function error(err) {
       console.log(err);
@@ -10856,14 +10858,14 @@ function getLatLon(city) {
 
 /***/ }),
 
-/***/ 3:
-/*!**********************************************!*\
-  !*** multi ./resources/js/getCoordinates.js ***!
-  \**********************************************/
+/***/ 4:
+/*!******************************************!*\
+  !*** multi ./resources/js/homeSearch.js ***!
+  \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/davidefrancavilla/Desktop/Classe#16/boolbnb/resources/js/getCoordinates.js */"./resources/js/getCoordinates.js");
+module.exports = __webpack_require__(/*! /Users/davidefrancavilla/Desktop/Classe#16/boolbnb/resources/js/homeSearch.js */"./resources/js/homeSearch.js");
 
 
 /***/ })

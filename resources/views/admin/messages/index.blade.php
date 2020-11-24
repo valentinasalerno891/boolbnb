@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Login')
+@section('title', 'Lista messaggi')
 @section('content')
     <div class="container messages-index col-md-8">
         <h2>I tuoi messaggi</h2>
@@ -17,7 +17,7 @@
                     </tr>
                     @foreach ($apartment->messages as $message)
                         <tr>
-                            <td>{{$message->title}}</td>
+                            <td><a href="{{route('messages.show', $message->id)}}">{{$message->title}}</a></td>
                             <td>{{$message->email}}</td>
                             <td>{{$message->body}}</td>
                         </tr>
