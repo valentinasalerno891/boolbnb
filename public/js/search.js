@@ -44183,10 +44183,6 @@ function getApartments() {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(/*! C:\mamp_public\boolbnb\resources\js\search.js */"./resources/js/search.js");
-<<<<<<< HEAD
-module.exports = __webpack_require__(/*! /Users/davidefrancavilla/Desktop/Classe#16/boolbnb/resources/js/search.js */"./resources/js/search.js");
-=======
->>>>>>> andrea
 
 
 /***/ }),
