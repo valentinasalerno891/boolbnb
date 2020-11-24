@@ -31,6 +31,7 @@ class ApartmentsSeeder extends Seeder
             $newApartment->available = 1;
             $newApartment->latitude = $faker->latitude();
             $newApartment->longitude = $faker->longitude();
+            $newApartment->city = $faker->city();
 
             //user_id viene preso dalla tabella users 
             $newApartment->user_id = $user->id;
