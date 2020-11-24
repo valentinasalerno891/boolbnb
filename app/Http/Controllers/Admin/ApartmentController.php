@@ -165,6 +165,7 @@ class ApartmentController extends Controller
             'beds' =>  'required|numeric|min:1|gt:0',
             'bathrooms' =>  'required|numeric|min:1|gt:0',
             'square_meters' =>  'required|numeric|gt:0',
+            'image' =>  'required',
             'description' =>  'required|min:60',
         ]);
 

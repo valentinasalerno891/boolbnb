@@ -67,7 +67,7 @@
         <div class="container">
             <h2>Appartamenti in evidenza</h2>
             <div class="card-group">
-            {{-- @foreach ($iterable as $key => $value) --}}
+            {{-- @foreach ($iterable as $key => $value)
                 <div class="card">
                     <img class="card-img-top" src="..." alt="img">
                     <div class="card-body">
@@ -78,7 +78,7 @@
                         <small class="text-muted">Last updated 3 mins ago</small>
                     </div>
                 </div>
-            {{-- @endforeach --}}
+            @endforeach --}}
 
             </div>
         </div>
