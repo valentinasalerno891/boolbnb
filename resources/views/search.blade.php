@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-
+@section('title', 'Cerca un appartamento')
 @section('content')
 <div class="container search">
 
@@ -46,6 +46,5 @@
 
 
 @section('script')
-    
     <script src="{{asset('js/search.js')}}"></script>   
 @endsection

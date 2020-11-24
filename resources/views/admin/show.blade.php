@@ -1,5 +1,6 @@
 @extends('layouts.app')
 <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.64.0/maps/maps.css'>
+@section('title', $apartment->title)
 @section('content')
   <div class="apartment_show">
     <div class="container">

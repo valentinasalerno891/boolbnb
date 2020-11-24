@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Login')
+@section('title', 'Modifica un appartamento')
 @section('content')
 <div class="container apartment-edit col-md-6">
 

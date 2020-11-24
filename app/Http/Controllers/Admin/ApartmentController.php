@@ -57,11 +57,13 @@ class ApartmentController extends Controller
         $data = $request->all();
         //Validazione campi della tabella Apartments//
         $request->validate([
-            'title' =>  'required|min:20|max:50',
+            'title' =>  'required|min:10|max:150',
             'rooms' =>  'required|numeric',
             'beds' =>  'required|numeric|min:1|gt:0',
             'bathrooms' =>  'required|numeric|min:1|gt:0',
             'square_meters' =>  'required|numeric|gt:0',
+            'latitude' =>  'min:-90|max:90',
+            'longitude' =>  'min:-180|max:180',
             'image' =>  'required',
             'description' =>  'required|min:60',
         ]);
@@ -160,15 +162,14 @@ class ApartmentController extends Controller
     {
         $data = $request->all();
         $request->validate([
-            'title' =>  'required|min:20|max:50',
+            'title' =>  'required|min:10|max:150',
             'rooms' =>  'required|numeric',
             'beds' =>  'required|numeric|min:1|gt:0',
             'bathrooms' =>  'required|numeric|min:1|gt:0',
             'square_meters' =>  'required|numeric|gt:0',
-<<<<<<< HEAD
+            'latitude' =>  'min:-90|max:90',
+            'longitude' =>  'min:-180|max:180',
             'image' =>  'required',
-=======
->>>>>>> 5c8587726f0856ff4236ec45287e8cf2286c06f8
             'description' =>  'required|min:60',
         ]);
 
