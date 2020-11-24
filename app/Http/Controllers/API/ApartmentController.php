@@ -88,7 +88,17 @@ class ApartmentController extends Controller
                 }
             }
         }
-        dd($result);
+        $sortArray = array(); 
+        foreach($result as $item){ 
+            foreach($item as $key=>$value){ 
+                if(!isset($sortArray[$key])){ 
+                    $sortArray[$key] = array(); 
+                } 
+                $sortArray[$key][] = $value; 
+            }
+        }
+        $orderby = "distance";
+        array_multisort($sortArray,SORT_DESC,$result); 
         return response()->json($result, 200);
     }
 }
