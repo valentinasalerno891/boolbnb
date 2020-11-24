@@ -9,7 +9,7 @@ class Apartment extends Model
 {
 
     protected $fillable = [
-        'title', 'rooms', 'beds', 'bathrooms', 'square_meters', 'image', 'description', 'latitude', 'longitude', 'available', 'user_id', 'category_id'
+        'title', 'rooms', 'beds', 'bathrooms', 'square_meters', 'image', 'description', 'latitude', 'longitude', 'available', 'user_id', 'category_id', 'city'
     ];
 
     //Relazione molti a uno (* appartamenti 1 user )

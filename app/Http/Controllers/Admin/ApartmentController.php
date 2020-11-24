@@ -102,16 +102,34 @@ class ApartmentController extends Controller
     public function show($id)
     {
         $apartment = Apartment::where('id',$id)->first();
-        if (!View::where([['apartment_id', $id], ['session_id', Session::getId()]])->exists()){
-            $view = new View;
-            $view->created_at = Carbon::now()->format('M-d-Y H:00:00');
-            $view->apartment_id = $id;
-            $view->session_id = Session::getId();
 
-            $view->save();
+        // controllo se l'appartamento è disponibile
+        if ($apartment->available){
+            if ($apartment->user_id != Auth::id()){ //controllo se è dell'utente loggato (in questo caso aggiungo una visita alla pagina)
+                if (!View::where([['apartment_id', $id], ['session_id', Session::getId()]])->exists()){
+                $view = new View;
+                $view->created_at = Carbon::now()->format('M-d-Y H:00:00');
+                $view->apartment_id = $id;
+                $view->session_id = Session::getId();
+
+                $view->save();
+                }
+            }
+            
+            // altrimenti mostro solo la view
+            return view('admin.show',compact('apartment'));
+
+        } else { // se non è disponibile lo mostro solo se l'appartamento appartiene all'utente loggato
+            if ($apartment->user_id == Auth::id()){
+                return view('admin.show',compact('apartment'));
+            } else {
+                abort(404);
+            }
+
         }
+        
 
-        return view('admin.show',compact('apartment'));
+        
     }
 
     /**
@@ -124,7 +142,9 @@ class ApartmentController extends Controller
       //Ritorna la view per la modifica dell'appartamento tramite form//
     public function edit(Apartment $apartment)
     {
-        return view('admin.edit', compact('apartment'));
+        $categories = Category::all();
+        $services = Service::all();
+        return view('admin.edit', compact('apartment', 'categories', 'services'));
     }
 
     /**
@@ -145,7 +165,10 @@ class ApartmentController extends Controller
             'beds' =>  'required|numeric|min:1|gt:0',
             'bathrooms' =>  'required|numeric|min:1|gt:0',
             'square_meters' =>  'required|numeric|gt:0',
+<<<<<<< HEAD
             'image' =>  'required',
+=======
+>>>>>>> 5c8587726f0856ff4236ec45287e8cf2286c06f8
             'description' =>  'required|min:60',
         ]);
 
