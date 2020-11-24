@@ -2,7 +2,7 @@
 @extends('layouts.app')
     <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.64.0/maps/maps.css'>
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.64.0/maps/maps-web.min.js"></script>
-@section('content', 'Statistiche')
+@section('title', 'Statistiche')
 @section('content')
     <div class="container">
         <div class="row pt-4">
@@ -27,8 +27,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
     <script>
 
-        // messages
-        var messages = {!! $messages !!};
+        $(document).ready(function(){
+            var messages = {!! $messages !!};
         console.log(messages);
 
         var labels = [];
@@ -101,6 +101,7 @@
                     }]
                 }
             }
+        });
         });
 </script>
 @endsection

@@ -23,13 +23,12 @@ class StatController extends Controller
             $temp_views = json_decode($db_views, true);
             $views = [];
             // dd(Carbon::now()->format('H').':00');
-            $currentHour = Carbon::now()->subHours(10)->format('y-m-d H:00:00');
+            $currentHour = Carbon::now()->format('Y-m-d H:00:00');
             $check_list = [];
             for ($i=0; $i<24; $i++){
-                $views[$i]['created_at'] = Carbon::parse($currentHour)->format('y-m-d H:00:00');
+                $views[$i]['created_at'] = Carbon::parse($currentHour)->format('Y-m-d H:00:00');
                 $currentHour = Carbon::parse($currentHour)->subHours(1);
-
-                $check = $this->isPresent($temp_views, 'created_at', Carbon::parse($views[$i]['created_at'])->format('y-m-d H:00:00'));
+                $check = $this->isPresent($temp_views, 'created_at', Carbon::parse($views[$i]['created_at'])->format('Y-m-d H:00:00'));
                 array_push($check_list, $check);
                 if($check !== false){
                     $views[$i]['total'] = $temp_views[$check]['total'];
@@ -52,8 +51,6 @@ class StatController extends Controller
             for ($i=0; $i<7; $i++){
                 $messages[$i]['created_at'] = $currentDay->format('Y-m-d 00:00:00');
                 $currentDay = $currentDay->subDays(1);
-
-                
                 $check = $this->isPresent($temp_messages, 'created_at', $messages[$i]['created_at']);
                 if($check !== false){
                     $messages[$i]['total'] = $temp_messages[$check]['total'];
