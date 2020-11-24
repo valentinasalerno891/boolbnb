@@ -12,11 +12,6 @@
         </ul>
     </div>
 @endif
-<div id="error" style="display: none" class="alert alert-danger">
-        <ul>
-          <li>Inserire una città valida</li>
-        </ul>
-</div>
 <h2>Diventa un Host - Aggiungi un nuovo appartamento</h2>
 <form id="myForm" class="create-page-form" action="{{route('apartments.store')}}" method="post" enctype="multipart/form-data">
     @csrf
@@ -98,7 +93,11 @@
               @endif>
         @endforeach
     </div>
-
+    <div id="error" style="display: none" class="alert alert-danger">
+        <ul>
+          <li>Inserire una città valida</li>
+        </ul>
+</div>
   <button id="myButton" type="button" class="btn bool-btn-pink">Salva</button>
   {{-- <button type="submit" class="btn bool-btn-pink">Salva</button> --}}
 </form>
@@ -107,6 +106,5 @@
 
 
 @section('script')
-    
-    <script src="{{asset('js/getCoordinates.js')}}"></script>   
+  <script src="{{asset('js/getCoordinates.js')}}"></script>   
 @endsection

@@ -24,6 +24,7 @@ class CreateApartmentsTable extends Migration
             $table->smallInteger('square_meters');
             $table->string('image');
             $table->text('description');
+            $table->string('city', 200);
             $table->boolean('available')->default(0);
             $table->decimal('latitude', 8, 6);
             $table->decimal('longitude', 9, 6);

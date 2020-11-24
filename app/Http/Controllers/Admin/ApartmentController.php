@@ -62,7 +62,7 @@ class ApartmentController extends Controller
             'beds' =>  'required|numeric|min:1|gt:0',
             'bathrooms' =>  'required|numeric|min:1|gt:0',
             'square_meters' =>  'required|numeric|gt:0',
-            'image' =>  'image',
+            'image' =>  'required',
             'description' =>  'required|min:60',
         ]);
         //Assegnazione user_id per appartamento creato//
@@ -103,8 +103,9 @@ class ApartmentController extends Controller
     {
         $apartment = Apartment::where('id',$id)->first();
 
+        // controllo se l'appartamento è disponibile
         if ($apartment->available){
-            if ($apartment->user_id != Auth::id()){
+            if ($apartment->user_id != Auth::id()){ //controllo se è dell'utente loggato (in questo caso aggiungo una visita alla pagina)
                 if (!View::where([['apartment_id', $id], ['session_id', Session::getId()]])->exists()){
                 $view = new View;
                 $view->created_at = Carbon::now()->format('M-d-Y H:00:00');
@@ -115,9 +116,10 @@ class ApartmentController extends Controller
                 }
             }
             
+            // altrimenti mostro solo la view
             return view('admin.show',compact('apartment'));
 
-        } else {
+        } else { // se non è disponibile lo mostro solo se l'appartamento appartiene all'utente loggato
             if ($apartment->user_id == Auth::id()){
                 return view('admin.show',compact('apartment'));
             } else {
@@ -140,7 +142,9 @@ class ApartmentController extends Controller
       //Ritorna la view per la modifica dell'appartamento tramite form//
     public function edit(Apartment $apartment)
     {
-        return view('admin.edit', compact('apartment'));
+        $categories = Category::all();
+        $services = Service::all();
+        return view('admin.edit', compact('apartment', 'categories', 'services'));
     }
 
     /**
@@ -161,7 +165,6 @@ class ApartmentController extends Controller
             'beds' =>  'required|numeric|min:1|gt:0',
             'bathrooms' =>  'required|numeric|min:1|gt:0',
             'square_meters' =>  'required|numeric|gt:0',
-            'image' =>  'image',
             'description' =>  'required|min:60',
         ]);
 

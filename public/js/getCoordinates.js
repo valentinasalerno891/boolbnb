@@ -10827,6 +10827,8 @@ function getLatLon(city) {
     url: 'https://api.tomtom.com/search/2/geocode/' + city + '.json?key=wBFrGupwgm95n0TA2HmZJULQ5GktiGhQ',
     method: 'GET',
     success: function success(data) {
+      console.log(data);
+
       if (data.results.length != 0) {
         $('#latitude').val(data.results[0].position.lat);
         $('#longitude').val(data.results[0].position.lon);
