@@ -44186,6 +44186,7 @@ function getApartments() {
 
 module.exports = __webpack_require__(/*! /Users/davidefrancavilla/Desktop/Classe#16/boolbnb/resources/js/search.js */"./resources/js/search.js");
 module.exports = __webpack_require__(/*! C:\MAMP\mamp_public\progetto\boolbnb\resources\js\search.js */"./resources/js/search.js");
+module.exports = __webpack_require__(/*! C:\mamp_public\boolbnb\resources\js\search.js */"./resources/js/search.js");
 
 
 /***/ }),
