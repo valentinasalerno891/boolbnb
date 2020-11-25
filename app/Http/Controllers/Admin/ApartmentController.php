@@ -115,7 +115,7 @@ class ApartmentController extends Controller
                 $view->save();
                 }
             }
-            
+
             // altrimenti mostro solo la view
             return view('admin.show',compact('apartment'));
 
@@ -127,9 +127,9 @@ class ApartmentController extends Controller
             }
 
         }
-        
 
-        
+
+
     }
 
     /**
@@ -165,10 +165,7 @@ class ApartmentController extends Controller
             'beds' =>  'required|numeric|min:1|gt:0',
             'bathrooms' =>  'required|numeric|min:1|gt:0',
             'square_meters' =>  'required|numeric|gt:0',
-<<<<<<< HEAD
             'image' =>  'required',
-=======
->>>>>>> 5c8587726f0856ff4236ec45287e8cf2286c06f8
             'description' =>  'required|min:60',
         ]);
 
