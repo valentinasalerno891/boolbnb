@@ -110,7 +110,7 @@ class ApartmentController extends Controller
             if ($apartment->user_id != Auth::id()){ //controllo se è dell'utente loggato (in questo caso aggiungo una visita alla pagina)
                 if (!View::where([['apartment_id', $id], ['session_id', Session::getId()]])->exists()){
                 $view = new View;
-                $view->created_at = Carbon::now()->format('M-d-Y H:00:00');
+                $view->created_at = Carbon::now()->format('d-M-Y h:00:00');
                 $view->apartment_id = $id;
                 $view->session_id = Session::getId();
 

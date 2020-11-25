@@ -5,8 +5,9 @@
 @section('title', 'Statistiche')
 @section('content')
     <div class="container">
+        <h1 class="pt-5 pb-3">{{$apartment->title}}</h1>
         <div class="row pt-4">
-            <div class="col-md-12">
+            <div class="col-md-12 mb-5">
             <canvas id="myChart-messages" class="chart"></canvas> 
         </div>
         <div class="col-md-12">
@@ -34,7 +35,7 @@
         var labels = [];
         var data = [];
         for (var i = 0; i<messages.length; i++){
-            labels.push(messages[i]['created_at']);
+            labels.push(messages[i]['created_at'].slice(0,-5));
             data.push(messages[i]['total']);
         }
 
@@ -47,7 +48,7 @@
             data: {
                 labels: labels.reverse(),
                 datasets: [{
-                    label: 'Messaggi ricevuti',
+                    label: 'Messaggi ricevuti nell\'ultima settimana',
                     data: data.reverse(),
                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     borderColor: 'rgba(255, 99, 132, 1)',
@@ -58,6 +59,7 @@
                 scales: {
                     yAxes: [{
                         ticks: {
+                            stepSize: 1,
                             beginAtZero: true
                         }
                     }]
@@ -72,7 +74,7 @@
         var labels = [];
         var data = [];
         for (var i = 0; i<views.length; i++){
-            labels.push(views[i]['created_at']);
+            labels.push(views[i]['created_at'].substring(12, 17));
             data.push(views[i]['total']);
         }
 
@@ -85,7 +87,7 @@
             data: {
                 labels: labels.reverse(),
                 datasets: [{
-                    label: 'Visualizzazioni dell\'appartamento',
+                    label: 'Visualizzazioni dell\'appartamento nelle ultime 24 ore',
                     data: data.reverse(),
                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     borderColor: 'rgba(255, 99, 132, 1)',
@@ -96,6 +98,7 @@
                 scales: {
                     yAxes: [{
                         ticks: {
+                            stepSize: 1,
                             beginAtZero: true
                         }
                     }]

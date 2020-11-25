@@ -4,7 +4,21 @@
 @section('content')
   <div class="apartment_show">
     <div class="container">
-      <div class="header_apartment">
+      @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+          @endif
+          @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+          @endif
+        <div class="header_apartment">
         <span class="title">{{$apartment->title}}</span>
         <div class="apartment_form">
           @if ($apartment->user_id == Auth::id())
@@ -84,11 +98,6 @@
       </div>
       <hr>
       @if ($apartment->user_id != Auth::id())
-      @if (session('status'))
-      <div class="alert alert-success">
-          {{ session('status') }}
-      </div>
-      @endif
       <form class="message" action="{{route('messages.store',$apartment->id)}}" method="post">
         @csrf
         @method('POST')
@@ -98,16 +107,16 @@
           <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Inserisci la tua email" value="{{Auth::user()->email}}">
         @endauth
         @guest
-            <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Inserisci la tua email">
+            <input name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Inserisci la tua email" value="{{old('email')}}">
         @endguest
       </div>
       <div class="form-group">
         <label for="title">Oggetto</label>
-        <input name="title" type="text" class="form-control" id="title" placeholder="Inserisci il titolo">
+        <input name="title" type="text" class="form-control" id="title" placeholder="Inserisci il titolo" value="{{old('title')}}">
       </div>
       <div class="form-group">
         <label for="body">Messaggio</label>
-        <input name="body" type="text" class="form-control" id="body" placeholder="Inserisci il messaggio">
+        <textarea name="body" type="text" class="form-control" id="body" placeholder="Inserisci il messaggio">{{old('body')}}</textarea>
       </div>
       <button type="submit" class="btn bool-btn-pink">Submit <i class="far fa-paper-plane"></i></button>
       </form>

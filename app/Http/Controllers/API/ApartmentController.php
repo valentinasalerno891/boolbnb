@@ -86,24 +86,15 @@ class ApartmentController extends Controller
                     $apartments[$x]['distance'] = round($distance,2);
                     $apartments[$x]['route'] = route('apartments.show', $apartments[$x]->id);
 
-                    // $apartments[$x]['image'] = Storage::url($apartments[$x]->image);
-
+                    $apartments[$x]['image'] = Storage::url($apartments[$x]->image);
 
                     array_push($result, $apartments[$x]); // pusho l'appartamento nell'array result
                 }
             }
         }
-        $sortArray = array(); 
-        foreach($result as $item){ 
-            foreach($item as $key=>$value){ 
-                if(!isset($sortArray[$key])){ 
-                    $sortArray[$key] = array(); 
-                } 
-                $sortArray[$key][] = $value; 
-            }
-        }
-        $orderby = "distance";
-        array_multisort($sortArray,SORT_DESC,$result); 
+        usort($result,function($a,$b){
+            return $a['distance']-$b['distance'];
+        });
         return response()->json($result, 200);
     }
 }

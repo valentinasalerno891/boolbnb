@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Apartment;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 use App\Message;
 
 class MessageController extends Controller
@@ -33,6 +34,8 @@ class MessageController extends Controller
             'body' =>  'required|min:20|max:2000',
         ]);
         $data['apartment_id']=$apartment_id;
+        $data['created_at']= Carbon::now()->format('d-M-Y');
+        $data['hour']= Carbon::now()->timezone('Europe/Rome')->format('h:i:s');
         $message = new Message();
         $message->fill($data);
         $message->save();
