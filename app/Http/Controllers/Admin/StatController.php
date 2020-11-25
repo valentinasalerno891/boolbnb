@@ -23,14 +23,11 @@ class StatController extends Controller
             $temp_views = json_decode($db_views, true);
             $views = [];
             // dd(Carbon::now()->format('H').':00');
-            $currentHour = Carbon::now()->subHours(10)->format('y-m-d H:00:00');
-            $check_list = [];
+            $currentHour = Carbon::now()->timezone('Europe/Rome')->format('d-M-Y H:00:00');
             for ($i=0; $i<24; $i++){
-                $views[$i]['created_at'] = Carbon::parse($currentHour)->format('y-m-d H:00:00');
+                $views[$i]['created_at'] = Carbon::parse($currentHour)->format('d-M-Y H:00:00');
                 $currentHour = Carbon::parse($currentHour)->subHours(1);
-
-                $check = $this->isPresent($temp_views, 'created_at', Carbon::parse($views[$i]['created_at'])->format('y-m-d H:00:00'));
-                array_push($check_list, $check);
+                $check = $this->isPresent($temp_views, 'created_at', Carbon::parse($views[$i]['created_at'])->format('d-M-Y H:00:00'));
                 if($check !== false){
                     $views[$i]['total'] = $temp_views[$check]['total'];
                 } else {
@@ -42,19 +39,20 @@ class StatController extends Controller
                 //     $views[$i]['total'] = $temp_views[$i]['total'];
                 // }
             }
-            $db_messages = DB::table('messages')
+            $db_messages = DB::table('messages')->where('apartment_id', $id)
                     ->select('created_at', DB::raw('count(*) as total'))
                     ->groupBy('created_at')->orderBy('created_at', 'DESC')->limit(7)
                     ->get();
             $temp_messages = json_decode($db_messages, true);
             $messages = [];
-            $currentDay = Carbon::now();
+            $currentDay = Carbon::now()->timezone('Europe/Rome');
+            $check_list = [];
             for ($i=0; $i<7; $i++){
-                $messages[$i]['created_at'] = $currentDay->format('Y-m-d 00:00:00');
+                $messages[$i]['created_at'] = $currentDay->format('d-M-Y');
                 $currentDay = $currentDay->subDays(1);
-
-                
                 $check = $this->isPresent($temp_messages, 'created_at', $messages[$i]['created_at']);
+                // dd($temp_messages[$i]['created_at']);
+                array_push($check_list, $check);
                 if($check !== false){
                     $messages[$i]['total'] = $temp_messages[$check]['total'];
                 } else {
@@ -62,9 +60,10 @@ class StatController extends Controller
                 }
                 
             }
+            // dd($check_list);
             $views = json_encode($views, true);
             $messages = json_encode($messages, true);
-            return view('admin.stats', compact('views', 'messages'));
+            return view('admin.stats', compact('views', 'messages', 'apartment'));
         } else {
             abort(404);
         }

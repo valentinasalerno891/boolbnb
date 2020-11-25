@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Apartment;
@@ -84,21 +85,16 @@ class ApartmentController extends Controller
                 if ($distance<=$request->distance){
                     $apartments[$x]['distance'] = round($distance,2);
                     $apartments[$x]['route'] = route('apartments.show', $apartments[$x]->id);
+
+                    $apartments[$x]['image'] = Storage::url($apartments[$x]->image);
+
                     array_push($result, $apartments[$x]); // pusho l'appartamento nell'array result
                 }
             }
         }
-        $sortArray = array(); 
-        foreach($result as $item){ 
-            foreach($item as $key=>$value){ 
-                if(!isset($sortArray[$key])){ 
-                    $sortArray[$key] = array(); 
-                } 
-                $sortArray[$key][] = $value; 
-            }
-        }
-        $orderby = "distance";
-        array_multisort($sortArray,SORT_DESC,$result); 
+        usort($result,function($a,$b){
+            return $a['distance']-$b['distance'];
+        });
         return response()->json($result, 200);
     }
 }

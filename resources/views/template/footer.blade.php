@@ -1,4 +1,4 @@
-<footer>
+<footer class="mt-5">
     <div class="footer container">
         <div class="container">
             <section>

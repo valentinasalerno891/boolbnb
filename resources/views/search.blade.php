@@ -37,7 +37,7 @@
             <p>@{{distance}}km dal centro</p>
           </div>
           <div class="right col-lg-4 col-sm-12 col-12">
-            <img src="https://cdn.pixabay.com/photo/2016/09/22/11/55/kitchen-1687121_960_720.jpg" alt="@{{title}}-image">
+            <img src="@{{image}}" alt="@{{title}}-image">
           </div>
         </div>
     </script>
