@@ -117,7 +117,7 @@ class ApartmentController extends Controller
                 $view->save();
                 }
             }
-            
+
             // altrimenti mostro solo la view
             return view('admin.show',compact('apartment'));
 
@@ -129,9 +129,9 @@ class ApartmentController extends Controller
             }
 
         }
-        
 
-        
+
+
     }
 
     /**
