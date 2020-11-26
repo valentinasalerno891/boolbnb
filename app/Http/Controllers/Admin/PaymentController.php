@@ -96,16 +96,16 @@ class PaymentController extends Controller
 
             if ($apartment[0]->sponsors()->exists()){ // controllo se l'appartamento esiste già nella tabella sponsor
                 $last_sponsor = Carbon::parse($apartment[0]->sponsors()->orderBy('pivot_end_date', 'desc')->first()->pivot->end_date); // data e ora di fine dell'ultima sponsorizzazione dell'appartamento in questione
-                if($last_sponsor->gt(Carbon::now())){ // controllo se $last_sponsor è piu avanti nel tempo di now();
+                if($last_sponsor->gt(Carbon::now()->timezone('Europe/Rome'))){ // controllo se $last_sponsor è piu avanti nel tempo di now();
                     // creo un record di sponsorizzazione con data di inizio = $last_sponsor e data di fine = $last_sponsor + ore di sponsors pagate
-                    $apartment[0]->sponsors()->attach($request->amount, ['start_date' => $last_sponsor, 'end_date' => Carbon::parse($last_sponsor)->addHours($hours)]);
+                    $apartment[0]->sponsors()->attach($request->amount, ['start_date' => $last_sponsor, 'end_date' => Carbon::parse($last_sponsor)->timezone('Europe/Rome')->addHours($hours)]);
                 } else {
                     // creo un record di sponsorizzazione con data di inizio = now() e data di fine = now() + ore di sponsors pagate
-                    $apartment[0]->sponsors()->attach($request->amount, ['start_date' => Carbon::now(), 'end_date' => Carbon::now()->addHours($hours)]);
+                    $apartment[0]->sponsors()->attach($request->amount, ['start_date' => Carbon::now(), 'end_date' => Carbon::now()->timezone('Europe/Rome')->addHours($hours)]);
                 }
             } else {
                // creo un record di sponsorizzazione con data di inizio = now() e data di fine = now() + ore di sponsors pagate
-               $apartment[0]->sponsors()->attach($request->amount, ['start_date' => Carbon::now(), 'end_date' => Carbon::now()->addHours($hours)]);
+               $apartment[0]->sponsors()->attach($request->amount, ['start_date' => Carbon::now(), 'end_date' => Carbon::now()->timezone('Europe/Rome')->addHours($hours)]);
             }
             return back()->with('success_message', 'Pagamento effettuato. Sono state aggiunte '.$hours.' ore di sponsorizzazione all\'appartamento "'.$apartment[0]->title.'"');
         } else {

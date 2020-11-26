@@ -22,7 +22,8 @@
     }
     .apartment {
         padding: 30px 0;
-        border-bottom: 1px solid gray;
+        border-bottom: 2px solid #ff385c;
+        margin: 0;
         display: flex;
         .left {
             width: 80%;
@@ -38,6 +39,6 @@
         }
     }
     .apartment:first-of-type {
-        border-top: 1px solid gray;
+        border-top: 2px solid #ff385c;
     }
 }
