@@ -7,19 +7,41 @@ use Illuminate\Support\Facades\Storage;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Apartment;
+use Carbon\Carbon;
 use App\Service;
+use App\ApartmentSponsor;
 
 class ApartmentController extends Controller
 {
     public function index(Request $request){
         // appartamenti filtrati per stanze, letti e disponibilità
         $apartments = Apartment::where([['rooms','>=', $request->rooms], ['beds','>=' , $request->beds], ['available', 1]])->get();
+        $result = [];
+        $requested_services = [];
 
+        $temp_spon_apartments = ApartmentSponsor::select('*')->where([['start_date', '<=' ,Carbon::now()->timezone('Europe/Rome')->format('Y-m-d H:i:s')],['end_date', '>=' ,Carbon::now()->timezone('Europe/Rome')->format('Y-m-d H:i:s')]])->get();
+        // $rands = [];
+        // $apartments_spon = [];
+        $rands = [];
+        if (count($temp_spon_apartments)>3){
+            $var = 3;
+        } else {
+            $var = count($temp_spon_apartments);
+        }
+        $i = 0;
+        while ($i<$var){
+            $rand = rand(0,count($temp_spon_apartments)-1);
+            if (!in_array($rand, $rands)){
+                array_push($rands, $rand);
+                $temp_spon_apartments[$rand]->sponsorApartments['sponsored'] = '1';
+                $temp_spon_apartments[$rand]->sponsorApartments['image'] = Storage::url($temp_spon_apartments[$rand]->sponsorApartments->image);
+                array_push($result, $temp_spon_apartments[$rand]->sponsorApartments);
+                $i++;
+            }
+        }
 
 
         $request->distance = ($request->distance > 200) ? 200 : $request->distance;
-        $result = [];
-        $requested_services = [];
         $earthRadius = 6371;
         // convert from degrees to radians
         $latFrom = deg2rad($request->latitude);
@@ -82,7 +104,7 @@ class ApartmentController extends Controller
                 // }
 
                 // ======== METODO CALCOLANDO LA DISTANZA
-                if ($distance<=$request->distance){
+                if ($distance<=$request->distance && !$this->isPresent($result, 'id', $apartments[$x]['id'])){
                     $apartments[$x]['distance'] = round($distance,2);
                     $apartments[$x]['route'] = route('apartments.show', $apartments[$x]->id);
 
@@ -95,6 +117,16 @@ class ApartmentController extends Controller
         usort($result,function($a,$b){
             return $a['distance']-$b['distance'];
         });
+
         return response()->json($result, 200);
+    }
+
+    function isPresent($array, $keys, $val) {
+        foreach ($array as $key => $item){
+            if (isset($item[$keys]) && $item[$keys] == $val){
+                return $key;
+            } 
+        }       
+        return false;
     }
 }

@@ -17,7 +17,7 @@ class CreateViewsTable extends Migration
     {
         Schema::create('views', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('created_at', 20);
             $table->string('session_id', 40);
 
             //Realazione tramite apartment_id con la tabella apartments//

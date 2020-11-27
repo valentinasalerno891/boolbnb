@@ -15,15 +15,15 @@
       <tbody>
 
 
-
 @foreach ($apartments as $apartment)
 
 
     <tr>
 
       <td><a class="apartment-title" href="{{route('apartments.show',$apartment->id)}}">{{$apartment->title}}</a></td>
-      <td>{{$apartment->rooms}} stanze in questo appartamento</td>
-      <td class="edit-delete-action"><a class="edit" href="{{route('apartments.edit',$apartment->id)}}">Modifica</a></td>
+      {{-- <td>{{$apartment->rooms}} stanze in questo appartamento</td> --}}
+      <td class="edit-action"><a href="{{route('stats.show', $apartment->id)}}">Statistiche</a></td>
+      <td class="edit-action"><a class="edit" href="{{route('apartments.edit',$apartment->id)}}">Modifica</a></td>
       <td class="edit-delete-action"><form action="{{route('apartments.destroy',$apartment->id)}}" method="post">
           @csrf
           @method('DELETE')

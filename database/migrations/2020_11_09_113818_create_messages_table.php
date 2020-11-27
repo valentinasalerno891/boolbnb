@@ -19,7 +19,8 @@ class CreateMessagesTable extends Migration
             $table->string('email', 70);
             $table->text('body');
             $table->string('title', 50);
-            $table->timestamps();
+            $table->string('created_at', 11);
+            $table->string('hour', 8);
 
              //Realazione tramite apartment_id con la tabella apartments//
             $table->unsignedBigInteger('apartment_id');

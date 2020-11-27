@@ -1,3 +1,4 @@
+{{-- @dd($apartments) --}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,22 +65,21 @@
             </div>
         </div>
     </div>
-    <div class="card-container">
-        <div class="container">
+    <div class="container">
+        <div class="card-containerbool">
             <h2>Appartamenti in evidenza</h2>
-            <div class="card-group">
-            {{-- @foreach ($iterable as $key => $value)
-                <div class="card">
-                    <img class="card-img-top" src="..." alt="img">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <div class="card-groupbool">
+            @foreach ($apartments as $apartment)
+                <div class="cardbool">
+                    <div class="img-container">
+                        <a href="{{route('apartments.show', $apartment->sponsorApartments->id)}}"><img class="card-img-top" src="{{Storage::url($apartment->sponsorApartments->image)}}" alt="img"></a>
                     </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Last updated 3 mins ago</small>
+                    <div class="card-body">
+                        <h5 class="text-break card-title"><a href="{{route('apartments.show', $apartment->sponsorApartments->id)}}">{{$apartment->sponsorApartments->title}}</a></h5>
+                        <p class="text-break card-text">{{$apartment->sponsorApartments->description}}</p>
                     </div>
                 </div>
-            @endforeach --}}
+            @endforeach
 
             </div>
         </div>

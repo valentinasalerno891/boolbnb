@@ -2,7 +2,7 @@
 
 @section('title', 'Modifica un appartamento')
 @section('content')
-<div class="container apartment-edit col-md-6">
+<div class="container apartment-edit">
 
 
 @if ($errors->any())
@@ -14,7 +14,7 @@
         </ul>
     </div>
 @endif
-<h2>Modifica i tuoi appartamenti</h2>
+<h2>Modifica "{{$apartment->title}}"</h2>
 <form id="myForm" action="{{route('apartments.update', $apartment->id)}}" method="post" enctype="multipart/form-data">
     @csrf
     @method('PATCH')
@@ -55,6 +55,7 @@
   <div class="form-group">
     <label for="image">Foto</label>
     <input src="{{ asset('storage/'. $apartment->image) }}" type="file" class="form-control-file" id="image" name="image" accept="image/*">
+    <img class="img-fluid pt-3" src="{{Storage::url($apartment->image)}}" alt="apartment-image">
   </div>
   <div class="form-group">
       {{-- MODIFICA "disponibile?" --}}

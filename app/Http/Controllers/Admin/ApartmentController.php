@@ -110,7 +110,7 @@ class ApartmentController extends Controller
             if ($apartment->user_id != Auth::id()){ //controllo se è dell'utente loggato (in questo caso aggiungo una visita alla pagina)
                 if (!View::where([['apartment_id', $id], ['session_id', Session::getId()]])->exists()){
                 $view = new View;
-                $view->created_at = Carbon::now()->format('d-M-Y h:00:00');
+                $view->created_at = Carbon::now()->timezone('Europe/Rome')->format('d-M-Y h:00:00');
                 $view->apartment_id = $id;
                 $view->session_id = Session::getId();
 
@@ -169,7 +169,6 @@ class ApartmentController extends Controller
             'square_meters' =>  'required|numeric|gt:0',
             'latitude' =>  'min:-90|max:90',
             'longitude' =>  'min:-180|max:180',
-            'image' =>  'required',
             'description' =>  'required|min:60',
         ]);
 
@@ -190,6 +189,11 @@ class ApartmentController extends Controller
         }
         // Ritorno alla views degli appartamneti con relativo messaggio//
         $apartment->update($data);
+        if(array_key_exists("services",$data)){
+            $apartment->services()->sync($data['services']);
+        } else {
+            $apartment->services()->detach();
+        }
         return redirect()->route('apartments.index')->with('status', 'Appartamento "'.$apartment->title.'" modificato correttamente.');
     }
 

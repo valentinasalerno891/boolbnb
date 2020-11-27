@@ -2,7 +2,7 @@
 
 @section('title', 'Lista messaggi')
 @section('content')
-    <div class="container messages-index col-md-8">
+    <div class="container messages-index">
         <h2>I tuoi messaggi</h2>
 
 @foreach ($apartments as $apartment)

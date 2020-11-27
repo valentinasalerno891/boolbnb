@@ -23,6 +23,8 @@ class MessagesSeeder extends Seeder
             $newMessage->email = $faker->safeEmail();
             $newMessage->body = $faker->realText($maxNbChars = 200);
             $newMessage->title = $faker->realText($maxNbChars = 50);
+            $newMessage->created_at = $faker->date($format = 'd-M-Y', $max = 'now');
+            $newMessage->hour = $faker->time($format = 'H:i:s', $max = 'now');
 
             $newMessage->apartment_id = $apartment->id;
 

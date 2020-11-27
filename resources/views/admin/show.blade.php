@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.64.0/maps/maps.css'>
 @section('title', $apartment->title)
@@ -25,6 +26,7 @@
           <div class="big-display">
             <span class="mr-3"><a href="{{route('apartments.edit',$apartment->id)}}"><i class="far fa-edit"></i> Modifica</a></span>
             <span class="mr-3"><a href="{{route('stats.show',$apartment->id)}}"><i class="far fa-chart-bar"></i> Statistiche</a></span>
+            <span class="mr-3"><a href="{{route('paymentWithId',$apartment->id)}}"><i class="fas fa-shopping-cart"></i> Sponsorizza</a></span>
             <form action="{{route('apartments.destroy',$apartment->id)}}" method="post">
                 @csrf
                 @method('DELETE')
@@ -34,6 +36,7 @@
           <div class="small-display">
             <span><a href="{{route('apartments.edit',$apartment->id)}}"><i class="far fa-edit"></i></a></span>
             <span><a href="{{route('stats.show',$apartment->id)}}"><i class="far fa-chart-bar"></i></a></span>
+            <span class="mr-3"><a href="{{route('paymentWithId',$apartment->id)}}"><i class="fas fa-shopping-cart"></i></a></span>
             <form action="{{route('apartments.destroy',$apartment->id)}}" method="post">
                 @csrf
                 @method('DELETE')
@@ -44,53 +47,59 @@
         </div>
       </div>
       <div class="image_apartment">
-        <img src="{{Storage::url($apartment->image)}}" alt="apartment">
+        <img src="{{Storage::url($apartment->image)}}" alt="apartment-image">
       </div>
       <hr>
       <div class="description_information">
         <div class="apartment_description">
           <h3>DESCRIZIONE APPARTAMENTO</h3>
-          <span>{{$apartment->description}}</span>
+          <span class="text-break">{{$apartment->description}}</span>
         </div>
         {{-- <hr> --}}
         <div class="apartment_information">
           <h3>DETTAGLI APPARTAMENTO</h3>
-          <p class="">Metri quadri appartamento : {{$apartment->square_meters}}</p>
-          <p class="">Camere : {{$apartment->rooms}} <i class="fas fa-door-open"></i></p>
-          <p class="">Letti : {{$apartment->beds}} <i class="fas fa-bed"></i></p>
-          <p class="">Bagni : {{$apartment->bathrooms}} <i class="fas fa-bath"></i></p>
-          <p class="">Proprietario : {{$apartment->user->name}} {{$apartment->user->lastname}} <i class="fas fa-user"></i></p>
+          <p class="">Metri quadri appartamento: {{$apartment->square_meters}}</p>
+          <p class=""><span class="cookies"><i class="fas fa-door-open"></i></span> Camere: {{$apartment->rooms}}</p>
+          <p class=""><span class="cookies"><i class="fas fa-bed"></i></span> Letti: {{$apartment->beds}}</p>
+          <p class=""><span class="cookies"><i class="fas fa-bath"></i></span> Bagni: {{$apartment->bathrooms}}</p>
+          @if ($apartment->user->name || $apartment->user->lastname)
+              <p class=""><span class="cookies"><i class="fas fa-user"></i></span> Proprietario: {{$apartment->user->name}} {{$apartment->user->lastname}}</p>
+          @endif
         </div>
       </div>
       <hr>
       <div class="service_maps">
         <div class="apartment_service">
-          <h3>SERVIZI APPARTAMENTO</h3>
+          <h3>SERVIZI AGGIUNTIVI APPARTAMENTO</h3>
           <ul>
-            @foreach ($apartment->services  as $service)
+            @isset($apartment->services[0])
+              @foreach ($apartment->services as $service)
               @switch($service->id)
               @case($service->id==1)
-              <li><i class="fas fa-wifi"></i>{{$service->name}}</li>
+              <li><span class="cookies"><i class="fas fa-wifi"></i></span>{{$service->name}}</li>
               @break
               @case($service->id==2)
-              <li><i class="fas fa-car"></i>{{$service->name}}</li>
+              <li><span class="cookies"><i class="fas fa-car"></i></span>{{$service->name}}</li>
               @break
               @case($service->id==3)
-                <li><i class="fas fa-swimmer"></i> {{$service->name}}</li>
+                <li><span class="cookies"><i class="fas fa-swimmer"></i></span>{{$service->name}}</li>
               @break
               @case($service->id==4)
-              <li><i class="fas fa-door-open"></i> {{$service->name}}</li>
+              <li><span class="cookies"><i class="fas fa-door-open"></span></i>{{$service->name}}</li>
               @break
               @case($service->id==5)
-              <li><i class="fas fa-hot-tub"></i> {{$service->name}}</li>
+              <li><span class="cookies"><i class="fas fa-hot-tub"></i></span>{{$service->name}}</li>
               @break
               @case($service->id==6)
               <li><i class="fas fa-water"></i> {{$service->name}}</li>
               @break
               @default
-                <li>NESSUN SERVIZIO PRESENTE</li>
+              <li>NESSUN SERVIZIO AGGIUNTIVO PRESENTE</li>
               @endswitch
             @endforeach
+            @else
+            <li>NESSUN SERVIZIO AGGIUNTIVO PRESENTE</li>
+            @endisset
           </ul>
         </div>
         {{-- <hr> --}}
