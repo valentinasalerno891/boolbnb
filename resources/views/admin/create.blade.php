@@ -25,19 +25,19 @@
   </div>
   <div class="form-group">
     <label for="rooms">Camere</label>
-    <input required name="rooms" type="number" class="form-control" id="rooms" placeholder="Numero camere" value="{{old('rooms')}}">
+    <input min="0" oninput="validity.valid||(value='');" required name="rooms" type="number" class="form-control number-check" id="rooms" placeholder="Numero camere" value="{{old('rooms')}}">
   </div>
   <div class="form-group">
     <label for="beds">Letti</label>
-    <input required name="beds" type="number" class="form-control" id="beds" placeholder="Numero letti" value="{{old('beds')}}">
+    <input min="1" oninput="validity.valid||(value='');" required name="beds" type="number" class="form-control number-check" id="beds" placeholder="Numero letti" value="{{old('beds')}}">
   </div>
   <div class="form-group">
     <label for="bathrooms">Bagni</label>
-    <input required name="bathrooms" type="number" class="form-control" id="bathrooms" placeholder="Numero bagni" value="{{old('bathrooms')}}">
+    <input min="1" oninput="validity.valid||(value='');" required name="bathrooms" type="number" class="form-control number-check" id="bathrooms" placeholder="Numero bagni" value="{{old('bathrooms')}}">
   </div>
   <div class="form-group">
     <label for="square_meters">Dimensione</label>
-    <input required name="square_meters" type="number" class="form-control" id="square_meters" placeholder="Metri quadrati" value="{{old('square_meters')}}">
+    <input min="0" oninput="validity.valid||(value='');" required name="square_meters" type="number" class="form-control number-check" id="square_meters" placeholder="Metri quadrati" value="{{old('square_meters')}}">
   </div>
   <div class="form-group">
     <label for="description">Descrizione</label>
@@ -106,5 +106,5 @@
 
 
 @section('script')
-  <script src="{{asset('js/getCoordinates.js')}}"></script>   
+  <script src="{{asset('js/getCoordinates.js')}}"></script>
 @endsection

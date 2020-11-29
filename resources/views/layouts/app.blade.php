@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="icon" href="https://www.shareicon.net/data/512x512/2016/07/10/119904_airbnb_512x512.png">
     <script src="{{asset('js/app.js')}}"></script>
+
+
 </head>
 <body>
     @include('template.header')

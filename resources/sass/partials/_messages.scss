@@ -9,7 +9,26 @@
     }
     table {
         margin-top: 10px;
-        margin-bottom: 150px;
+        margin-bottom: 50px;
 
     }
+}
+
+@media screen and (min-width: 991px) {
+        .message-mobile {
+            display: none;
+        }
+
+}
+
+@media screen and (max-width: 991px) {
+
+        .message-mobile {
+            display: table;
+        }
+        .message-desktop{
+            display: none;
+        }
+
+
 }

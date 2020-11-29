@@ -19,11 +19,30 @@
                     <div class="logo">
                         <img class="navbar-brand" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Airbnb_Logo_B%C3%A9lo.svg/1024px-Airbnb_Logo_B%C3%A9lo.svg.png" alt="logo">
                     </div>
-                    {{-- <span class="navbar-brand">BoolBnB</span> --}}
-                    <button class="hamburger navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span id="hamburger" class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="home-menu collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="mobile-menu">
+                        <button class="hamburger navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span id="hamburger" class="navbar-toggler-icon"></span>
+                        </button>
+                        <div id="mobile" class="mobile hidden">
+                            @guest
+                                <a class="home-menu-a nav-link nav-item" href="{{ route('register') }}">Registrati</a>
+                                <a class="home-menu-a" href="{{ route('login') }}">Accedi</a>
+                            @endguest
+                                <a class="home-menu-a" href="{{ route('apartments.create') }}">Nuovo Appartamento</a>
+                            @auth
+                                <a  class="home-menu-a" href="{{ route('messages.index') }}">Messaggi</a>
+                                <a class="home-menu-a" href="{{ route('apartments.index') }}">Appartamenti</a>
+                                <a  class="home-menu-a" href="{{ route('paymentNoId') }}">Sponsorizzazioni</a>
+                                <a class="home-menu-a" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }} &nbsp; <i class="user-icon fas fa-user-circle"></i>
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            @endauth
+                        </div>
+                    </div>
+                    <div class="home-menu collapse navbar-collapse desktop" id="navbarSupportedContent">
                         @guest
                             <a class="home-menu-a nav-link nav-item m-3" href="{{ route('register') }}">Registrati</a>
                             <a class="home-menu-a m-3" href="{{ route('login') }}">Accedi</a>
@@ -33,10 +52,10 @@
                             <a  class="home-menu-a m-3" href="{{ route('messages.index') }}">Messaggi</a>
                             <a class="home-menu-a m-3" href="{{ route('apartments.index') }}">Appartamenti</a>
                             <a  class="home-menu-a m-3" href="{{ route('paymentNoId') }}">Sponsorizzazioni</a>
-                            <i class="user-icon fas fa-user-circle"></i>
                             <a class="home-menu-a m-3" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
+                            <i class="user-icon fas fa-user-circle"></i>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
@@ -72,11 +91,12 @@
             @foreach ($apartments as $apartment)
                 <div class="cardbool">
                     <div class="img-container">
-                        <a href="{{route('apartments.show', $apartment->sponsorApartments->id)}}"><img class="card-img-top" src="{{Storage::url($apartment->sponsorApartments->image)}}" alt="img"></a>
+                        <a href="{{route('apartments.show', $apartment->id)}}"><img class="card-img-top" src="{{Storage::url($apartment->image)}}" alt="img"></a>
                     </div>
-                    <div class="card-body">
-                        <h5 class="text-break card-title"><a href="{{route('apartments.show', $apartment->sponsorApartments->id)}}">{{$apartment->sponsorApartments->title}}</a></h5>
-                        <p class="text-break card-text">{{$apartment->sponsorApartments->description}}</p>
+                    <div class="card-body p-0 pt-3">
+                        <h5 class="text-break card-title"><a href="{{route('apartments.show', $apartment->id)}}">{{$apartment->title}}</a></h5>
+                        <p class="text-break card-text">{{$apartment->city}}</p>
+                        <p class="text-break card-text">{{$apartment->description}}</p>
                     </div>
                 </div>
             @endforeach
@@ -86,6 +106,6 @@
     </div>
 
     @include('template.footer')
-    <script src="{{asset('js/homeSearch.js')}}"></script>   
+    <script src="{{asset('js/homeSearch.js')}}"></script>
 </body>
 </html>

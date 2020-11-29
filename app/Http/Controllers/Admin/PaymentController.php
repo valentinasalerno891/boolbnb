@@ -21,19 +21,15 @@ class PaymentController extends Controller
             'publicKey' => config('services.braintree.publicKey'),
             'privateKey' => config('services.braintree.privateKey')
           ]);
-
-        $token = $gateway->ClientToken()->generate(); // creazione token 
+        // creazione token
+        $token = $gateway->ClientToken()->generate();
         $sponsors = Sponsor::all();
-        $apartments = Apartment::where([['user_id',Auth::id()], ['available', 1]])->get();
-     //    return view('admin.checkout', [
-     //        'token' => $token
-     //    ], compact('sponsors', 'apartments'));
-        return view('admin.hosted', [
-            'token' => $token
-        ], compact('sponsors', 'apartments'));
+        $apartments = Apartment::where('user_id', Auth::id())->get();
+
+        return view('admin.hosted', ['token' => $token], compact('sponsors', 'apartments'));
      }
 
-     // funzione che resituisce la view con in titolo dell'appartamento con ID indicato nell'URL
+     // funzione che resituisce la view con il titolo dell'appartamento con ID indicato nell'URL
      public function paymentWithId($id){
           if (Apartment::where('id', $id)->exists()){ // controllo che l'appartamento esista nel DB
             if (Apartment::where('id', $id)->first()->user_id != Auth::id()){ // controllo che l'appartamento appartenga all'utente loggato
@@ -42,6 +38,7 @@ class PaymentController extends Controller
           } else {
                abort(404);
           }
+
           $gateway = new \Braintree\Gateway([
                'environment' => config('services.braintree.environment'),
                'merchantId' => config('services.braintree.merchantId'),
@@ -52,17 +49,13 @@ class PaymentController extends Controller
           $token = $gateway->ClientToken()->generate();
           $sponsors = Sponsor::all();
           $apartment = Apartment::where('id',$id)->first();
-          // return view('admin.checkout', [
-          //      'token' => $token
-          // ], compact('sponsors', 'apartment'));
-          return view('admin.hosted', [
-            'token' => $token
-        ], compact('sponsors', 'apartment'));
+
+          return view('admin.hosted', ['token' => $token], compact('sponsors', 'apartment'));
      }
 
      public function checkout(Request $request){
           // controllo che l'ID dello sponsor passato nella richiesta esista nel DB e l'ID dell'appartamento passato appartenga all'utente loggato e sia disponibile
-          if ((!Sponsor::where('id', $request->amount)->exists()) || (!Apartment::where([['id',$request->apartment],['user_id',Auth::id()], ['available', 1]])->exists())) {
+          if ((!Sponsor::where('id', $request->amount)->exists()) || (!Apartment::where([['id',$request->apartment],['user_id',Auth::id()]])->exists())) {
             return back()->withErrors('Errore nel pagamento');
         }
         $gateway = new \Braintree\Gateway([
@@ -93,6 +86,11 @@ class PaymentController extends Controller
             $hours = $temp_hours[0]->duration;
 
             $apartment = Apartment::where('id', $request->apartment)->get(); // prendo l'appartamento con l'ID della richiesta
+
+            if ($apartment[0]->available == 0) {
+                $data['available'] = 1;
+                $apartment[0]->update($data);
+            }
 
             if ($apartment[0]->sponsors()->exists()){ // controllo se l'appartamento esiste già nella tabella sponsor
                 $last_sponsor = Carbon::parse($apartment[0]->sponsors()->orderBy('pivot_end_date', 'desc')->first()->pivot->end_date); // data e ora di fine dell'ultima sponsorizzazione dell'appartamento in questione

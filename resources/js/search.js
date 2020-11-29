@@ -6,7 +6,7 @@ const Handlebars = require("handlebars");
 //se condivido la url della ricerca con altro utente si vedrà quello che ho cercato
 var url = window.location.href;
 if (url.includes('?') && (typeof getUrlParameter('latitude') != 'undefined') && (typeof getUrlParameter('longitude') != 'undefined')){
-    
+
     getApiParams();
     insertValues();
     getApartments();
@@ -164,10 +164,14 @@ function getApartments(){
                 // let arr = Object.entries(data).sort((a, b) => a.distance + b.distance);
                 // console.log(arr)
                 for (var i = 0; i<data.length; i++){
-                var context = data[i];
-                context['description'] = context['description'].substring(0,30)+'...';
-                var html = template(context);
-                $('#results').append(html);
+                    var context = data[i];
+                    context['description'] = context['description'].substring(0,30)+'...';
+                    var html = template(context);
+                    if ('sponsored' in context) {
+                        $('#results').prepend(html);
+                    } else {
+                        $('#results').append(html);
+                    }
                 }
             }
         },
@@ -176,24 +180,3 @@ function getApartments(){
         }
     });
 }
-
-
-
-// var url_string = window.location.href; //window.location.href
-// var url = new URL(url_string);
-// var c = url.searchParams.get("city");
-// console.log(c);
-
-// function change(){
-//     var service = '';
-//     var city = ($('#city').val() == '') ? '?city=0' : '?city='+$('#city').val();
-//     var rooms = ($('#rooms').val() == '') ? '&room=0' : '&room='+$('#rooms').val();
-//     $('.service').each(function(){
-//         if ($(this).is(':checked')){
-//             service = service + '&' + $(this).attr('value') + '=' + '1';
-//         } else {
-//             service = service + '&' + $(this).attr('value') + '=' + '0';
-//         }
-//     })
-//     window.history.pushState("","", city+rooms+service);
-// }

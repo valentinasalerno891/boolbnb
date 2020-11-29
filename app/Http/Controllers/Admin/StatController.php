@@ -14,31 +14,34 @@ use DB;
 class StatController extends Controller
 {
     public function show($id){
+        //selezioni appartamento
         $apartment = Apartment::where('id', $id)->first();
+        //controllo che appartenga all'utente loggato
         if ($apartment->user_id == Auth::id()) {
+            //seleziona dati views dal db
             $db_views = DB::table('views')->where('apartment_id', $id)
                     ->select('created_at', DB::raw('count(*) as total'))
                     ->groupBy('created_at')->orderBy('created_at', 'DESC')->limit(24)
                     ->get();
             $temp_views = json_decode($db_views, true);
+            //array con statistiche delle ultime 24 ore
             $views = [];
-            // dd(Carbon::now()->format('H').':00');
             $currentHour = Carbon::now()->timezone('Europe/Rome')->format('d-M-Y H:00:00');
+
             for ($i=0; $i<24; $i++){
+                //creo nell'array views un elemento con data di creazione= a current hour
                 $views[$i]['created_at'] = Carbon::parse($currentHour)->format('d-M-Y H:00:00');
                 $currentHour = Carbon::parse($currentHour)->subHours(1);
+                //controllo se l'ora dell'elemento è presente nel db
                 $check = $this->isPresent($temp_views, 'created_at', Carbon::parse($views[$i]['created_at'])->format('d-M-Y H:00:00'));
+
                 if($check !== false){
-                    $views[$i]['total'] = $temp_views[$check]['total'];
+                    $views[$i]['total'] = $temp_views[$check]['total']; //se è presente gli assegno il valore di views restituito dal db
                 } else {
-                    $views[$i]['total'] = '0';
+                    $views[$i]['total'] = '0'; //altrimenti assegno 0
                 }
-                // if (!array_key_exists($i, $temp_views)){
-                //     $views[$i]['total'] = '0';
-                // } else {
-                //     $views[$i]['total'] = $temp_views[$i]['total'];
-                // }
             }
+            //stessa procedura per i messaggi, ma vengono considerati gli ultimi 7 giorni anzichè le 24 ore
             $db_messages = DB::table('messages')->where('apartment_id', $id)
                     ->select('created_at', DB::raw('count(*) as total'))
                     ->groupBy('created_at')->orderBy('created_at', 'DESC')->limit(7)
@@ -51,16 +54,14 @@ class StatController extends Controller
                 $messages[$i]['created_at'] = $currentDay->format('d-M-Y');
                 $currentDay = $currentDay->subDays(1);
                 $check = $this->isPresent($temp_messages, 'created_at', $messages[$i]['created_at']);
-                // dd($temp_messages[$i]['created_at']);
                 array_push($check_list, $check);
                 if($check !== false){
                     $messages[$i]['total'] = $temp_messages[$check]['total'];
                 } else {
                     $messages[$i]['total'] = '0';
                 }
-                
+
             }
-            // dd($check_list);
             $views = json_encode($views, true);
             $messages = json_encode($messages, true);
             return view('admin.stats', compact('views', 'messages', 'apartment'));
@@ -73,8 +74,8 @@ class StatController extends Controller
         foreach ($array as $key => $item){
             if (isset($item[$keys]) && $item[$keys] == $val){
                 return $key;
-            } 
-        }       
+            }
+        }
         return false;
     }
 }

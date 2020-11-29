@@ -11,7 +11,7 @@ use App\Message;
 
 class MessageController extends Controller
 {
-    //Ritorna la view con la lista dei messaggi dello user loggato 
+    //Ritorna la view con la lista dei messaggi dello user loggato
     public function index(){
         $apartments = Apartment::where('user_id', Auth::id())->get();
         return view('admin.messages.index', compact('apartments'));
@@ -33,12 +33,18 @@ class MessageController extends Controller
             'title' =>  'required|min:5|max:50',
             'body' =>  'required|min:20|max:2000',
         ]);
+        //salvataggio dati sul db:
         $data['apartment_id']=$apartment_id;
+
         $data['created_at']= Carbon::now()->format('d-M-Y');
         $data['hour']= Carbon::now()->timezone('Europe/Rome')->format('h:i:s');
+
         $message = new Message();
+
         $message->fill($data);
+
         $message->save();
+        
         return redirect()->route('apartments.show',$apartment_id)->with('status', 'Messaggio inviato correttamente.');
     }
 }

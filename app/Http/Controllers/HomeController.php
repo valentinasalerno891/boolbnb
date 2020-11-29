@@ -25,20 +25,25 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    { 
-        $temp_apartments = ApartmentSponsor::select('*')->where([['start_date', '<=' ,Carbon::now()->timezone('Europe/Rome')->format('Y-m-d H:i:s')],['end_date', '>=' ,Carbon::now()->timezone('Europe/Rome')->format('Y-m-d H:i:s')]])->get();
-        // $rands = [];
+    {
+        //con join unisce i dati delle tabelle specificate e seleziona i dati in base alle clausole del where per prendere gli appartamenti sponsorizzati e visibili
+        $temp_apartments = ApartmentSponsor::select('*')->join('apartments', 'apartments.id', '=', 'apartment_sponsor.apartment_id')->where([['available', 1],['start_date', '<=' ,Carbon::now()->timezone('Europe/Rome')->format('Y-m-d H:i:s')],['end_date', '>=' ,Carbon::now()->timezone('Europe/Rome')->format('Y-m-d H:i:s')]])->get();
+
         $apartments = [];
         $rands = [];
+
+        //ne vogliamo prendere max 6
         if (count($temp_apartments)>6){
             $var = 6;
         } else {
             $var = count($temp_apartments);
         }
-        while (count($apartments)<$var){
+        //li prendiamo senza che si ripetano e in modo randomico
+        while (count($apartments) < $var){
             $rand = rand(0,count($temp_apartments)-1);
             if (!in_array($rand, $rands)){
                 array_push($rands, $rand);
+                $temp_apartments[$rand]->description = substr($temp_apartments[$rand]->description, 0, 100)."...";
                 array_push($apartments, $temp_apartments[$rand]);
             }
         }

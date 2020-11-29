@@ -5,7 +5,7 @@
 <div class="container search">
 
 
-    
+
   <div class="form-group">
     <label for="city">Città</label>
     <input id="city" class="input-text" type="search" required placeholder="Dove vuoi andare?">
@@ -17,7 +17,7 @@
   <div class="form-group">
     @foreach ($services as $service)
         <label for="{{$service->id}}">{{$service->name}} <input class="service" type="checkbox" name="services[{{$service->id}}]" value="{{$service->id}}" id="{{$service->id}}"></label>
-        
+
     @endforeach
   </div>
   <div class="form-group">
@@ -25,16 +25,17 @@
     <input type="range" id="distance" value="20" max="200">
     <span id="eccolo">20km</span>
   </div>
-  
+
   <button class="btn" id="cerca">Cerca</button>
   <div id="results">
   </div>
     <script id="entry-template" type="text/x-handlebars-template">
-        <div class="row apartment">
+        <div class="row apartment @{{class}}">
           <div class="left col-lg-8 col-sm-12 col-12">
             <h4><a href="@{{route}}">@{{title}}</a></h4>
             <p>@{{description}}</p>
             <p>@{{distance}}km dal centro</p>
+            <span class="bool-sponsored-text">@{{sponsored}}</span>
           </div>
           <div class="right col-lg-4 col-sm-12 col-12">
             <img src="@{{image}}" alt="@{{title}}-image">
@@ -46,5 +47,5 @@
 
 
 @section('script')
-    <script src="{{asset('js/search.js')}}"></script>   
+    <script src="{{asset('js/search.js')}}"></script>
 @endsection
