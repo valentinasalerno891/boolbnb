@@ -24,19 +24,19 @@
   </div>
   <div class="form-group">
     <label for="rooms">Camere</label>
-    <input name="rooms" type="number" class="form-control" id="rooms" value="{{($errors->any()) ? old('rooms') : $apartment->rooms}}">
+    <input min="0" oninput="validity.valid||(value='');" name="rooms" type="number" class="form-control" id="rooms" value="{{($errors->any()) ? old('rooms') : $apartment->rooms}}">
   </div>
   <div class="form-group">
     <label for="beds">Letti</label>
-    <input name="beds" type="number" class="form-control" id="beds" value="{{($errors->any()) ? old('beds') : $apartment->beds}}">
+    <input min="1" oninput="validity.valid||(value='');" name="beds" type="number" class="form-control" id="beds" value="{{($errors->any()) ? old('beds') : $apartment->beds}}">
   </div>
   <div class="form-group">
     <label for="bathrooms">Bagni</label>
-    <input name="bathrooms" type="number" class="form-control" id="bathrooms" value="{{($errors->any()) ? old('bathrooms') : $apartment->bathrooms}}">
+    <input min="1" oninput="validity.valid||(value='');" name="bathrooms" type="number" class="form-control" id="bathrooms" value="{{($errors->any()) ? old('bathrooms') : $apartment->bathrooms}}">
   </div>
   <div class="form-group">
     <label for="square_meters">Dimensione</label>
-    <input name="square_meters" type="number" class="form-control" id="square_meters" value="{{($errors->any()) ? old('square_meters') : $apartment->square_meters}}">
+    <input min="0" oninput="validity.valid||(value='');" name="square_meters" type="number" class="form-control" id="square_meters" value="{{($errors->any()) ? old('square_meters') : $apartment->square_meters}}">
   </div>
   <div class="form-group">
     <label for="description">Descrizione</label>
@@ -111,5 +111,5 @@
 </div>
 @endsection
 @section('script')
-  <script src="{{asset('js/getCoordinates.js')}}"></script>   
+  <script src="{{asset('js/getCoordinates.js')}}"></script>
 @endsection

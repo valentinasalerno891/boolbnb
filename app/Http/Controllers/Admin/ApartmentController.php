@@ -58,7 +58,7 @@ class ApartmentController extends Controller
         //Validazione campi della tabella Apartments//
         $request->validate([
             'title' =>  'required|min:10|max:150',
-            'rooms' =>  'required|numeric',
+            'rooms' =>  'required|numeric|min:0',
             'beds' =>  'required|numeric|min:1|gt:0',
             'bathrooms' =>  'required|numeric|min:1|gt:0',
             'square_meters' =>  'required|numeric|gt:0',
@@ -107,7 +107,8 @@ class ApartmentController extends Controller
 
         // controllo se l'appartamento è disponibile
         if ($apartment->available){
-            if ($apartment->user_id != Auth::id()){ //controllo se è dell'utente loggato (in questo caso aggiungo una visita alla pagina)
+            if ($apartment->user_id != Auth::id()){
+                //controllo se è dell'utente loggato (in questo caso aggiungo una visita alla pagina)
                 if (!View::where([['apartment_id', $id], ['session_id', Session::getId()]])->exists()){
                 $view = new View;
                 $view->created_at = Carbon::now()->timezone('Europe/Rome')->format('d-M-Y h:00:00');
@@ -163,7 +164,7 @@ class ApartmentController extends Controller
         $data = $request->all();
         $request->validate([
             'title' =>  'required|min:10|max:150',
-            'rooms' =>  'required|numeric',
+            'rooms' =>  'required|numeric|min:0',
             'beds' =>  'required|numeric|min:1|gt:0',
             'bathrooms' =>  'required|numeric|min:1|gt:0',
             'square_meters' =>  'required|numeric|gt:0',

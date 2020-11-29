@@ -16,9 +16,33 @@
     }
     td {
         vertical-align: middle;
-        &.edit-delete-action {
-            text-align: center;
+    }
+
+    .mobile-table {
+        display: none;
+    }
+
+}
+
+@media screen and (min-width: 991px) {
+    .apartments-index {
+        .mobile-table {
+            display: none;
         }
+
+    }
+}
+
+@media screen and (max-width: 991px) {
+
+    .apartments-index {
+        .mobile-table {
+            display: table-row;
+        }
+        .desktop-table {
+            display: none;
+        }
+
     }
 
 }

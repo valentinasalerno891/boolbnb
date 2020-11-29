@@ -33,8 +33,8 @@ require('./bootstrap');
 
 
 $(document).ready(function(){
-    // $('#hamburger').on('click', function(){
+    $( ".hamburger1" ).click(function() {
+      $( "#mobile" ).toggleClass("hidden");
+    });
 
-    // });
 })
-

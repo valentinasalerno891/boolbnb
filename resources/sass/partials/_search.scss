@@ -5,7 +5,7 @@
         padding: 0 15px;
         height: 30px;
         line-height: 30px;
-        
+
     }
     #rooms {
             margin-right: 15px;
@@ -20,6 +20,10 @@
     #results {
         margin-top: 20px;
     }
+    .sponsored {
+        background-color: #ff385c21;
+    }
+
     .apartment {
         padding: 30px 0;
         border-bottom: 2px solid #ff385c;
@@ -27,6 +31,13 @@
         display: flex;
         .left {
             width: 80%;
+            position: relative;
+            .bool-sponsored-text {
+                position: absolute;
+                bottom: 0;
+                left: 15px;
+
+            }
         }
         .right {
             width: 20%;

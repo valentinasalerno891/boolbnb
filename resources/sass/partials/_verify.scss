@@ -1,4 +1,6 @@
 .alert {
-    display: flex;
-    justify-content: center;
+    text-align: center;
+    ul {
+        list-style: none;
+    }
 }

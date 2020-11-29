@@ -10811,16 +10811,22 @@ module.exports = g;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+//dati per autocompletamento ricerca
 var places = __webpack_require__(/*! places.js */ "./node_modules/places.js/index.js");
 
 places({
   appId: 'plZMYMEKV4FH',
   apiKey: '2c7357d3befb569a19e301e5338c9687',
   container: document.querySelector('#city')
-});
+}); //click su hamburger-menu
+
+$(".hamburger").click(function () {
+  $("#mobile").toggleClass("hidden");
+}); //al click richiama la funzione
+
 $('#myButton').on('click', function () {
   getLatLon($('#city').val());
-});
+}); //funzione per calcolare latitudine e longitudine e caricare pagina della ricerca
 
 function getLatLon(city) {
   $.ajax({
@@ -10831,13 +10837,9 @@ function getLatLon(city) {
 
       if (data.results.length != 0) {
         $('#latitude').val(data.results[0].position.lat);
-        $('#longitude').val(data.results[0].position.lon); // window.open('search?latitude='+data.results[0].position.lat+'&'+'longitude='+data.results[0].position.lon+'&'+'city='+$('#city').val());
-
+        $('#longitude').val(data.results[0].position.lon);
         window.location.href = 'search?latitude=' + data.results[0].position.lat + '&' + 'longitude=' + data.results[0].position.lon + '&' + 'city=' + $('#city').val();
-      } // else {
-      //     $('#error').show();
-      // }
-
+      }
     },
     error: function error(err) {
       console.log(err);
@@ -10865,7 +10867,7 @@ function getLatLon(city) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/davidefrancavilla/Desktop/Classe#16/boolbnb/resources/js/homeSearch.js */"./resources/js/homeSearch.js");
+module.exports = __webpack_require__(/*! C:\MAMP\mamp_public\progetto\boolbnb\resources\js\homeSearch.js */"./resources/js/homeSearch.js");
 
 
 /***/ })

@@ -1,6 +1,6 @@
  @extends('layouts.app')
  @section('title', 'Sponsorizza un appartamento')
- 
+
  <style>
     body {
         margin: 24px 0;
@@ -14,6 +14,9 @@
         border: 1px solid #CED4DA;
         padding: .375rem .75rem;
         border-radius: .25rem;
+    }
+    .available-warning {
+        display: none;
     }
 </style>
 
@@ -39,18 +42,33 @@
                         </ul>
                     </div>
                 @endif
+
+
                 <form action="{{ route('checkout') }}" method="POST" id="payment-form">
                     @csrf
                     @isset ($apartment)
+                        @if($apartment->available == 0)
+                            <div class="alert alert-warning">
+                                <ul>
+                                    <li>prova</li>
+                                </ul>
+                            </div>
+                        @endif
                         <h3>Metti l'appartamento "{{$apartment->title}}" in evidenza</h3>
                         <input hidden type="text" name="apartment" value="{{$apartment->id}}">
                     @else
                     <div class="spacer"></div>
+                    <div class="alert alert-warning available-warning">
+                        <ul>
+                            <li>Attenzione: non hai ancora pubblicato l'annuncio di questo appartamento. Procedendo con il pagamento, il tuo annuncio sarà visibile e disponibile</li>
+                        </ul>
+                    </div>
                     <div class="form-group">
                         <label for="apartment">Appartamento</label>
                         <select class="form-control" name="apartment" id="apartment">
+
                             @foreach ($apartments as $apartment)
-                                <option value="{{$apartment->id}}">{{$apartment->title}}</option>
+                                <option available="{{$apartment->available}}" value="{{$apartment->id}}">{{$apartment->title}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -61,7 +79,7 @@
                             @foreach ($sponsors as $sponsor)
                                 <option  price="{{$sponsor->price}}" value="{{$sponsor->id}}">{{$sponsor->name}} - {{$sponsor->price}}€</option>
                             @endforeach
-                        </select> 
+                        </select>
                     </div>
                     {{-- <div class="bt-drop-in-wrapper">
                         <div id="bt-dropin"></div>
@@ -91,7 +109,7 @@
             </div>
         </div>
 @endsection
-        
+
 
 @section('script')
     <script src="https://js.braintreegateway.com/web/3.38.1/js/client.min.js"></script>
@@ -99,10 +117,23 @@
 
     <script>
     $(document).ready(function(){
+            if ($('#apartment option:selected').attr('available') == 0) {
+                $('.available-warning').show();
+            } else {
+                $('.available-warning').hide();
+            }
 
             $("#amount").val($("#amount option:first").val());
             $('#amount').on('change', function(){
                 $('#price').text($('#amount option:selected').attr('price')+'€');
+            })
+            //se selezioni un altro appartamento, viene fatto il controllo della visibilità dell'appartamento
+            $('#apartment').on('change', function(){
+                if ($('#apartment option:selected').attr('available') == 0) {
+                    $('.available-warning').show();
+                } else {
+                    $('.available-warning').hide();
+                }
             })
 
     });

@@ -44149,7 +44149,12 @@ function getApartments() {
           var context = data[i];
           context['description'] = context['description'].substring(0, 30) + '...';
           var html = template(context);
-          $('#results').append(html);
+
+          if ('sponsored' in context) {
+            $('#results').prepend(html);
+          } else {
+            $('#results').append(html);
+          }
         }
       }
     },
@@ -44157,23 +44162,7 @@ function getApartments() {
       console.log(err);
     }
   });
-} // var url_string = window.location.href; //window.location.href
-// var url = new URL(url_string);
-// var c = url.searchParams.get("city");
-// console.log(c);
-// function change(){
-//     var service = '';
-//     var city = ($('#city').val() == '') ? '?city=0' : '?city='+$('#city').val();
-//     var rooms = ($('#rooms').val() == '') ? '&room=0' : '&room='+$('#rooms').val();
-//     $('.service').each(function(){
-//         if ($(this).is(':checked')){
-//             service = service + '&' + $(this).attr('value') + '=' + '1';
-//         } else {
-//             service = service + '&' + $(this).attr('value') + '=' + '0';
-//         }
-//     })
-//     window.history.pushState("","", city+rooms+service);
-// }
+}
 
 /***/ }),
 
@@ -44184,7 +44173,7 @@ function getApartments() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/davidefrancavilla/Desktop/Classe#16/boolbnb/resources/js/search.js */"./resources/js/search.js");
+module.exports = __webpack_require__(/*! C:\MAMP\mamp_public\progetto\boolbnb\resources\js\search.js */"./resources/js/search.js");
 
 
 /***/ }),

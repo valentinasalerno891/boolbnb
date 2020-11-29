@@ -10811,16 +10811,18 @@ module.exports = g;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+//dati per autocompletamento ricerca
 var places = __webpack_require__(/*! places.js */ "./node_modules/places.js/index.js");
 
 places({
   appId: 'plZMYMEKV4FH',
   apiKey: '2c7357d3befb569a19e301e5338c9687',
   container: document.querySelector('#city')
-});
+}); //al click richiama la funzione
+
 $('#myButton').on('click', function () {
   getLatLon($('#city').val());
-});
+}); //funzione per calcolare latitudine e longitudine e inviare il form alla fine del calcolo
 
 function getLatLon(city) {
   $.ajax({
@@ -10863,7 +10865,7 @@ function getLatLon(city) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/davidefrancavilla/Desktop/Classe#16/boolbnb/resources/js/getCoordinates.js */"./resources/js/getCoordinates.js");
+module.exports = __webpack_require__(/*! C:\MAMP\mamp_public\progetto\boolbnb\resources\js\getCoordinates.js */"./resources/js/getCoordinates.js");
 
 
 /***/ })
