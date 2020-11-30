@@ -10866,6 +10866,7 @@ function getLatLon(city) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(/*! C:\MAMP\mamp_public\progetto\boolbnb\resources\js\getCoordinates.js */"./resources/js/getCoordinates.js");
+module.exports = __webpack_require__(/*! C:\mamp_public\boolbnb\resources\js\getCoordinates.js */"./resources/js/getCoordinates.js");
 
 
 /***/ })
