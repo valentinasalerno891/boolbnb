@@ -30,8 +30,11 @@
             <form action="{{route('apartments.destroy',$apartment->id)}}" method="post">
                 @csrf
                 @method('DELETE')
-                <button class="btn bool-btn-pink" type="submit"><span>Delete <i class="far fa-trash-alt"></i></span></button>
+                <button class="btn bool-btn-pink mr-3" type="submit"><span>Delete <i class="far fa-trash-alt"></i></span></button>
             </form>
+            @isset($sponsored)
+                <span>{{$sponsored}}</span>
+            @endisset
           </div>
           <div class="small-display">
             <span><a href="{{route('apartments.edit',$apartment->id)}}"><i class="far fa-edit"></i></a></span>
@@ -45,6 +48,10 @@
           </div>
           @endif
         </div>
+        @isset($sponsored)
+            <p class="sponsored pt-3 m-0">{{$sponsored}}</p>
+        @endisset
+
       </div>
       <div class="image_apartment">
         <img src="{{Storage::url($apartment->image)}}" alt="apartment-image">
@@ -58,12 +65,13 @@
         {{-- <hr> --}}
         <div class="apartment_information">
           <h3>DETTAGLI APPARTAMENTO</h3>
-          <p class="">Metri quadri appartamento: {{$apartment->square_meters}}</p>
-          <p class=""><span class="cookies"><i class="fas fa-door-open"></i></span> Camere: {{$apartment->rooms}}</p>
-          <p class=""><span class="cookies"><i class="fas fa-bed"></i></span> Letti: {{$apartment->beds}}</p>
-          <p class=""><span class="cookies"><i class="fas fa-bath"></i></span> Bagni: {{$apartment->bathrooms}}</p>
+          <p class=""><span class="cookies"><i class="fas fa-ruler-combined"></i></span>Dimensione: {{$apartment->square_meters}}mq</p>
+          <p class=""><span class="cookies"><i class="fas fa-door-open"></i></span>Camere: {{$apartment->rooms}}</p>
+          <p class=""><span class="cookies"><i class="fas fa-bed"></i></span>Letti: {{$apartment->beds}}</p>
+          <p class=""><span class="cookies"><i class="fas fa-bath"></i></span>Bagni: {{$apartment->bathrooms}}</p>
+          <p class=""><span class="cookies"><i class="fas fa-map-marker-alt"></i></span>{{$apartment->city}}</p>
           @if ($apartment->user->name || $apartment->user->lastname)
-              <p class=""><span class="cookies"><i class="fas fa-user"></i></span> Proprietario: {{$apartment->user->name}} {{$apartment->user->lastname}}</p>
+              <p class=""><span class="cookies"><i class="fas fa-user"></i></span>Proprietario: {{$apartment->user->name}} {{$apartment->user->lastname}}</p>
           @endif
         </div>
       </div>
@@ -144,7 +152,7 @@
         var map = tt.map({
             key: "wBFrGupwgm95n0TA2HmZJULQ5GktiGhQ",
             center: [longitude,latitude],
-            zoom: 11,
+            zoom: 15,
             container: "map",
             style: "tomtom://vector/1/basic-main",
             theme: {

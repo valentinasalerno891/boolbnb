@@ -47,7 +47,7 @@
                             <a class="home-menu-a nav-link nav-item m-3" href="{{ route('register') }}">Registrati</a>
                             <a class="home-menu-a m-3" href="{{ route('login') }}">Accedi</a>
                         @endguest
-                            <a class="home-menu-a m-3" href="{{ route('apartments.create') }}">Inserisci un Appartamento</a>
+                            <a class="home-menu-a m-3" href="{{ route('apartments.create') }}">Nuovo Appartamento</a>
                         @auth
                             <a  class="home-menu-a m-3" href="{{ route('messages.index') }}">Messaggi</a>
                             <a class="home-menu-a m-3" href="{{ route('apartments.index') }}">Appartamenti</a>
@@ -84,26 +84,28 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="card-containerbool">
-            <h2>Appartamenti in evidenza</h2>
-            <div class="card-groupbool">
-            @foreach ($apartments as $apartment)
-                <div class="cardbool">
-                    <div class="img-container">
-                        <a href="{{route('apartments.show', $apartment->id)}}"><img class="card-img-top" src="{{Storage::url($apartment->image)}}" alt="img"></a>
+    @isset($apartments[0])
+        <div class="container">
+            <div class="card-containerbool">
+                <h2>Appartamenti in evidenza</h2>
+                <div class="card-groupbool">
+                @foreach ($apartments as $apartment)
+                    <div class="cardbool">
+                        <div class="img-container">
+                            <a href="{{route('apartments.show', $apartment->id)}}"><img class="card-img-top" src="{{Storage::url($apartment->image)}}" alt="img"></a>
+                        </div>
+                        <div class="card-body p-0 pt-3">
+                            <h5 class="text-break card-title"><a href="{{route('apartments.show', $apartment->id)}}">{{$apartment->title}}</a></h5>
+                            <p class="text-break card-text">{{$apartment->city}}</p>
+                            <p class="text-break card-text">{{$apartment->description}}</p>
+                        </div>
                     </div>
-                    <div class="card-body p-0 pt-3">
-                        <h5 class="text-break card-title"><a href="{{route('apartments.show', $apartment->id)}}">{{$apartment->title}}</a></h5>
-                        <p class="text-break card-text">{{$apartment->city}}</p>
-                        <p class="text-break card-text">{{$apartment->description}}</p>
-                    </div>
+                @endforeach
                 </div>
-            @endforeach
-
             </div>
         </div>
-    </div>
+
+    @endisset
 
     @include('template.footer')
     <script src="{{asset('js/homeSearch.js')}}"></script>

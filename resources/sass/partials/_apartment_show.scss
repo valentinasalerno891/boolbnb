@@ -4,6 +4,7 @@
             display: inline-block;
             min-width: 30px;
             text-align: center;
+            margin-right: 10px;
         }
         margin-bottom: 150px;
         .header_apartment{
@@ -38,12 +39,17 @@
                 .small-display {
                     display: none;
                 }
+                .sponsored {
+                    width: 100%;
+                }
+
+
             }
         }
         .image_apartment{
             text-align: center;
             width: 100%;
-            
+
             // height: 100%;
             img{
                 width: 100%;
@@ -142,6 +148,12 @@
         display: flex;
     }
 
+}
+
+@media screen and (min-width: 577px){
+    .sponsored {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 720px){

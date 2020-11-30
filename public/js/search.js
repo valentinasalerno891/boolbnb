@@ -44057,7 +44057,7 @@ function changeUrlLatLon(params, latLon) {
 
 function changeUrlParams() {
   var params = {};
-  params['city'] = $('#city').val() == '' ? '0' : $('#city').val();
+  params['city'] = $('#city').val() == '' ? '0' : $('#city').val().replace(/\s/g, '');
   params['rooms'] = $('#rooms').val() == '' ? '0' : $('#rooms').val();
   params['beds'] = $('#beds').val() == '' ? '0' : $('#beds').val();
   params['distance'] = $('#distance').val();

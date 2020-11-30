@@ -14,6 +14,7 @@ use App\Category;
 use App\Service;
 use App\View;
 use Carbon\Carbon;
+use DB;
 
 
 class ApartmentController extends Controller
@@ -104,7 +105,7 @@ class ApartmentController extends Controller
     public function show($id)
     {
         $apartment = Apartment::where('id',$id)->first();
-
+        // dd(Carbon::parse($apartment->sponsors()->orderBy('pivot_end_date', 'desc')->first()->pivot->end_date));
         // controllo se l'appartamento è disponibile
         if ($apartment->available){
             if ($apartment->user_id != Auth::id()){
@@ -117,6 +118,10 @@ class ApartmentController extends Controller
 
                 $view->save();
                 }
+                //controllo se l'appartamento è sponsorizzato
+            } else if ($apartment->sponsors()->orderBy('pivot_end_date', 'desc')->first() && Carbon::parse($apartment->sponsors()->orderBy('pivot_end_date', 'desc')->first()->pivot->end_date)->gt(Carbon::now()->timezone('Europe/Rome'))){
+                $sponsored = 'Sponsorizzato fino al '.Carbon::parse($apartment->sponsors()->orderBy('pivot_end_date', 'desc')->first()->pivot->end_date)->format('d-m').' alle '.Carbon::parse($apartment->sponsors()->orderBy('pivot_end_date', 'desc')->first()->pivot->end_date)->format('H:i');
+                return view('admin.show',compact('apartment', 'sponsored'));
             }
 
             // altrimenti mostro solo la view
@@ -124,7 +129,13 @@ class ApartmentController extends Controller
 
         } else { // se non è disponibile lo mostro solo se l'appartamento appartiene all'utente loggato
             if ($apartment->user_id == Auth::id()){
-                return view('admin.show',compact('apartment'));
+                if ($apartment->sponsors()->orderBy('pivot_end_date', 'desc')->first() && Carbon::parse($apartment->sponsors()->orderBy('pivot_end_date', 'desc')->first()->pivot->end_date)->gt(Carbon::now()->timezone('Europe/Rome'))){
+                    $sponsored = 'Sponsorizzato fino al '.Carbon::parse($apartment->sponsors()->orderBy('pivot_end_date', 'desc')->first()->pivot->end_date)->format('d-m').' alle '.Carbon::parse($apartment->sponsors()->orderBy('pivot_end_date', 'desc')->first()->pivot->end_date)->format('H:i');
+                    return view('admin.show',compact('apartment', 'sponsored'));
+                } else {
+                    return view('admin.show',compact('apartment'));
+                }
+
             } else {
                 abort(404);
             }
