@@ -17579,6 +17579,7 @@ footer .copyright a {
   display: inline-block;
   min-width: 30px;
   text-align: center;
+  margin-right: 10px;
 }
 
 .apartment_show .container .header_apartment {
@@ -17619,6 +17620,10 @@ footer .copyright a {
 
 .apartment_show .container .header_apartment .apartment_form .small-display {
   display: none;
+}
+
+.apartment_show .container .header_apartment .apartment_form .sponsored {
+  width: 100%;
 }
 
 .apartment_show .container .image_apartment {
@@ -17731,6 +17736,12 @@ footer .copyright a {
   }
 }
 
+@media screen and (min-width: 577px) {
+  .sponsored {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 720px) {
   .apartment_show .container .description_information {
     width: 100%;
@@ -17825,6 +17836,7 @@ footer .copyright a {
 
 .container.search .apartment .right {
   width: 20%;
+  height: 200px;
 }
 
 .container.search .apartment .right img {
@@ -17860,8 +17872,8 @@ footer .copyright a {
   padding-bottom: 150px;
 }
 
-.apartment-create .category {
-  margin-right: 20px;
+.apartment-create .service {
+  margin-right: 15px;
 }
 
 .messages-index h2 {
@@ -17962,6 +17974,10 @@ footer .copyright a {
 
 .apartment-edit .form-group {
   margin-top: 30px;
+}
+
+.apartment-edit .form-group .service {
+  margin-right: 15px;
 }
 
 .alert {

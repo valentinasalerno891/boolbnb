@@ -17,7 +17,7 @@ class CreateApartmentsTable extends Migration
     {
         Schema::create('apartments', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 50);
+            $table->string('title', 150);
             $table->tinyInteger('rooms');
             $table->tinyInteger('beds');
             $table->tinyInteger('bathrooms');
@@ -29,7 +29,7 @@ class CreateApartmentsTable extends Migration
             $table->decimal('latitude', 8, 6);
             $table->decimal('longitude', 9, 6);
             $table->timestamps();
-            
+
             //Relazione tramite user_id con la tabella users con aggiornamenti automatici tramite OnDelete e OnUpdate//
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

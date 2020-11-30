@@ -10838,7 +10838,7 @@ function getLatLon(city) {
       if (data.results.length != 0) {
         $('#latitude').val(data.results[0].position.lat);
         $('#longitude').val(data.results[0].position.lon);
-        window.location.href = 'search?latitude=' + data.results[0].position.lat + '&' + 'longitude=' + data.results[0].position.lon + '&' + 'city=' + $('#city').val();
+        window.location.href = 'search?latitude=' + data.results[0].position.lat + '&' + 'longitude=' + data.results[0].position.lon + '&' + 'city=' + $('#city').val().replace(/\s/g, '');
       }
     },
     error: function error(err) {

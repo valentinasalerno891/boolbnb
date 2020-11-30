@@ -86,11 +86,11 @@
 {{-- Inserimento servizi --}}
     <div class="form-group">
         @foreach ($services as $service)
-            <label for="{{$service->name}}">{{$service->name}}</label>
-            <input class="category" type="checkbox" name="services[{{$service->id}}]" value="{{$service->id}}" id="{{$service->name}}"
+            <label class="service" for="{{$service->name}}">{{$service->name}} <input  type="checkbox" name="services[{{$service->id}}]" value="{{$service->id}}" id="{{$service->name}}"
               @if (is_array(old('services')) && in_array($service->id, array_keys(old('services'))))
                 checked
-              @endif>
+              @endif></label>
+
         @endforeach
     </div>
     <div id="error" style="display: none" class="alert alert-danger">
